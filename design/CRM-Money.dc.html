@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>VOLT CRM · Money</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0;background:#F6F7F6}
+a{color:#0F7A57;text-decoration:none}a:hover{color:#0A5A40;text-decoration:underline}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #F6F7F6; color: #111412; font-family: Geist, system-ui, sans-serif; font-size: 15px; line-height: 1.5; display: flex; flex-wrap: wrap">
+
+  <nav aria-label="CRM" style="flex: 1 1 232px; max-width: 100%; background: #FFFFFF; border-right: 1px solid #E4E7E5; padding: 20px 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 4px">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 4px 10px 18px">
+      <span style="width: 32px; height: 32px; border-radius: 9px; background: #111412; display: flex; align-items: center; justify-content: center">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"></path></svg>
+      </span>
+      <div style="line-height: 1.2"><div style="font-weight: 700; letter-spacing: 0.04em">VOLT</div><div style="font-size: 12px; color: #5E6661">Admin</div></div>
+    </div>
+    <sc-for list="{{nav}}" as="n" hint-placeholder-count="8">
+      <a href="{{n.href}}" aria-current="{{n.current}}" style="min-height: 44px; display: flex; align-items: center; gap: 12px; padding: 0 12px; border-radius: 10px; background: {{n.bg}}; color: {{n.fg}}; font-weight: {{n.fw}}; text-decoration: none">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{n.d}}"></path></svg>
+        <span style="flex: 1">{{n.label}}</span>
+        <span style="font-size: 12px; font-family: 'Geist Mono', monospace; color: {{n.badgeFg}}">{{n.badge}}</span>
+      </a>
+    </sc-for>
+    <div style="margin-top: auto; display: flex; align-items: center; gap: 10px; padding: 12px 10px 0">
+      <span style="width: 34px; height: 34px; border-radius: 999px; background: #E8ECE9; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 13px">NR</span>
+      <div style="line-height: 1.3"><div style="font-weight: 600; font-size: 14px">Nadim Rizk</div><div style="font-size: 12px; color: #5E6661">Owner</div></div>
+    </div>
+  </nav>
+
+  <main style="flex: 999 1 640px; min-width: 0; padding: 28px 32px 48px; box-sizing: border-box">
+    <div style="max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px">
+
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap">
+        <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap">
+          <h1 style="margin: 0; font-size: 26px; font-weight: 600">Money</h1>
+          <div style="display: flex; align-items: center; gap: 4px; border: 1px solid #E4E7E5; border-radius: 10px; background: #FFFFFF; padding: 2px">
+            <button type="button" aria-label="Previous month" style="width: 40px; height: 40px; border: 0; background: transparent; color: #111412; cursor: pointer; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></button>
+            <span style="font-weight: 600; padding: 0 6px">November 2026</span>
+            <button type="button" aria-label="Next month" style="width: 40px; height: 40px; border: 0; background: transparent; color: #111412; cursor: pointer; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button>
+          </div>
+        </div>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap">
+          <button type="button" style="height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid #E4E7E5; background: #FFFFFF; color: #111412; font: inherit; font-weight: 600; cursor: pointer">Add expense</button>
+          <button type="button" style="height: 44px; padding: 0 16px; border-radius: 10px; border: 0; background: #111412; color: #FFFFFF; font: inherit; font-weight: 600; cursor: pointer">Record payment</button>
+        </div>
+      </div>
+
+      <div role="tablist" aria-label="Money sections" style="display: flex; gap: 4px; border-bottom: 1px solid #E4E7E5; flex-wrap: wrap">
+        <sc-for list="{{tabs}}" as="t" hint-placeholder-count="5">
+          <button type="button" role="tab" aria-selected="{{t.on}}" style="height: 44px; padding: 0 14px; border: 0; border-bottom: 2px solid {{t.line}}; margin-bottom: -1px; background: transparent; color: {{t.fg}}; font: inherit; font-weight: {{t.fw}}; cursor: pointer">{{t.label}}</button>
+        </sc-for>
+      </div>
+
+      <div style="background: #FFFFFF; border: 1px solid #E4E7E5; border-radius: 14px; padding: 18px 20px; font-size: 17px; line-height: 1.6">
+        November so far: <strong>$18,420 in</strong>, <strong>$11,960 out</strong>, <strong style="color: #11683F">$6,460 profit</strong>. <strong>$1,110</strong> still to collect from 9 members, $355 of it overdue.
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: stretch">
+        <section aria-labelledby="six-h" style="flex: 3 1 480px; min-width: 0; background: #FFFFFF; border: 1px solid #E4E7E5; border-radius: 14px">
+          <div style="padding: 16px 20px; border-bottom: 1px solid #EEF0EE; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap">
+            <h2 id="six-h" style="margin: 0; font-size: 16px; font-weight: 600">In and out, last 6 months</h2>
+            <div style="display: flex; gap: 16px; font-size: 13px; color: #3D4540">
+              <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 2px; background: #111412"></span>Money in</span>
+              <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 2px; background: #B9C0BB"></span>Money out</span>
+            </div>
+          </div>
+          <div role="img" aria-label="Money in rose from about 13 to 19 thousand dollars a month since August while money out stayed near 11 to 12 thousand" style="padding: 20px 20px 16px">
+            <div style="height: 200px; display: flex; align-items: flex-end; gap: 18px; border-bottom: 1px solid #E4E7E5">
+              <sc-for list="{{months}}" as="m" hint-placeholder-count="6">
+                <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px">
+                  <div style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #3D4540">{{m.profit}}</div>
+                  <div style="width: 100%; display: flex; align-items: flex-end; justify-content: center; gap: 4px">
+                    <div style="width: 40%; max-width: 30px; height: {{m.inH}}; background: #111412; border-radius: 3px 3px 0 0"></div>
+                    <div style="width: 40%; max-width: 30px; height: {{m.outH}}; background: #B9C0BB; border-radius: 3px 3px 0 0"></div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display: flex; gap: 18px; margin-top: 8px">
+              <sc-for list="{{months}}" as="m" hint-placeholder-count="6">
+                <div style="flex: 1; text-align: center; font-size: 13px; color: {{m.labelFg}}">{{m.label}}</div>
+              </sc-for>
+            </div>
+            <div style="margin-top: 10px; font-size: 13px; color: #5E6661">Number above each month = profit. November is month to date.</div>
+          </div>
+        </section>
+
+        <section aria-labelledby="src-h" style="flex: 2 1 340px; min-width: 0; background: #FFFFFF; border: 1px solid #E4E7E5; border-radius: 14px">
+          <div style="padding: 16px 20px; border-bottom: 1px solid #EEF0EE">
+            <h2 id="src-h" style="margin: 0; font-size: 16px; font-weight: 600">Where November's money came from</h2>
+          </div>
+          <div style="padding: 16px 20px; display: flex; flex-direction: column; gap: 16px">
+            <sc-for list="{{sources}}" as="s" hint-placeholder-count="4">
+              <div>
+                <div style="display: flex; justify-content: space-between; gap: 12px; font-size: 14px"><span>{{s.label}}</span><span style="font-family: 'Geist Mono', monospace">{{s.amount}} <span style="color: #5E6661">· {{s.pct}}</span></span></div>
+                <div style="margin-top: 6px; height: 8px; border-radius: 4px; background: #EEF0EE; overflow: hidden"><div style="height: 8px; width: {{s.pct}}; background: #111412"></div></div>
+              </div>
+            </sc-for>
+          </div>
+        </section>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+        <section aria-labelledby="owe-h" style="flex: 3 1 480px; min-width: 0; background: #FFFFFF; border: 1px solid #E4E7E5; border-radius: 14px">
+          <div style="padding: 16px 20px; border-bottom: 1px solid #EEF0EE; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap">
+            <h2 id="owe-h" style="margin: 0; font-size: 16px; font-weight: 600">Who owes money <span style="font-family: 'Geist Mono', monospace; color: #5E6661; font-weight: 400">$1,110</span></h2>
+            <button type="button" style="height: 40px; padding: 0 14px; border-radius: 10px; border: 0; background: #111412; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">Remind the 3 overdue</button>
+          </div>
+          <sc-for list="{{owed}}" as="o" hint-placeholder-count="9">
+            <div style="padding: 10px 20px; border-bottom: 1px solid #EEF0EE; display: flex; gap: 14px; align-items: center; flex-wrap: wrap">
+              <div style="flex: 1 1 200px; min-width: 0">
+                <div style="font-weight: 500">{{o.name}}</div>
+                <div style="font-size: 13px; color: #5E6661">{{o.item}}</div>
+              </div>
+              <span style="display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; background: {{o.bg}}; color: {{o.fg}}; font-size: 12px; font-weight: 500"><span style="width: 6px; height: 6px; border-radius: 999px; background: currentColor"></span>{{o.status}}</span>
+              <span style="font-family: 'Geist Mono', monospace; width: 56px; text-align: right; font-weight: 500">{{o.amount}}</span>
+              <button type="button" aria-label="Send a payment reminder to {{o.name}}" style="height: 40px; padding: 0 12px; border-radius: 10px; border: 1px solid #E4E7E5; background: #FFFFFF; color: #111412; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">Remind</button>
+            </div>
+          </sc-for>
+        </section>
+
+        <div style="flex: 2 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+          <section aria-labelledby="rate-h" style="background: #FFFFFF; border: 1px solid #E4E7E5; border-radius: 14px; padding: 16px 20px; display: flex; flex-direction: column; gap: 10px">
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px">
+              <h2 id="rate-h" style="margin: 0; font-size: 16px; font-weight: 600">Exchange rate</h2>
+              <span style="display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; background: #FCEFD9; color: #8A4B00; font-size: 12px; font-weight: 500"><span style="width: 6px; height: 6px; border-radius: 999px; background: currentColor"></span>Not set today</span>
+            </div>
+            <div style="font-size: 14px; color: #3D4540">Yesterday: <strong style="font-family: 'Geist Mono', monospace; color: #111412">89,500 LBP</strong> per $1, set by Sara Mansour at 08:12</div>
+            <div style="display: flex; gap: 8px">
+              <label for="rate-in" style="position: absolute; left: -9999px">Today's rate in LBP per dollar</label>
+              <input id="rate-in" type="text" inputmode="numeric" placeholder="89,500" style="flex: 1; min-width: 0; height: 44px; border-radius: 10px; border: 1px solid #E4E7E5; padding: 0 12px; font-family: 'Geist Mono', monospace; font-size: 15px; color: #111412">
+              <button type="button" style="height: 44px; padding: 0 16px; border-radius: 10px; border: 0; background: #111412; color: #FFFFFF; font: inherit; font-weight: 600; cursor: pointer">Set rate</button>
+            </div>
+          </section>
+
+          <section aria-labelledby="exp-h" style="background: #FFFFFF; border: 1px solid #E4E7E5; border-radius: 14px">
+            <div style="padding: 16px 20px; border-bottom: 1px solid #EEF0EE; display: flex; justify-content: space-between; align-items: center">
+              <h2 id="exp-h" style="margin: 0; font-size: 16px; font-weight: 600">Expenses in November</h2>
+              <span style="font-family: 'Geist Mono', monospace; font-weight: 500">$11,960</span>
+            </div>
+            <sc-for list="{{expenses}}" as="e" hint-placeholder-count="7">
+              <div style="padding: 9px 20px; border-bottom: 1px solid #EEF0EE; display: flex; gap: 12px; align-items: center">
+                <span style="flex: 1; font-size: 14px">{{e.label}}</span>
+                <div style="width: 90px; height: 6px; border-radius: 3px; background: #EEF0EE; overflow: hidden"><div style="height: 6px; width: {{e.pct}}; background: #8A938E"></div></div>
+                <span style="font-family: 'Geist Mono', monospace; width: 60px; text-align: right; font-size: 14px">{{e.amount}}</span>
+              </div>
+            </sc-for>
+          </section>
+        </div>
+      </div>
+
+      <section aria-labelledby="lat-h" style="background: #FFFFFF; border: 1px solid #E4E7E5; border-radius: 14px">
+        <div style="padding: 16px 20px; border-bottom: 1px solid #EEF0EE; display: flex; justify-content: space-between; align-items: center">
+          <h2 id="lat-h" style="margin: 0; font-size: 16px; font-weight: 600">Latest payments</h2>
+          <a href="#" style="font-size: 14px; font-weight: 600">All payments →</a>
+        </div>
+        <div style="overflow-x: auto">
+          <table style="width: 100%; min-width: 760px; border-collapse: collapse; font-size: 14px">
+            <thead><tr style="text-align: left; color: #5E6661">
+              <th scope="col" style="padding: 10px 20px; font-weight: 500; border-bottom: 1px solid #EEF0EE">When</th>
+              <th scope="col" style="padding: 10px 20px; font-weight: 500; border-bottom: 1px solid #EEF0EE">Member</th>
+              <th scope="col" style="padding: 10px 20px; font-weight: 500; border-bottom: 1px solid #EEF0EE">For</th>
+              <th scope="col" style="padding: 10px 20px; font-weight: 500; border-bottom: 1px solid #EEF0EE">Method</th>
+              <th scope="col" style="padding: 10px 20px; font-weight: 500; border-bottom: 1px solid #EEF0EE">Received by</th>
+              <th scope="col" style="padding: 10px 20px; font-weight: 500; border-bottom: 1px solid #EEF0EE; text-align: right">Amount</th>
+            </tr></thead>
+            <tbody>
+              <sc-for list="{{latest}}" as="p" hint-placeholder-count="7">
+                <tr>
+                  <td style="padding: 10px 20px; border-bottom: 1px solid #EEF0EE; font-family: 'Geist Mono', monospace; color: #5E6661">{{p.when}}</td>
+                  <td style="padding: 10px 20px; border-bottom: 1px solid #EEF0EE; font-weight: 500">{{p.member}}</td>
+                  <td style="padding: 10px 20px; border-bottom: 1px solid #EEF0EE">{{p.item}}</td>
+                  <td style="padding: 10px 20px; border-bottom: 1px solid #EEF0EE; color: #3D4540">{{p.method}}</td>
+                  <td style="padding: 10px 20px; border-bottom: 1px solid #EEF0EE; color: #5E6661">{{p.by}}</td>
+                  <td style="padding: 10px 20px; border-bottom: 1px solid #EEF0EE; font-family: 'Geist Mono', monospace; text-align: right; font-weight: 500">{{p.amount}}</td>
+                </tr>
+              </sc-for>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#C8F135","options":["#C8F135","#FF6B2C","#4D8BFF","#F5F5F2"]},"$preview":{"width":1440,"height":1500}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const accent = this.props.accent ?? '#C8F135';
+    const ICON = {
+      today: 'M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z',
+      schedule: 'M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z',
+      members: 'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75',
+      training: 'M6.5 6.5h11M6.5 17.5h11M8 12h8M5 5h3v14H5zM16 5h3v14h-3zM2 9.5v5M22 9.5v5',
+      money: 'M2 6h20v12H2zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM6 12h.01M18 12h.01',
+      team: 'M4 7h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2zM16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2',
+      messages: 'M7.9 20A9 9 0 1 0 4 16.1L2 22z',
+      settings: 'M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6'
+    };
+    const active = 'money';
+    const items = [
+      ['today', 'Today', 'CRM-Today.dc.html', '7'], ['schedule', 'Schedule', '#', ''], ['members', 'Members', 'CRM-Member.dc.html', '486'],
+      ['training', 'Training', '#', ''], ['money', 'Money', 'CRM-Money.dc.html', ''], ['team', 'Team', 'CRM-Team.dc.html', ''],
+      ['messages', 'Messages', 'WA-Assistant.dc.html', '3'], ['settings', 'Settings', '#', '']
+    ];
+    const nav = items.map(([k, label, href, badge]) => {
+      const on = k === active;
+      return { label, href, badge, d: ICON[k], current: on ? 'page' : 'false', bg: on ? '#111412' : 'transparent', fg: on ? '#FFFFFF' : '#3D4540', fw: on ? 600 : 500, badgeFg: on ? '#C9CFCB' : '#5E6661' };
+    });
+    const tabs = ['Overview', 'Payments', 'Expenses', 'Who owes', 'Payroll'].map((label, i) => ({
+      label, on: i === 0 ? 'true' : 'false', line: i === 0 ? '#111412' : 'transparent', fg: i === 0 ? '#111412' : '#5E6661', fw: i === 0 ? 600 : 500
+    }));
+    const raw = [['Jun', 15.2, 11.4], ['Jul', 13.8, 11.2], ['Aug', 12.9, 11.1], ['Sep', 16.7, 11.6], ['Oct', 19.3, 11.9], ['Nov', 18.4, 12.0]];
+    const scale = 150 / 20;
+    const months = raw.map(([label, i, o], idx) => ({
+      label, inH: Math.round(i * scale) + 'px', outH: Math.round(o * scale) + 'px',
+      profit: '+$' + (i - o).toFixed(1) + 'k', labelFg: idx === raw.length - 1 ? '#111412' : '#5E6661'
+    }));
+    const OVER = { status: 'Overdue', bg: '#FBE4E1', fg: '#A12C22' };
+    const SOON = { status: 'Due soon', bg: '#FCEFD9', fg: '#8A4B00' };
+    const exp = [['Rent', 4500], ['Salaries', 5200], ['Generator and fuel', 980], ['Electricity', 420], ['Equipment repairs', 310], ['Cleaning', 300], ['Marketing', 250]];
+    return {
+      accent, nav, tabs, months,
+      sources: [
+        { label: 'Memberships', amount: '$12,525', pct: '68%' },
+        { label: 'Personal training', amount: '$3,870', pct: '21%' },
+        { label: 'Class packs and day passes', amount: '$1,105', pct: '6%' },
+        { label: 'Extras (drinks, guest passes)', amount: '$920', pct: '5%' }
+      ],
+      owed: [
+        { name: 'Hadi Chamoun', item: 'PT · 5 sessions · 9 days late', amount: '$160', ...OVER },
+        { name: 'Lynn Sfeir', item: '6-month plan, 2nd instalment · 4 days late', amount: '$140', ...OVER },
+        { name: 'Omar Itani', item: 'Monthly · 2 days late', amount: '$55', ...OVER },
+        { name: 'Christelle Azar', item: 'Monthly · due Fri 27 Nov', amount: '$55', ...SOON },
+        { name: 'Sami Baroud', item: '3 months · due Sat 28 Nov', amount: '$150', ...SOON },
+        { name: 'Jana Chidiac', item: 'PT · 10 sessions · due 30 Nov', amount: '$300', ...SOON },
+        { name: 'Marc Abboud', item: 'Monthly · due 1 Dec', amount: '$55', ...SOON },
+        { name: 'Tala Moussa', item: '6-month plan, 2nd instalment · due 1 Dec', amount: '$140', ...SOON },
+        { name: 'Georges Karam', item: 'Monthly · due 2 Dec', amount: '$55', ...SOON }
+      ],
+      expenses: exp.map(([label, v]) => ({ label, amount: '$' + v.toLocaleString('en-US'), pct: Math.round(v / 5200 * 100) + '%' })),
+      latest: [
+        { when: 'Today 16:31', member: 'Yara Daou', item: 'PT · 5 sessions', method: 'Whish', by: 'Sara Mansour', amount: '$160' },
+        { when: 'Today 15:02', member: 'Walk-in', item: 'Day pass', method: 'Cash USD', by: 'Tony Abi Nader', amount: '$10' },
+        { when: 'Today 13:45', member: 'Elie Ghanem', item: '3 months', method: 'Card', by: 'Sara Mansour', amount: '$150' },
+        { when: 'Today 12:10', member: 'Jad Merhi', item: '12 months', method: 'Bank transfer', by: 'Sara Mansour', amount: '$500' },
+        { when: 'Today 10:40', member: 'Mira Saab', item: '10-class pack', method: 'OMT', by: 'Tony Abi Nader', amount: '$80' },
+        { when: 'Today 09:15', member: 'Karl Hayek', item: '6 months', method: 'Card', by: 'Sara Mansour', amount: '$280' },
+        { when: 'Mon 19:05', member: 'Lara Nehme', item: 'Monthly', method: 'Cash LBP · 4,922,500 at 89,500', by: 'Tony Abi Nader', amount: '$55' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

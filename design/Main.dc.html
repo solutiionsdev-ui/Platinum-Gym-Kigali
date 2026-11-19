@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>VOLT website · Home</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Geist:wght@400;500;600;700&amp;family=Geist+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#0B0B0C}
+a{color:#F5F5F2;text-decoration:none}a:hover{color:#FFFFFF;text-decoration:underline}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #0B0B0C; color: #F5F5F2; font-family: Geist, system-ui, sans-serif; font-size: 16px; line-height: 1.5">
+
+  <!-- Top bar -->
+  <header style="border-bottom: 1px solid #1F1F22">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 18px 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap">
+      <a href="#" aria-label="VOLT Fitness Club, home" style="display: flex; align-items: center; gap: 10px; color: #F5F5F2; text-decoration: none">
+        <span style="width: 36px; height: 36px; border-radius: 10px; background: {{accent}}; display: flex; align-items: center; justify-content: center">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0B0B0C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"></path></svg>
+        </span>
+        <span style="font-family: Anton, Impact, sans-serif; font-size: 26px; letter-spacing: 0.06em">VOLT</span>
+      </a>
+      <nav aria-label="Main" style="display: flex; gap: 28px; flex-wrap: wrap; font-size: 15px; font-weight: 500">
+        <a href="#classes">Classes</a>
+        <a href="Web-Timetable.dc.html">Timetable</a>
+        <a href="Web-Memberships.dc.html">Memberships</a>
+        <a href="#coaches">Personal training</a>
+        <a href="#offer">Facilities</a>
+        <a href="#visit">Contact</a>
+      </nav>
+      <div style="display: flex; gap: 10px; align-items: center">
+        <a href="Web-Phone-Booking-AR.dc.html" lang="ar" style="min-height: 44px; padding: 0 14px; display: inline-flex; align-items: center; border: 1px solid #2A2A2E; border-radius: 999px; font-size: 15px">عربي</a>
+        <a href="#trial" style="min-height: 44px; padding: 0 20px; display: inline-flex; align-items: center; border-radius: 999px; background: {{accent}}; color: #0B0B0C; font-weight: 600; font-size: 15px">Free trial</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section style="max-width: 1280px; margin: 0 auto; padding: 56px 32px 64px; display: flex; flex-wrap: wrap; gap: 48px; align-items: stretch; box-sizing: border-box">
+    <div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 28px">
+      <p style="margin: 0; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: #A6A6AD; font-weight: 600">Achrafieh, Beirut · Open daily from 6:00</p>
+      <h1 style="margin: 0; font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: clamp(64px, 8.6vw, 136px); line-height: 0.92; text-transform: uppercase; letter-spacing: 0.01em">Stronger<br>every <span style="color: {{accent}}">week.</span></h1>
+      <p style="margin: 0; font-size: 19px; line-height: 1.6; color: #C9C9CE; max-width: 520px">Group classes, open gym and personal coaching under one roof. Book your first class free: no card, no commitment, and the confirmation lands on your WhatsApp.</p>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap">
+        <a href="Web-Timetable.dc.html" style="min-height: 52px; padding: 0 28px; display: inline-flex; align-items: center; gap: 10px; border-radius: 999px; background: {{accent}}; color: #0B0B0C; font-weight: 600; font-size: 17px">Book a free trial
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+        </a>
+        <a href="Web-Timetable.dc.html" style="min-height: 52px; padding: 0 28px; display: inline-flex; align-items: center; border-radius: 999px; border: 1px solid #3A3A40; color: #F5F5F2; font-weight: 600; font-size: 17px">See the timetable</a>
+      </div>
+    </div>
+    <div style="flex: 1 1 520px; min-width: 0; min-height: 560px; border-radius: 24px; border: 1px solid #2A2A2E; background: repeating-linear-gradient(135deg, #17171A 0px, #17171A 14px, #121214 14px, #121214 28px); display: flex; flex-direction: column; justify-content: space-between; padding: 24px; box-sizing: border-box">
+      <div style="display: flex; align-items: center; gap: 8px; color: #8E8E96; font-size: 14px">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="9" cy="9" r="2"></circle><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"></path></svg>
+        Photo: coach leading an evening Spin class
+      </div>
+      <div style="align-self: flex-start; background: #0B0B0C; border: 1px solid #2A2A2E; border-radius: 16px; padding: 18px 20px; display: flex; gap: 20px; align-items: center; flex-wrap: wrap">
+        <div>
+          <div style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #A6A6AD; font-weight: 600">Next class</div>
+          <div style="font-size: 20px; font-weight: 600; margin-top: 4px">Spin with Karim</div>
+          <div style="font-size: 14px; color: #A6A6AD"><span style="font-family: 'Geist Mono', monospace">20:15</span> · Studio 2 · 4 spots left</div>
+        </div>
+        <a href="Web-Timetable.dc.html" style="min-height: 44px; padding: 0 18px; display: inline-flex; align-items: center; border-radius: 999px; background: #F5F5F2; color: #0B0B0C; font-weight: 600; font-size: 15px">Book</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Today strip -->
+  <section aria-labelledby="today-h" style="border-top: 1px solid #1F1F22; border-bottom: 1px solid #1F1F22; background: #101012">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 18px 32px; display: flex; gap: 12px 36px; align-items: center; flex-wrap: wrap; box-sizing: border-box">
+      <h2 id="today-h" style="margin: 0; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: {{accent}}; font-weight: 600">Today at VOLT</h2>
+      <sc-for list="{{today}}" as="c" hint-placeholder-count="5">
+        <div style="display: flex; gap: 10px; align-items: baseline; font-size: 15px">
+          <span style="font-family: 'Geist Mono', monospace; color: #F5F5F2">{{c.time}}</span>
+          <span style="font-weight: 600">{{c.name}}</span>
+          <span style="color: #A6A6AD">{{c.spots}}</span>
+        </div>
+      </sc-for>
+      <a href="Web-Timetable.dc.html" style="margin-left: auto; font-size: 15px; font-weight: 600; min-height: 44px; display: inline-flex; align-items: center">Full timetable →</a>
+    </div>
+  </section>
+
+  <!-- What we offer -->
+  <section id="offer" style="max-width: 1280px; margin: 0 auto; padding: 96px 32px 48px; box-sizing: border-box">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: 40px">
+      <h2 style="margin: 0; font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: clamp(44px, 5vw, 72px); line-height: 1; text-transform: uppercase">Train your way</h2>
+      <p style="margin: 0; max-width: 440px; color: #A6A6AD; font-size: 17px">One membership covers the gym floor, every group class and the recovery area. Add a coach when you want a plan.</p>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 16px">
+      <div style="flex: 1 1 260px; background: #151517; border: 1px solid #2A2A2E; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 6.5h11"></path><path d="M6.5 17.5h11"></path><path d="M3 9.5v5"></path><path d="M21 9.5v5"></path><rect x="5" y="5" width="3" height="14" rx="1"></rect><rect x="16" y="5" width="3" height="14" rx="1"></rect><path d="M8 12h8"></path></svg>
+        <h3 style="margin: 0; font-size: 21px; font-weight: 600">Open gym</h3>
+        <p style="margin: 0; color: #A6A6AD; font-size: 16px">Free weights, racks and machines, every day from 6:00. Coaches on the floor to check your form.</p>
+      </div>
+      <div style="flex: 1 1 260px; background: #151517; border: 1px solid #2A2A2E; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        <h3 style="margin: 0; font-size: 21px; font-weight: 600">Group classes</h3>
+        <p style="margin: 0; color: #A6A6AD; font-size: 16px">40+ classes a week: Spin, HIIT, Strength, Boxing, Yoga and Pilates. See spots left before you book.</p>
+      </div>
+      <div style="flex: 1 1 260px; background: #151517; border: 1px solid #2A2A2E; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="5"></circle><path d="M20 21a8 8 0 0 0-16 0"></path><path d="m15 13 2 2 4-4"></path></svg>
+        <h3 style="margin: 0; font-size: 21px; font-weight: 600">Personal training</h3>
+        <p style="margin: 0; color: #A6A6AD; font-size: 16px">One-to-one sessions with a written plan, monthly check-ins and progress you can see.</p>
+      </div>
+      <div style="flex: 1 1 260px; background: #151517; border: 1px solid #2A2A2E; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
+        <h3 style="margin: 0; font-size: 21px; font-weight: 600">Recovery</h3>
+        <p style="margin: 0; color: #A6A6AD; font-size: 16px">Sauna, a stretching zone and a body-composition scan every month for members.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Classes -->
+  <section id="classes" style="max-width: 1280px; margin: 0 auto; padding: 48px 32px; box-sizing: border-box">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: 32px">
+      <h2 style="margin: 0; font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: clamp(44px, 5vw, 72px); line-height: 1; text-transform: uppercase">Classes</h2>
+      <a href="Web-Timetable.dc.html" style="font-weight: 600; min-height: 44px; display: inline-flex; align-items: center">See this week's timetable →</a>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 16px">
+      <sc-for list="{{classes}}" as="k" hint-placeholder-count="6">
+        <a href="Web-Timetable.dc.html" style="flex: 1 1 360px; min-width: 0; background: #151517; border: 1px solid #2A2A2E; border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; color: #F5F5F2; text-decoration: none">
+          <div style="height: 170px; background: repeating-linear-gradient(135deg, #1A1A1D 0px, #1A1A1D 12px, #151517 12px, #151517 24px); display: flex; align-items: flex-end; padding: 14px 18px; box-sizing: border-box; color: #8E8E96; font-size: 13px">Photo: {{k.photo}}</div>
+          <div style="padding: 20px 22px 24px; display: flex; flex-direction: column; gap: 10px">
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
+              <h3 style="margin: 0; font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 34px; text-transform: uppercase; letter-spacing: 0.02em">{{k.name}}</h3>
+              <span style="font-size: 13px; color: #A6A6AD; font-family: 'Geist Mono', monospace">{{k.per}}</span>
+            </div>
+            <p style="margin: 0; color: #A6A6AD; font-size: 15px">{{k.text}}</p>
+            <div style="display: flex; align-items: center; gap: 14px; font-size: 14px; color: #C9C9CE">
+              <span>{{k.mins}} min</span>
+              <span aria-hidden="true" style="width: 4px; height: 4px; border-radius: 999px; background: #55555C"></span>
+              <span style="display: inline-flex; align-items: center; gap: 4px" aria-label="Intensity {{k.level}} of 3">
+                <span style="width: 18px; height: 6px; border-radius: 3px; background: {{k.b1}}"></span>
+                <span style="width: 18px; height: 6px; border-radius: 3px; background: {{k.b2}}"></span>
+                <span style="width: 18px; height: 6px; border-radius: 3px; background: {{k.b3}}"></span>
+              </span>
+              <span>{{k.levelName}}</span>
+            </div>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- How booking works -->
+  <section style="max-width: 1280px; margin: 0 auto; padding: 72px 32px; box-sizing: border-box">
+    <h2 style="margin: 0 0 36px; font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: clamp(44px, 5vw, 72px); line-height: 1; text-transform: uppercase">Booking takes a minute</h2>
+    <ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 16px">
+      <li style="flex: 1 1 300px; border-top: 2px solid {{accent}}; padding-top: 22px; display: flex; flex-direction: column; gap: 10px">
+        <span style="font-family: 'Geist Mono', monospace; color: {{accent}}; font-size: 15px">01</span>
+        <h3 style="margin: 0; font-size: 22px; font-weight: 600">Pick a class</h3>
+        <p style="margin: 0; color: #A6A6AD">Filter the timetable by class, coach or time of day and see how many spots are left.</p>
+      </li>
+      <li style="flex: 1 1 300px; border-top: 2px solid {{accent}}; padding-top: 22px; display: flex; flex-direction: column; gap: 10px">
+        <span style="font-family: 'Geist Mono', monospace; color: {{accent}}; font-size: 15px">02</span>
+        <h3 style="margin: 0; font-size: 22px; font-weight: 600">Confirm with your number</h3>
+        <p style="margin: 0; color: #A6A6AD">Your name and WhatsApp number. No account, no password to remember.</p>
+      </li>
+      <li style="flex: 1 1 300px; border-top: 2px solid {{accent}}; padding-top: 22px; display: flex; flex-direction: column; gap: 10px">
+        <span style="font-family: 'Geist Mono', monospace; color: {{accent}}; font-size: 15px">03</span>
+        <h3 style="margin: 0; font-size: 22px; font-weight: 600">Get reminded on WhatsApp</h3>
+        <p style="margin: 0; color: #A6A6AD">A confirmation now, a reminder 2 hours before, and a link to cancel if plans change.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- Coaches -->
+  <section id="coaches" style="max-width: 1280px; margin: 0 auto; padding: 48px 32px 72px; box-sizing: border-box">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: 32px">
+      <h2 style="margin: 0; font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: clamp(44px, 5vw, 72px); line-height: 1; text-transform: uppercase">Your coaches</h2>
+      <p style="margin: 0; max-width: 440px; color: #A6A6AD; font-size: 17px">Certified coaches who know your name. Book a free 20-minute consultation with any personal trainer.</p>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 16px">
+      <sc-for list="{{coaches}}" as="p" hint-placeholder-count="4">
+        <div style="flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+          <div style="aspect-ratio: 4 / 5; border-radius: 20px; border: 1px solid #2A2A2E; background: repeating-linear-gradient(135deg, #17171A 0px, #17171A 12px, #121214 12px, #121214 24px); display: flex; align-items: flex-end; padding: 14px 16px; box-sizing: border-box; color: #8E8E96; font-size: 13px">Portrait: {{p.name}}</div>
+          <div>
+            <div style="font-size: 20px; font-weight: 600">{{p.name}}</div>
+            <div style="color: #A6A6AD; font-size: 15px">{{p.role}}</div>
+          </div>
+          <a href="#trial" style="align-self: flex-start; min-height: 44px; display: inline-flex; align-items: center; font-weight: 600; font-size: 15px; color: {{accent}}">{{p.cta}} →</a>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- Memberships teaser -->
+  <section style="background: #101012; border-top: 1px solid #1F1F22; border-bottom: 1px solid #1F1F22">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 88px 32px; box-sizing: border-box">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: 36px">
+        <h2 style="margin: 0; font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: clamp(44px, 5vw, 72px); line-height: 1; text-transform: uppercase">Memberships</h2>
+        <a href="Web-Memberships.dc.html" style="font-weight: 600; min-height: 44px; display: inline-flex; align-items: center">All plans, class packs and PT →</a>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 16px">
+        <div style="flex: 1 1 300px; border: 1px solid #2A2A2E; border-radius: 20px; padding: 32px; background: #151517; display: flex; flex-direction: column; gap: 14px">
+          <div style="font-size: 18px; font-weight: 600">Monthly</div>
+          <div style="display: flex; align-items: baseline; gap: 6px"><span style="font-family: Anton, Impact, sans-serif; font-size: 64px; line-height: 1">$55</span><span style="color: #A6A6AD">/ month</span></div>
+          <p style="margin: 0; color: #A6A6AD">Everything included. Stop any month.</p>
+          <a href="Web-Memberships.dc.html" style="margin-top: auto; min-height: 48px; display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; border: 1px solid #3A3A40; font-weight: 600">Choose monthly</a>
+        </div>
+        <div style="flex: 1 1 300px; border: 1px solid #2A2A2E; border-radius: 20px; padding: 32px; background: #151517; display: flex; flex-direction: column; gap: 14px">
+          <div style="font-size: 18px; font-weight: 600">3 months</div>
+          <div style="display: flex; align-items: baseline; gap: 6px"><span style="font-family: Anton, Impact, sans-serif; font-size: 64px; line-height: 1">$150</span><span style="color: #A6A6AD">$50 a month</span></div>
+          <p style="margin: 0; color: #A6A6AD">Everything included, plus 10 freeze days.</p>
+          <a href="Web-Memberships.dc.html" style="margin-top: auto; min-height: 48px; display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; border: 1px solid #3A3A40; font-weight: 600">Choose 3 months</a>
+        </div>
+        <div style="flex: 1 1 300px; border: 2px solid {{accent}}; border-radius: 20px; padding: 31px; background: #151517; display: flex; flex-direction: column; gap: 14px">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px"><span style="font-size: 18px; font-weight: 600">12 months</span><span style="font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: {{accent}}; color: #0B0B0C; padding: 4px 10px; border-radius: 999px">Best value</span></div>
+          <div style="display: flex; align-items: baseline; gap: 6px"><span style="font-family: Anton, Impact, sans-serif; font-size: 64px; line-height: 1">$500</span><span style="color: #A6A6AD">$42 a month</span></div>
+          <p style="margin: 0; color: #A6A6AD">Everything included, 30 freeze days and 2 guest passes a month.</p>
+          <a href="Web-Memberships.dc.html" style="margin-top: auto; min-height: 48px; display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; background: {{accent}}; color: #0B0B0C; font-weight: 600">Choose 12 months</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Free trial -->
+  <section id="trial" style="max-width: 1280px; margin: 0 auto; padding: 96px 32px; box-sizing: border-box">
+    <div style="background: {{accent}}; color: #0B0B0C; border-radius: 28px; padding: 56px; display: flex; flex-wrap: wrap; gap: 40px; align-items: center; box-sizing: border-box">
+      <div style="flex: 1 1 380px; min-width: 0">
+        <h2 style="margin: 0; font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: clamp(48px, 5.4vw, 80px); line-height: 0.95; text-transform: uppercase">Your first class is on us</h2>
+        <p style="margin: 18px 0 0; font-size: 18px; max-width: 440px">Leave your name and number. We confirm on WhatsApp and help you pick the right class for your level.</p>
+      </div>
+      <form style="flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+        <label for="t-name" style="font-size: 14px; font-weight: 600">Full name</label>
+        <input id="t-name" type="text" placeholder="e.g. Rana Haddad" style="min-height: 52px; border-radius: 14px; border: 1px solid #0B0B0C; background: #FFFFFF; padding: 0 16px; font: inherit; font-size: 16px; color: #0B0B0C">
+        <label for="t-phone" style="font-size: 14px; font-weight: 600">WhatsApp number</label>
+        <input id="t-phone" type="tel" placeholder="+961 3 123 456" style="min-height: 52px; border-radius: 14px; border: 1px solid #0B0B0C; background: #FFFFFF; padding: 0 16px; font: inherit; font-size: 16px; color: #0B0B0C">
+        <button type="button" style="margin-top: 6px; min-height: 56px; border-radius: 999px; border: 0; background: #0B0B0C; color: #F5F5F2; font: inherit; font-size: 17px; font-weight: 600; cursor: pointer">Book my free trial</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Visit -->
+  <section id="visit" style="max-width: 1280px; margin: 0 auto; padding: 0 32px 96px; box-sizing: border-box">
+    <div style="display: flex; flex-wrap: wrap; gap: 16px">
+      <div style="flex: 1 1 520px; min-width: 0; min-height: 360px; border-radius: 20px; border: 1px solid #2A2A2E; background: repeating-linear-gradient(135deg, #17171A 0px, #17171A 14px, #121214 14px, #121214 28px); display: flex; align-items: flex-end; padding: 18px; box-sizing: border-box; color: #8E8E96; font-size: 14px">Map: gym location</div>
+      <div style="flex: 1 1 380px; min-width: 0; background: #151517; border: 1px solid #2A2A2E; border-radius: 20px; padding: 32px; display: flex; flex-direction: column; gap: 22px; box-sizing: border-box">
+        <h2 style="margin: 0; font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 44px; line-height: 1; text-transform: uppercase">Visit us</h2>
+        <div>
+          <div style="font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: #A6A6AD; font-weight: 600">Address</div>
+          <div style="margin-top: 6px; font-size: 17px">Sassine Square, Achrafieh, Beirut</div>
+        </div>
+        <div>
+          <div style="font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: #A6A6AD; font-weight: 600">Opening hours</div>
+          <div style="margin-top: 6px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 16px; font-size: 16px">
+            <span>Mon – Fri</span><span style="font-family: 'Geist Mono', monospace">06:00 – 23:00</span>
+            <span>Saturday</span><span style="font-family: 'Geist Mono', monospace">07:00 – 21:00</span>
+            <span>Sunday</span><span style="font-family: 'Geist Mono', monospace">08:00 – 18:00</span>
+          </div>
+        </div>
+        <a href="#" style="min-height: 52px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; border-radius: 999px; border: 1px solid #3A3A40; font-weight: 600">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"></path></svg>
+          Message us on WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="border-top: 1px solid #1F1F22">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 32px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: #A6A6AD; font-size: 14px; box-sizing: border-box">
+      <span>© 2026 VOLT Fitness Club</span>
+      <nav aria-label="Footer" style="display: flex; gap: 24px; flex-wrap: wrap">
+        <a href="Web-Timetable.dc.html">Timetable</a>
+        <a href="Web-Memberships.dc.html">Memberships</a>
+        <a href="#">FAQ</a>
+        <a href="#">Instagram</a>
+      </nav>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#C8F135","options":["#C8F135","#FF6B2C","#4D8BFF","#F5F5F2"]},"$preview":{"width":1440,"height":4800}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const accent = this.props.accent ?? '#C8F135';
+    const off = '#2A2A2E';
+    const lvl = (n) => ({ b1: n >= 1 ? accent : off, b2: n >= 2 ? accent : off, b3: n >= 3 ? accent : off, level: n, levelName: ['', 'Easy', 'Medium', 'Intense'][n] });
+    const classes = [
+      { name: 'Spin', per: '9 a week', mins: 45, photo: 'Spin studio, lights down', text: 'Indoor cycling to loud music. Ride at your own resistance.', ...lvl(3) },
+      { name: 'HIIT', per: '8 a week', mins: 40, photo: 'HIIT circuit on the turf', text: 'Short bursts, short rests. Done in 40 minutes, felt for two days.', ...lvl(3) },
+      { name: 'Strength', per: '7 a week', mins: 55, photo: 'Barbell class at the racks', text: 'Coached lifting in small groups: squat, press, deadlift, done right.', ...lvl(2) },
+      { name: 'Boxing', per: '5 a week', mins: 50, photo: 'Pads and gloves session', text: 'Technique, pads and bag rounds. Gloves available at the desk.', ...lvl(2) },
+      { name: 'Yoga', per: '6 a week', mins: 60, photo: 'Yoga studio, morning light', text: 'Flow and stretch classes to balance the hard days.', ...lvl(1) },
+      { name: 'Pilates', per: '5 a week', mins: 50, photo: 'Mat Pilates class', text: 'Core, posture and control. Good for backs that sit all day.', ...lvl(1) }
+    ];
+    return {
+      accent,
+      today: [
+        { time: '17:30', name: 'HIIT', spots: '6 spots' },
+        { time: '18:30', name: 'Strength', spots: '3 spots' },
+        { time: '19:00', name: 'Spin', spots: 'Full · waitlist' },
+        { time: '20:15', name: 'Spin', spots: '4 spots' },
+        { time: '20:30', name: 'Yoga', spots: '9 spots' }
+      ],
+      classes,
+      coaches: [
+        { name: 'Karim Saliba', role: 'Spin & HIIT', cta: 'His classes' },
+        { name: 'Maya Khoury', role: 'Yoga & Pilates', cta: 'Her classes' },
+        { name: 'Rami Aoun', role: 'Personal trainer · strength', cta: 'Book a consultation' },
+        { name: 'Nour Fakhoury', role: 'Personal trainer · mobility', cta: 'Book a consultation' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

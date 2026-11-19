@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>VOLT website · Memberships and prices</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Geist:wght@400;500;600;700&amp;family=Geist+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#0B0B0C}
+a{color:#F5F5F2;text-decoration:none}a:hover{color:#FFFFFF;text-decoration:underline}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #0B0B0C; color: #F5F5F2; font-family: Geist, system-ui, sans-serif; font-size: 16px; line-height: 1.5">
+
+  <header style="border-bottom: 1px solid #1F1F22">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 18px 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap">
+      <a href="Main.dc.html" aria-label="VOLT Fitness Club, home" style="display: flex; align-items: center; gap: 10px; color: #F5F5F2; text-decoration: none">
+        <span style="width: 36px; height: 36px; border-radius: 10px; background: {{accent}}; display: flex; align-items: center; justify-content: center">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0B0B0C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"></path></svg>
+        </span>
+        <span style="font-family: Anton, Impact, sans-serif; font-size: 26px; letter-spacing: 0.06em">VOLT</span>
+      </a>
+      <nav aria-label="Main" style="display: flex; gap: 28px; flex-wrap: wrap; font-size: 15px; font-weight: 500">
+        <a href="Main.dc.html">Classes</a>
+        <a href="Web-Timetable.dc.html">Timetable</a>
+        <a href="Web-Memberships.dc.html" aria-current="page" style="color: {{accent}}">Memberships</a>
+        <a href="#pt">Personal training</a>
+        <a href="Main.dc.html">Facilities</a>
+        <a href="Main.dc.html">Contact</a>
+      </nav>
+      <div style="display: flex; gap: 10px; align-items: center">
+        <a href="Web-Phone-Booking-AR.dc.html" lang="ar" style="min-height: 44px; padding: 0 14px; display: inline-flex; align-items: center; border: 1px solid #2A2A2E; border-radius: 999px; font-size: 15px">عربي</a>
+        <a href="Web-Timetable.dc.html" style="min-height: 44px; padding: 0 20px; display: inline-flex; align-items: center; border-radius: 999px; background: {{accent}}; color: #0B0B0C; font-weight: 600; font-size: 15px">Free trial</a>
+      </div>
+    </div>
+  </header>
+
+  <main style="max-width: 1280px; margin: 0 auto; padding: 56px 32px 88px; box-sizing: border-box">
+    <h1 style="margin: 0; font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: clamp(56px, 6.4vw, 96px); line-height: 0.95; text-transform: uppercase">Memberships</h1>
+    <p style="margin: 14px 0 0; max-width: 640px; color: #C9C9CE; font-size: 18px">Prices in US dollars. No joining fee. Pay at the desk in cash (USD or LBP at the day's rate), by card, or with Whish or OMT. Your membership starts the day you pay, and the receipt comes on WhatsApp.</p>
+
+    <!-- Time plans -->
+    <div style="margin-top: 44px; display: flex; flex-wrap: wrap; gap: 16px">
+      <sc-for list="{{plans}}" as="p" hint-placeholder-count="4">
+        <div style="flex: 1 1 260px; min-width: 0; border: {{p.border}}; border-radius: 22px; padding: {{p.pad}}; background: #151517; display: flex; flex-direction: column; gap: 14px">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; min-height: 26px">
+            <span style="font-size: 18px; font-weight: 600">{{p.name}}</span>
+            <sc-if value="{{p.best}}" hint-placeholder-val="{{ false }}">
+              <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: {{accent}}; color: #0B0B0C; padding: 4px 10px; border-radius: 999px">Best value</span>
+            </sc-if>
+          </div>
+          <div style="font-family: Anton, Impact, sans-serif; font-size: 60px; line-height: 1">{{p.price}}</div>
+          <div style="color: #A6A6AD; font-size: 15px; margin-top: -6px">{{p.per}}</div>
+          <ul style="list-style: none; margin: 6px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: 15px">
+            <sc-for list="{{p.points}}" as="pt" hint-placeholder-count="3">
+              <li style="display: flex; gap: 10px; align-items: flex-start">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 3px"><path d="M20 6 9 17l-5-5"></path></svg>
+                <span>{{pt}}</span>
+              </li>
+            </sc-for>
+          </ul>
+          <a href="Web-Timetable.dc.html" style="margin-top: auto; min-height: 48px; display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; border: 1px solid {{p.btnBd}}; background: {{p.btnBg}}; color: {{p.btnFg}}; font-weight: 600">Request this plan</a>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- No commitment -->
+    <h2 style="margin: 64px 0 18px; font-size: 24px; font-weight: 600">No commitment</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 16px">
+      <div style="flex: 1 1 300px; min-width: 0; border: 1px solid #2A2A2E; border-radius: 18px; padding: 22px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px">
+        <div><div style="font-size: 18px; font-weight: 600">Student monthly</div><div style="color: #A6A6AD; font-size: 15px">Valid university ID, classes before 17:00</div></div>
+        <div style="font-family: Anton, Impact, sans-serif; font-size: 40px; line-height: 1">$40</div>
+      </div>
+      <div style="flex: 1 1 300px; min-width: 0; border: 1px solid #2A2A2E; border-radius: 18px; padding: 22px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px">
+        <div><div style="font-size: 18px; font-weight: 600">10-class pack</div><div style="color: #A6A6AD; font-size: 15px">Any class, use within 2 months</div></div>
+        <div style="font-family: Anton, Impact, sans-serif; font-size: 40px; line-height: 1">$80</div>
+      </div>
+      <div style="flex: 1 1 300px; min-width: 0; border: 1px solid #2A2A2E; border-radius: 18px; padding: 22px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px">
+        <div><div style="font-size: 18px; font-weight: 600">Day pass</div><div style="color: #A6A6AD; font-size: 15px">Gym floor and one class</div></div>
+        <div style="font-family: Anton, Impact, sans-serif; font-size: 40px; line-height: 1">$10</div>
+      </div>
+    </div>
+
+    <!-- Comparison -->
+    <h2 style="margin: 64px 0 18px; font-size: 24px; font-weight: 600">What each plan includes</h2>
+    <div style="overflow-x: auto; border: 1px solid #2A2A2E; border-radius: 18px">
+      <table style="width: 100%; min-width: 720px; border-collapse: collapse; font-size: 15px">
+        <thead>
+          <tr style="text-align: left; color: #A6A6AD">
+            <th scope="col" style="padding: 16px 20px; font-weight: 600; border-bottom: 1px solid #2A2A2E">Included</th>
+            <th scope="col" style="padding: 16px 20px; font-weight: 600; border-bottom: 1px solid #2A2A2E">Monthly</th>
+            <th scope="col" style="padding: 16px 20px; font-weight: 600; border-bottom: 1px solid #2A2A2E">3 months</th>
+            <th scope="col" style="padding: 16px 20px; font-weight: 600; border-bottom: 1px solid #2A2A2E">6 months</th>
+            <th scope="col" style="padding: 16px 20px; font-weight: 600; border-bottom: 1px solid #2A2A2E; color: {{accent}}">12 months</th>
+          </tr>
+        </thead>
+        <tbody>
+          <sc-for list="{{rows}}" as="r" hint-placeholder-count="6">
+            <tr>
+              <th scope="row" style="text-align: left; padding: 15px 20px; font-weight: 500; border-bottom: 1px solid #1F1F22">{{r.label}}</th>
+              <td style="padding: 15px 20px; border-bottom: 1px solid #1F1F22; color: #C9C9CE">{{r.a}}</td>
+              <td style="padding: 15px 20px; border-bottom: 1px solid #1F1F22; color: #C9C9CE">{{r.b}}</td>
+              <td style="padding: 15px 20px; border-bottom: 1px solid #1F1F22; color: #C9C9CE">{{r.c}}</td>
+              <td style="padding: 15px 20px; border-bottom: 1px solid #1F1F22; color: #F5F5F2; font-weight: 600">{{r.d}}</td>
+            </tr>
+          </sc-for>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Personal training -->
+    <section id="pt" style="margin-top: 72px">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: 22px">
+        <h2 style="margin: 0; font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: clamp(40px, 4.4vw, 64px); line-height: 1; text-transform: uppercase">Personal training</h2>
+        <p style="margin: 0; max-width: 460px; color: #A6A6AD; font-size: 16px">Start with a free 20-minute consultation. Your trainer writes a plan, books your sessions and tracks your measurements every month.</p>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 16px">
+        <sc-for list="{{pt}}" as="k" hint-placeholder-count="3">
+          <div style="flex: 1 1 300px; min-width: 0; border: 1px solid #2A2A2E; border-radius: 20px; padding: 26px; background: #151517; display: flex; flex-direction: column; gap: 10px">
+            <div style="font-size: 18px; font-weight: 600">{{k.name}}</div>
+            <div style="display: flex; align-items: baseline; gap: 10px"><span style="font-family: Anton, Impact, sans-serif; font-size: 52px; line-height: 1">{{k.price}}</span><span style="color: #A6A6AD">{{k.per}}</span></div>
+            <div style="color: #A6A6AD; font-size: 15px">{{k.note}}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="margin-top: 18px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center">
+        <a href="Web-Timetable.dc.html" style="min-height: 52px; padding: 0 26px; display: inline-flex; align-items: center; border-radius: 999px; background: {{accent}}; color: #0B0B0C; font-weight: 600">Book a free consultation</a>
+        <span style="color: #A6A6AD; font-size: 15px">Trainers: Rami Aoun (strength), Nour Fakhoury (mobility), Joe Nassar (powerlifting)</span>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section style="margin-top: 72px; max-width: 860px">
+      <h2 style="margin: 0 0 12px; font-size: 24px; font-weight: 600">Questions</h2>
+      <sc-for list="{{faq}}" as="q" hint-placeholder-count="4">
+        <details style="border-bottom: 1px solid #2A2A2E; padding: 4px 0">
+          <summary style="min-height: 52px; display: flex; align-items: center; font-size: 17px; font-weight: 500; cursor: pointer">{{q.q}}</summary>
+          <p style="margin: 0 0 18px; color: #A6A6AD; max-width: 720px">{{q.a}}</p>
+        </details>
+      </sc-for>
+    </section>
+  </main>
+
+  <footer style="border-top: 1px solid #1F1F22">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 32px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: #A6A6AD; font-size: 14px; box-sizing: border-box">
+      <span>© 2026 VOLT Fitness Club</span>
+      <nav aria-label="Footer" style="display: flex; gap: 24px; flex-wrap: wrap">
+        <a href="Web-Timetable.dc.html">Timetable</a>
+        <a href="Main.dc.html">Home</a>
+        <a href="#">Instagram</a>
+      </nav>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#C8F135","options":["#C8F135","#FF6B2C","#4D8BFF","#F5F5F2"]},"$preview":{"width":1440,"height":2700}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const accent = this.props.accent ?? '#C8F135';
+    const plan = (name, price, per, points, best) => ({
+      name, price, per, points, best,
+      border: best ? '2px solid ' + accent : '1px solid #2A2A2E',
+      pad: best ? '27px' : '28px',
+      btnBg: best ? accent : 'transparent',
+      btnFg: best ? '#0B0B0C' : '#F5F5F2',
+      btnBd: best ? accent : '#3A3A40'
+    });
+    return {
+      accent,
+      plans: [
+        plan('Monthly', '$55', 'per month, stop any month', ['Gym floor and every class', 'Sauna and recovery area'], false),
+        plan('3 months', '$150', '$50 a month', ['Everything in Monthly', '10 freeze days', 'Body scan every month'], false),
+        plan('6 months', '$280', '$47 a month', ['Everything in 3 months', '20 freeze days', '1 guest pass a month'], false),
+        plan('12 months', '$500', '$42 a month', ['Everything in 6 months', '30 freeze days', '2 guest passes a month'], true)
+      ],
+      rows: [
+        { label: 'Gym floor, 6:00 – 23:00', a: 'Yes', b: 'Yes', c: 'Yes', d: 'Yes' },
+        { label: 'All group classes', a: 'Yes', b: 'Yes', c: 'Yes', d: 'Yes' },
+        { label: 'Sauna and recovery area', a: 'Yes', b: 'Yes', c: 'Yes', d: 'Yes' },
+        { label: 'Body-composition scan', a: 'Every 3 months', b: 'Every month', c: 'Every month', d: 'Every month' },
+        { label: 'Freeze days', a: 'None', b: '10', c: '20', d: '30' },
+        { label: 'Guest passes', a: 'None', b: 'None', c: '1 a month', d: '2 a month' },
+        { label: 'Price per month', a: '$55', b: '$50', c: '$47', d: '$42' }
+      ],
+      pt: [
+        { name: 'Single session', price: '$35', per: 'per session', note: 'Try it, or top up between packages.' },
+        { name: '5 sessions', price: '$160', per: '$32 each', note: 'Use within 6 weeks.' },
+        { name: '10 sessions', price: '$300', per: '$30 each', note: 'Use within 3 months. Includes a written plan.' }
+      ],
+      faq: [
+        { q: 'Can I freeze my membership?', a: '3, 6 and 12-month plans come with freeze days for travel or injury. Ask at the desk or on WhatsApp and your end date moves by the days you freeze.' },
+        { q: 'How late can I cancel a class?', a: 'Up to 2 hours before it starts, from the link in your WhatsApp confirmation. Later than that, a class pack loses one class.' },
+        { q: 'Which payment methods do you accept?', a: 'Cash in USD or LBP at the day’s rate, card, Whish and OMT. You get the receipt on WhatsApp.' },
+        { q: 'I have never trained before. Where do I start?', a: 'Book a free trial class or a free consultation with a trainer. We will suggest the right classes for your level.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

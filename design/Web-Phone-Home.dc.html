@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>VOLT website · Home on phone</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Geist:wght@400;500;600;700&amp;family=Geist+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#0B0B0C}
+a{color:#F5F5F2;text-decoration:none}a:hover{color:#FFFFFF}
+</style>
+</helmet>
+<div style="width: 390px; min-height: 2300px; background: #0B0B0C; color: #F5F5F2; font-family: Geist, system-ui, sans-serif; font-size: 16px; line-height: 1.5; display: flex; flex-direction: column">
+
+  <header style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid #1F1F22">
+    <a href="Main.dc.html" aria-label="VOLT Fitness Club, home" style="display: flex; align-items: center; gap: 8px">
+      <span style="width: 32px; height: 32px; border-radius: 9px; background: {{accent}}; display: flex; align-items: center; justify-content: center">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B0B0C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"></path></svg>
+      </span>
+      <span style="font-family: Anton, Impact, sans-serif; font-size: 23px; letter-spacing: 0.06em">VOLT</span>
+    </a>
+    <div style="display: flex; gap: 6px; align-items: center">
+      <a href="Web-Phone-Booking-AR.dc.html" lang="ar" style="min-height: 44px; padding: 0 12px; display: inline-flex; align-items: center; border: 1px solid #2A2A2E; border-radius: 999px; font-size: 15px">عربي</a>
+      <button type="button" aria-label="Open menu" style="width: 44px; height: 44px; border-radius: 999px; border: 1px solid #2A2A2E; background: transparent; color: #F5F5F2; display: inline-flex; align-items: center; justify-content: center">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path></svg>
+      </button>
+    </div>
+  </header>
+
+  <section style="padding: 32px 16px 28px; display: flex; flex-direction: column; gap: 20px">
+    <p style="margin: 0; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #A6A6AD; font-weight: 600">Achrafieh, Beirut · Open daily from 6:00</p>
+    <h1 style="margin: 0; font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 64px; line-height: 0.92; text-transform: uppercase">Stronger every <span style="color: {{accent}}">week.</span></h1>
+    <p style="margin: 0; font-size: 17px; line-height: 1.55; color: #C9C9CE">Group classes, open gym and personal coaching. Your first class is free, and the confirmation lands on your WhatsApp.</p>
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <a href="Web-Phone-Booking-AR.dc.html" style="min-height: 52px; display: flex; align-items: center; justify-content: center; border-radius: 999px; background: {{accent}}; color: #0B0B0C; font-weight: 600; font-size: 17px">Book a free trial</a>
+      <a href="Web-Timetable.dc.html" style="min-height: 52px; display: flex; align-items: center; justify-content: center; border-radius: 999px; border: 1px solid #3A3A40; font-weight: 600; font-size: 17px">See the timetable</a>
+    </div>
+  </section>
+
+  <div style="margin: 0 16px; height: 220px; border-radius: 20px; border: 1px solid #2A2A2E; background: repeating-linear-gradient(135deg, #17171A 0px, #17171A 12px, #121214 12px, #121214 24px); display: flex; align-items: flex-end; padding: 14px; box-sizing: border-box; color: #8E8E96; font-size: 13px">Photo: coach leading an evening Spin class</div>
+
+  <section aria-labelledby="p-today" style="margin: 28px 16px 0; background: #151517; border: 1px solid #2A2A2E; border-radius: 20px; padding: 18px 18px 8px">
+    <div style="display: flex; justify-content: space-between; align-items: center">
+      <h2 id="p-today" style="margin: 0; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: {{accent}}; font-weight: 600">Today at VOLT</h2>
+      <a href="Web-Timetable.dc.html" style="font-size: 14px; font-weight: 600; min-height: 44px; display: inline-flex; align-items: center">All →</a>
+    </div>
+    <sc-for list="{{today}}" as="c" hint-placeholder-count="5">
+      <div style="display: flex; align-items: center; gap: 12px; min-height: 52px; border-top: 1px solid #222226">
+        <span style="font-family: 'Geist Mono', monospace; font-size: 15px; width: 48px">{{c.time}}</span>
+        <span style="flex: 1; font-weight: 600">{{c.name}} <span style="font-weight: 400; color: #A6A6AD">· {{c.coach}}</span></span>
+        <span style="font-size: 14px; color: {{c.color}}">{{c.spots}}</span>
+      </div>
+    </sc-for>
+  </section>
+
+  <section style="margin-top: 40px">
+    <div style="padding: 0 16px; display: flex; justify-content: space-between; align-items: baseline">
+      <h2 style="margin: 0; font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 40px; line-height: 1; text-transform: uppercase">Classes</h2>
+      <span style="color: #A6A6AD; font-size: 14px">Swipe →</span>
+    </div>
+    <div style="margin-top: 16px; display: flex; gap: 12px; overflow-x: auto; padding: 0 16px 6px">
+      <sc-for list="{{classes}}" as="k" hint-placeholder-count="4">
+        <a href="Web-Timetable.dc.html" style="flex: 0 0 236px; border: 1px solid #2A2A2E; border-radius: 18px; background: #151517; overflow: hidden; display: flex; flex-direction: column">
+          <div style="height: 120px; background: repeating-linear-gradient(135deg, #1A1A1D 0px, #1A1A1D 10px, #151517 10px, #151517 20px)"></div>
+          <div style="padding: 14px 16px 16px">
+            <div style="font-family: Anton, Impact, sans-serif; font-size: 28px; text-transform: uppercase; line-height: 1.1">{{k.name}}</div>
+            <div style="font-size: 14px; color: #A6A6AD">{{k.meta}}</div>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="margin: 40px 16px 0">
+    <h2 style="margin: 0 0 18px; font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 40px; line-height: 1; text-transform: uppercase">Booking takes a minute</h2>
+    <ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px">
+      <li style="display: flex; gap: 14px"><span style="font-family: 'Geist Mono', monospace; color: {{accent}}">01</span><div><div style="font-weight: 600; font-size: 17px">Pick a class</div><div style="color: #A6A6AD; font-size: 15px">See spots left before you book.</div></div></li>
+      <li style="display: flex; gap: 14px"><span style="font-family: 'Geist Mono', monospace; color: {{accent}}">02</span><div><div style="font-weight: 600; font-size: 17px">Confirm with your number</div><div style="color: #A6A6AD; font-size: 15px">Name and WhatsApp. No password.</div></div></li>
+      <li style="display: flex; gap: 14px"><span style="font-family: 'Geist Mono', monospace; color: {{accent}}">03</span><div><div style="font-weight: 600; font-size: 17px">Get reminded on WhatsApp</div><div style="color: #A6A6AD; font-size: 15px">2 hours before, with a link to cancel.</div></div></li>
+    </ol>
+  </section>
+
+  <section style="margin: 40px 16px 0; border: 2px solid {{accent}}; border-radius: 20px; padding: 22px; background: #151517; display: flex; flex-direction: column; gap: 10px">
+    <div style="display: flex; justify-content: space-between; align-items: center"><span style="font-size: 17px; font-weight: 600">12 months</span><span style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: {{accent}}; color: #0B0B0C; padding: 4px 10px; border-radius: 999px">Best value</span></div>
+    <div style="display: flex; align-items: baseline; gap: 8px"><span style="font-family: Anton, Impact, sans-serif; font-size: 52px; line-height: 1">$500</span><span style="color: #A6A6AD">$42 a month</span></div>
+    <div style="color: #A6A6AD; font-size: 15px">Monthly from $55 · 10-class pack $80 · Day pass $10</div>
+    <a href="Web-Memberships.dc.html" style="min-height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 999px; border: 1px solid #3A3A40; font-weight: 600; margin-top: 4px">All plans and prices</a>
+  </section>
+
+  <section style="margin: 40px 16px 32px; display: flex; flex-direction: column; gap: 6px">
+    <h2 style="margin: 0 0 8px; font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 40px; line-height: 1; text-transform: uppercase">Visit us</h2>
+    <div style="font-size: 16px">Sassine Square, Achrafieh, Beirut</div>
+    <div style="color: #A6A6AD; font-size: 15px">Mon – Fri 06:00 – 23:00 · Sat 07:00 – 21:00 · Sun 08:00 – 18:00</div>
+    <a href="#" style="margin-top: 10px; min-height: 44px; display: inline-flex; align-items: center; font-weight: 600">Open in Maps →</a>
+  </section>
+
+  <div style="position: sticky; bottom: 0; margin-top: auto; padding: 12px 16px 20px; background: #0B0B0C; border-top: 1px solid #1F1F22; display: flex; gap: 10px">
+    <a href="Web-Phone-Booking-AR.dc.html" style="flex: 1; min-height: 52px; display: flex; align-items: center; justify-content: center; border-radius: 999px; background: {{accent}}; color: #0B0B0C; font-weight: 600; font-size: 17px">Book a free trial</a>
+    <a href="#" aria-label="Message us on WhatsApp" style="width: 52px; height: 52px; border-radius: 999px; border: 1px solid #3A3A40; display: inline-flex; align-items: center; justify-content: center">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"></path></svg>
+    </a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#C8F135","options":["#C8F135","#FF6B2C","#4D8BFF","#F5F5F2"]},"$preview":{"width":390,"height":2300}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const accent = this.props.accent ?? '#C8F135';
+    return {
+      accent,
+      today: [
+        { time: '17:30', name: 'HIIT', coach: 'Lea', spots: '6 left', color: '#C9C9CE' },
+        { time: '18:30', name: 'Strength', coach: 'Joe', spots: '3 left', color: '#FFB37A' },
+        { time: '19:00', name: 'Spin', coach: 'Karim', spots: 'Full', color: '#A6A6AD' },
+        { time: '20:15', name: 'Spin', coach: 'Karim', spots: '4 left', color: '#C9C9CE' },
+        { time: '20:30', name: 'Yoga', coach: 'Maya', spots: '9 left', color: '#C9C9CE' }
+      ],
+      classes: [
+        { name: 'Spin', meta: '45 min · Intense' },
+        { name: 'HIIT', meta: '40 min · Intense' },
+        { name: 'Strength', meta: '55 min · Medium' },
+        { name: 'Boxing', meta: '50 min · Medium' },
+        { name: 'Yoga', meta: '60 min · Easy' },
+        { name: 'Pilates', meta: '50 min · Easy' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

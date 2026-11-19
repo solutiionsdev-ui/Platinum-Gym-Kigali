@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>موقع VOLT · الحجز على الهاتف</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;family=Geist+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#0B0B0C}
+a{color:#F5F5F2;text-decoration:none}a:hover{color:#FFFFFF}
+</style>
+</helmet>
+<div dir="rtl" lang="ar" style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #0B0B0C; color: #F5F5F2; font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif; font-size: 16px; line-height: 1.6">
+
+  <header style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid #1F1F22">
+    <a href="Web-Phone-Home.dc.html" aria-label="VOLT، الصفحة الرئيسية" style="display: flex; align-items: center; gap: 8px" dir="ltr">
+      <span style="width: 32px; height: 32px; border-radius: 9px; background: {{accent}}; display: flex; align-items: center; justify-content: center">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B0B0C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"></path></svg>
+      </span>
+      <span style="font-family: Anton, Impact, sans-serif; font-size: 23px; letter-spacing: 0.06em">VOLT</span>
+    </a>
+    <div style="display: flex; gap: 6px; align-items: center">
+      <a href="Web-Phone-Home.dc.html" lang="en" style="min-height: 44px; padding: 0 12px; display: inline-flex; align-items: center; border: 1px solid #2A2A2E; border-radius: 999px; font-size: 15px; font-family: system-ui, sans-serif">EN</a>
+      <button type="button" aria-label="القائمة" style="width: 44px; height: 44px; border-radius: 999px; border: 1px solid #2A2A2E; background: transparent; color: #F5F5F2; display: inline-flex; align-items: center; justify-content: center">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path></svg>
+      </button>
+    </div>
+  </header>
+
+  <div style="padding: 20px 16px 0">
+    <h1 style="margin: 0; font-size: 32px; font-weight: 700; line-height: 1.3">جدول الحصص</h1>
+    <p style="margin: 2px 0 0; color: #A6A6AD; font-size: 15px">أسبوع 23 – 29 تشرين الثاني · الأماكن تتحدث مباشرة</p>
+  </div>
+
+  <div role="group" aria-label="نوع الحصة" style="margin-top: 14px; display: flex; gap: 8px; overflow-x: auto; padding: 0 16px 4px">
+    <button type="button" aria-pressed="true" style="flex: none; min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid {{accent}}; background: {{accent}}; color: #0B0B0C; font: inherit; font-size: 15px; font-weight: 600">كل الحصص</button>
+    <button type="button" aria-pressed="false" style="flex: none; min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid #2A2A2E; background: transparent; color: #F5F5F2; font: inherit; font-size: 15px; font-weight: 600">سبين</button>
+    <button type="button" aria-pressed="false" style="flex: none; min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid #2A2A2E; background: transparent; color: #F5F5F2; font: inherit; font-size: 15px; font-weight: 600">HIIT</button>
+    <button type="button" aria-pressed="false" style="flex: none; min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid #2A2A2E; background: transparent; color: #F5F5F2; font: inherit; font-size: 15px; font-weight: 600">قوة</button>
+    <button type="button" aria-pressed="false" style="flex: none; min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid #2A2A2E; background: transparent; color: #F5F5F2; font: inherit; font-size: 15px; font-weight: 600">ملاكمة</button>
+    <button type="button" aria-pressed="false" style="flex: none; min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid #2A2A2E; background: transparent; color: #F5F5F2; font: inherit; font-size: 15px; font-weight: 600">يوغا</button>
+  </div>
+
+  <div role="tablist" aria-label="اليوم" style="margin-top: 12px; display: flex; gap: 8px; overflow-x: auto; padding: 0 16px 4px">
+    <sc-for list="{{days}}" as="d" hint-placeholder-count="5">
+      <button type="button" role="tab" aria-selected="{{d.on}}" style="flex: 0 0 68px; min-height: 64px; border-radius: 14px; border: 1px solid {{d.bd}}; background: {{d.bg}}; color: {{d.fg}}; font: inherit; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0">
+        <span style="font-size: 13px; font-weight: 600">{{d.name}}</span>
+        <span style="font-family: 'Geist Mono', monospace; font-size: 18px">{{d.date}}</span>
+      </button>
+    </sc-for>
+  </div>
+
+  <div style="margin-top: 14px; padding: 0 16px; display: flex; flex-direction: column; gap: 10px">
+    <sc-for list="{{sessions}}" as="s" hint-placeholder-count="4">
+      <div style="background: #151517; border: 1px solid {{s.bd}}; border-radius: 16px; padding: 14px 16px; display: flex; align-items: center; gap: 14px">
+        <div style="width: 56px; text-align: center">
+          <div style="font-family: 'Geist Mono', monospace; font-size: 18px" dir="ltr">{{s.time}}</div>
+          <div style="font-size: 12px; color: #A6A6AD">{{s.mins}}</div>
+        </div>
+        <div style="flex: 1; min-width: 0">
+          <div style="font-size: 17px; font-weight: 600">{{s.name}}</div>
+          <div style="font-size: 13px; color: {{s.spotsColor}}">{{s.coach}} · {{s.spots}}</div>
+        </div>
+        <span style="min-height: 44px; min-width: 72px; padding: 0 12px; border-radius: 999px; border: 1px solid {{s.btnBd}}; background: {{s.btnBg}}; color: {{s.btnFg}}; font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box">{{s.btn}}</span>
+      </div>
+    </sc-for>
+  </div>
+
+  <!-- Dim + bottom sheet -->
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(0, 0, 0, 0.6)"></div>
+  <section role="dialog" aria-label="تأكيد الحجز" style="position: absolute; left: 0; right: 0; bottom: 0; background: #151517; border-top: 1px solid #2A2A2E; border-radius: 24px 24px 0 0; padding: 10px 18px 24px; display: flex; flex-direction: column; gap: 12px">
+    <div aria-hidden="true" style="align-self: center; width: 40px; height: 4px; border-radius: 2px; background: #3A3A40"></div>
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px">
+      <div>
+        <div style="font-size: 12px; font-weight: 600; color: {{accent}}">احجز حصتك التجريبية المجانية</div>
+        <div style="font-size: 21px; font-weight: 700; line-height: 1.4">سبين مع كريم</div>
+        <div style="font-size: 14px; color: #A6A6AD">الثلاثاء 24 تشرين الثاني · <span dir="ltr" style="font-family: 'Geist Mono', monospace">20:15</span> · استوديو 2 · 45 دقيقة</div>
+      </div>
+      <button type="button" aria-label="إغلاق" style="flex: none; width: 44px; height: 44px; border-radius: 999px; border: 1px solid #2A2A2E; background: transparent; color: #F5F5F2; display: inline-flex; align-items: center; justify-content: center">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+      </button>
+    </div>
+    <label for="ar-name" style="font-size: 14px; font-weight: 600">الاسم الكامل</label>
+    <input id="ar-name" type="text" value="رنا حداد" style="margin-top: -8px; min-height: 48px; border-radius: 14px; border: 1px solid #3A3A40; background: #0B0B0C; color: #F5F5F2; padding: 0 14px; font: inherit; font-size: 16px">
+    <label for="ar-phone" style="font-size: 14px; font-weight: 600">رقم واتساب</label>
+    <input id="ar-phone" type="tel" dir="ltr" value="+961 3 123 456" style="margin-top: -8px; min-height: 48px; border-radius: 14px; border: 1px solid #3A3A40; background: #0B0B0C; color: #F5F5F2; padding: 0 14px; font-family: 'Geist Mono', monospace; font-size: 16px; text-align: right">
+    <label for="ar-trial" style="display: flex; gap: 10px; align-items: center; min-height: 44px; font-size: 15px">
+      <input id="ar-trial" type="checkbox" checked="{{ true }}" style="width: 20px; height: 20px; accent-color: {{accent}}">
+      هذه أول حصة لي في VOLT (تجربة مجانية)
+    </label>
+    <button type="button" style="min-height: 52px; border-radius: 999px; border: 0; background: {{accent}}; color: #0B0B0C; font: inherit; font-size: 17px; font-weight: 700">تأكيد الحجز</button>
+    <p style="margin: 0; font-size: 13px; color: #A6A6AD; text-align: center">نرسل لك التأكيد وتذكيراً قبل الحصة بساعتين على واتساب. لا حاجة لحساب.</p>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#C8F135","options":["#C8F135","#FF6B2C","#4D8BFF","#F5F5F2"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const accent = this.props.accent ?? '#C8F135';
+    const names = ['إثنين', 'ثلاثاء', 'أربعاء', 'خميس', 'جمعة'];
+    const days = names.map((n, i) => {
+      const on = i === 1;
+      return { name: n, date: 23 + i, on: on ? 'true' : 'false', bg: on ? '#F5F5F2' : '#151517', fg: on ? '#0B0B0C' : '#F5F5F2', bd: on ? '#F5F5F2' : '#2A2A2E' };
+    });
+    const row = (time, name, coach, mins, spots, kind) => ({
+      time, name, coach, mins, spots,
+      spotsColor: kind === 'full' ? '#A6A6AD' : (kind === 'low' ? '#FFB37A' : '#C9C9CE'),
+      bd: kind === 'sel' ? accent : '#2A2A2E',
+      btn: kind === 'full' ? 'انتظار' : (kind === 'sel' ? 'محدد' : 'احجز'),
+      btnBg: kind === 'sel' ? accent : (kind === 'full' ? 'transparent' : '#F5F5F2'),
+      btnFg: kind === 'full' ? '#F5F5F2' : '#0B0B0C',
+      btnBd: kind === 'sel' ? accent : (kind === 'full' ? '#3A3A40' : '#F5F5F2')
+    });
+    return {
+      accent,
+      days,
+      sessions: [
+        row('17:30', 'HIIT', 'مع ليا', '40 د', '6 أماكن متبقية', 'ok'),
+        row('18:30', 'قوة', 'مع جو', '55 د', '3 أماكن متبقية', 'low'),
+        row('19:00', 'سبين', 'مع كريم', '45 د', 'مكتملة · قائمة انتظار', 'full'),
+        row('20:15', 'سبين', 'مع كريم', '45 د', '4 أماكن متبقية', 'sel')
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

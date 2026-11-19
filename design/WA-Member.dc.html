@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Member WhatsApp reminders</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Geist+Mono:wght@400;500&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0;background:#ECEDE9}
+</style>
+</helmet>
+<div style="width: 390px; height: 1080px; background: #ECEDE9; color: #111412; font-family: Geist, system-ui, sans-serif; font-size: 15px; line-height: 1.45; display: flex; flex-direction: column">
+
+  <header style="background: #FFFFFF; border-bottom: 1px solid #DADDD8; padding: 12px 14px; display: flex; align-items: center; gap: 12px">
+    <button type="button" aria-label="Back" style="width: 36px; height: 44px; border: 0; background: transparent; color: #111412; display: inline-flex; align-items: center; justify-content: center; padding: 0">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+    </button>
+    <span style="width: 40px; height: 40px; border-radius: 999px; background: #0B0B0C; display: flex; align-items: center; justify-content: center">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"></path></svg>
+    </span>
+    <div style="flex: 1; min-width: 0; line-height: 1.3">
+      <div style="font-weight: 600; font-size: 16px">VOLT Fitness Club</div>
+      <div style="font-size: 12px; color: #5E6661">Business account · Rana's phone</div>
+    </div>
+  </header>
+
+  <div style="flex: 1; min-height: 0; overflow: hidden; padding: 12px 12px 8px; display: flex; flex-direction: column; gap: 8px">
+    <div style="align-self: center; font-size: 12px; color: #3D4540; background: #FFFFFF; border-radius: 8px; padding: 3px 10px">Today</div>
+
+    <div style="align-self: flex-start; max-width: 88%; display: flex; flex-direction: column; gap: 4px">
+      <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5E6661">Automatic · booking confirmed</div>
+      <div style="background: #FFFFFF; border-radius: 4px 16px 16px 16px; padding: 10px 12px">
+        Hi Rana, you're booked: <strong>Spin with Karim</strong>, today at 20:15, Studio 2.<br>Can't make it? Cancel here: <span style="color: #0F7A57">volt.fit/m/7KQ2</span>
+        <div style="font-size: 11px; color: #5E6661; text-align: right; margin-top: 2px; font-family: 'Geist Mono', monospace">16:52</div>
+      </div>
+    </div>
+
+    <div style="align-self: flex-start; max-width: 88%; display: flex; flex-direction: column; gap: 4px">
+      <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5E6661">Automatic · 2 hours before class</div>
+      <div style="background: #FFFFFF; border-radius: 4px 16px 16px 16px; padding: 10px 12px">
+        Spin with Karim starts at <strong>20:15</strong> in Studio 2. Bring water and a towel. See you there.
+        <div style="font-size: 11px; color: #5E6661; text-align: right; margin-top: 2px; font-family: 'Geist Mono', monospace">18:15</div>
+      </div>
+      <div style="display: flex; gap: 6px">
+        <span style="flex: 1; min-height: 40px; border-radius: 12px; background: #FFFFFF; color: #0F7A57; font-weight: 600; display: flex; align-items: center; justify-content: center">I'm coming</span>
+        <span style="flex: 1; min-height: 40px; border-radius: 12px; background: #FFFFFF; color: #0F7A57; font-weight: 600; display: flex; align-items: center; justify-content: center">Cancel my spot</span>
+      </div>
+    </div>
+
+    <div style="align-self: flex-end; max-width: 70%; background: #D9EEDF; border-radius: 16px 16px 4px 16px; padding: 8px 12px">
+      I'm coming
+      <div style="font-size: 11px; color: #3D4540; text-align: right; margin-top: 2px; font-family: 'Geist Mono', monospace">18:16</div>
+    </div>
+
+    <div style="align-self: flex-start; max-width: 88%; display: flex; flex-direction: column; gap: 4px">
+      <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5E6661">Automatic · after class</div>
+      <div style="background: #FFFFFF; border-radius: 4px 16px 16px 16px; padding: 10px 12px">
+        How was Spin with Karim tonight? Tap a score from 1 to 5.
+        <div style="font-size: 11px; color: #5E6661; text-align: right; margin-top: 2px; font-family: 'Geist Mono', monospace">21:10</div>
+      </div>
+      <div style="display: flex; gap: 6px">
+        <sc-for list="{{scores}}" as="s" hint-placeholder-count="5">
+          <span style="flex: 1; min-height: 40px; border-radius: 12px; background: #FFFFFF; color: #0F7A57; font-weight: 600; font-family: 'Geist Mono', monospace; display: flex; align-items: center; justify-content: center">{{s}}</span>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="align-self: center; font-size: 12px; color: #3D4540; background: #FFFFFF; border-radius: 8px; padding: 3px 10px">Friday 27 November</div>
+
+    <div style="align-self: flex-start; max-width: 88%; display: flex; flex-direction: column; gap: 4px">
+      <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5E6661">Automatic · PT package running low</div>
+      <div style="background: #FFFFFF; border-radius: 4px 16px 16px 16px; padding: 10px 12px">
+        Great session with Rami this morning. You have <strong>2 sessions left</strong> in your package. Renew 10 sessions for $300?
+        <div style="font-size: 11px; color: #5E6661; text-align: right; margin-top: 2px; font-family: 'Geist Mono', monospace">08:10</div>
+      </div>
+      <div style="display: flex; gap: 6px">
+        <span style="flex: 1; min-height: 40px; border-radius: 12px; background: #FFFFFF; color: #0F7A57; font-weight: 600; display: flex; align-items: center; justify-content: center">Yes, renew</span>
+        <span style="flex: 1; min-height: 40px; border-radius: 12px; background: #FFFFFF; color: #0F7A57; font-weight: 600; display: flex; align-items: center; justify-content: center">Later</span>
+      </div>
+    </div>
+
+    <div style="align-self: flex-start; max-width: 88%; display: flex; flex-direction: column; gap: 4px">
+      <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5E6661">Same message for members who chose Arabic</div>
+      <div dir="rtl" lang="ar" style="background: #FFFFFF; border-radius: 16px 4px 16px 16px; padding: 10px 12px; font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif; font-size: 15px; line-height: 1.7">
+        حصة رائعة مع رامي هذا الصباح. بقيت لكِ <strong>جلستان</strong> في باقتك. هل تريدين تجديد 10 جلسات بـ 300$؟
+        <div style="font-size: 11px; color: #5E6661; text-align: left; margin-top: 2px; font-family: 'Geist Mono', monospace" dir="ltr">08:10</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding: 8px 10px 18px; display: flex; gap: 8px; align-items: center">
+    <label for="m-in" style="position: absolute; left: -9999px">Message VOLT</label>
+    <input id="m-in" type="text" placeholder="Message" style="flex: 1; min-width: 0; height: 46px; border-radius: 999px; border: 0; background: #FFFFFF; padding: 0 16px; font: inherit; color: #111412">
+    <button type="button" aria-label="Record a voice note" style="width: 46px; height: 46px; border-radius: 999px; border: 0; background: #0B0B0C; color: {{accent}}; display: inline-flex; align-items: center; justify-content: center">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3zM19 10v2a7 7 0 0 1-14 0v-2M12 19v3"></path></svg>
+    </button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#C8F135","options":["#C8F135","#FF6B2C","#4D8BFF","#F5F5F2"]},"$preview":{"width":390,"height":1080}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const accent = this.props.accent ?? '#C8F135';
+    return { accent, scores: ['1', '2', '3', '4', '5'] };
+  }
+}
+</script>
+</body>
+</html>

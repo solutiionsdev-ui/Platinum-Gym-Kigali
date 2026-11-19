@@ -1,0 +1,44 @@
+{
+  "v": 3,
+  "createdOnFiles": {"v": 1, "at": "2026-11-19T17:05:00Z"},
+  "title": "VOLT Gym System — Design",
+  "launch": {"view": "canvas"},
+  "pages": [],
+  "boards": {
+    "Main.dc.html": {"x": 0, "y": 0, "w": 1440, "h": 4800, "title": "Website · Home", "expand": "fill"},
+    "Web-Timetable.dc.html": {"x": 1520, "y": 0, "w": 1440, "h": 1500, "title": "Website · Timetable & booking", "expand": "fill", "is_interactive": true},
+    "Web-Memberships.dc.html": {"x": 3040, "y": 0, "w": 1440, "h": 2700, "title": "Website · Memberships & prices", "expand": "fill"},
+    "Web-Phone-Home.dc.html": {"x": 4560, "y": 0, "w": 390, "h": 2300, "title": "Website · Home on phone"},
+    "Web-Phone-Booking-AR.dc.html": {"x": 5030, "y": 0, "w": 390, "h": 844, "title": "Website · Booking on phone (Arabic)"},
+    "CRM-Today.dc.html": {"x": 0, "y": 5220, "w": 1440, "h": 1150, "title": "CRM · Today", "expand": "fill"},
+    "CRM-Member.dc.html": {"x": 1520, "y": 5220, "w": 1440, "h": 1500, "title": "CRM · Member page", "expand": "fill"},
+    "CRM-Money.dc.html": {"x": 3040, "y": 5220, "w": 1440, "h": 1500, "title": "CRM · Money", "expand": "fill"},
+    "CRM-Team.dc.html": {"x": 4560, "y": 5220, "w": 1440, "h": 1300, "title": "CRM · Team performance", "expand": "fill"},
+    "CRM-Phone-Today.dc.html": {"x": 6080, "y": 5220, "w": 390, "h": 1500, "title": "CRM · Today on phone"},
+    "WA-Assistant.dc.html": {"x": 0, "y": 7140, "w": 390, "h": 1000, "title": "WhatsApp · Owner's assistant"},
+    "WA-Member.dc.html": {"x": 470, "y": 7140, "w": 390, "h": 1080, "title": "WhatsApp · Member reminders"}
+  },
+  "order": [
+    "Main.dc.html",
+    "Web-Timetable.dc.html",
+    "Web-Memberships.dc.html",
+    "Web-Phone-Home.dc.html",
+    "Web-Phone-Booking-AR.dc.html",
+    "CRM-Today.dc.html",
+    "CRM-Member.dc.html",
+    "CRM-Money.dc.html",
+    "CRM-Team.dc.html",
+    "CRM-Phone-Today.dc.html",
+    "WA-Assistant.dc.html",
+    "WA-Member.dc.html"
+  ],
+  "notes": {
+    "t_web": {"x": 0, "y": -300, "text": "Website — members & visitors", "kind": "title1", "maxW": 5420},
+    "t_crm": {"x": 0, "y": 4920, "text": "CRM — owner & staff", "kind": "title1", "maxW": 6470},
+    "t_wa": {"x": 0, "y": 6840, "text": "WhatsApp — assistant & reminders", "kind": "title1", "maxW": 1840},
+    "n_book": {"x": 1520, "y": 1600, "w": 380, "text": "Clickable: press Play on the timetable, pick a day and a class, fill in the form and confirm. The confirmation shows the WhatsApp message the member gets.", "fill": "green", "size": "m"},
+    "n_wa": {"x": 940, "y": 7140, "w": 380, "text": "Both chats are the scripted demo (step 3). Answers come from sample data. The real assistant runs on Claude in step 5, after Meta approves the message templates.", "fill": "blue", "size": "m"},
+    "n_accent": {"x": 4560, "y": 2400, "w": 380, "text": "Website accent color is a Tweak (lime, orange, blue, white) so the same site can be rebranded for each gym we pitch.", "fill": "orange", "size": "m"}
+  },
+  "designSystems": []
+}

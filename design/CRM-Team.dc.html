@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>VOLT CRM · Team performance</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0;background:#F6F7F6}
+a{color:#0F7A57;text-decoration:none}a:hover{color:#0A5A40;text-decoration:underline}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #F6F7F6; color: #111412; font-family: Geist, system-ui, sans-serif; font-size: 15px; line-height: 1.5; display: flex; flex-wrap: wrap">
+
+  <nav aria-label="CRM" style="flex: 1 1 232px; max-width: 100%; background: #FFFFFF; border-right: 1px solid #E4E7E5; padding: 20px 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 4px">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 4px 10px 18px">
+      <span style="width: 32px; height: 32px; border-radius: 9px; background: #111412; display: flex; align-items: center; justify-content: center">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"></path></svg>
+      </span>
+      <div style="line-height: 1.2"><div style="font-weight: 700; letter-spacing: 0.04em">VOLT</div><div style="font-size: 12px; color: #5E6661">Admin</div></div>
+    </div>
+    <sc-for list="{{nav}}" as="n" hint-placeholder-count="8">
+      <a href="{{n.href}}" aria-current="{{n.current}}" style="min-height: 44px; display: flex; align-items: center; gap: 12px; padding: 0 12px; border-radius: 10px; background: {{n.bg}}; color: {{n.fg}}; font-weight: {{n.fw}}; text-decoration: none">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{n.d}}"></path></svg>
+        <span style="flex: 1">{{n.label}}</span>
+        <span style="font-size: 12px; font-family: 'Geist Mono', monospace; color: {{n.badgeFg}}">{{n.badge}}</span>
+      </a>
+    </sc-for>
+    <div style="margin-top: auto; display: flex; align-items: center; gap: 10px; padding: 12px 10px 0">
+      <span style="width: 34px; height: 34px; border-radius: 999px; background: #E8ECE9; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 13px">NR</span>
+      <div style="line-height: 1.3"><div style="font-weight: 600; font-size: 14px">Nadim Rizk</div><div style="font-size: 12px; color: #5E6661">Owner</div></div>
+    </div>
+  </nav>
+
+  <main style="flex: 999 1 640px; min-width: 0; padding: 28px 32px 48px; box-sizing: border-box">
+    <div style="max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px">
+
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap">
+        <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap">
+          <h1 style="margin: 0; font-size: 26px; font-weight: 600">Team</h1>
+          <span style="color: #5E6661">November 2026 · month to date</span>
+        </div>
+        <button type="button" style="height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid #E4E7E5; background: #FFFFFF; color: #111412; font: inherit; font-weight: 600; cursor: pointer">Add staff member</button>
+      </div>
+
+      <div role="tablist" aria-label="Team sections" style="display: flex; gap: 4px; border-bottom: 1px solid #E4E7E5; flex-wrap: wrap">
+        <sc-for list="{{tabs}}" as="t" hint-placeholder-count="5">
+          <button type="button" role="tab" aria-selected="{{t.on}}" style="height: 44px; padding: 0 14px; border: 0; border-bottom: 2px solid {{t.line}}; margin-bottom: -1px; background: transparent; color: {{t.fg}}; font: inherit; font-weight: {{t.fw}}; cursor: pointer">{{t.label}}</button>
+        </sc-for>
+      </div>
+
+      <div style="background: #FFFFFF; border: 1px solid #E4E7E5; border-radius: 14px; padding: 18px 20px; font-size: 17px; line-height: 1.6">
+        <strong>150 classes</strong> taught this month, <strong>79% full</strong> on average. Karim's classes are the fullest (91%). Rami leads personal training with <strong>64 sessions</strong> and 5 packages sold. Nour's classes are the emptiest (58%) and have the most no-shows.
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+
+        <div style="flex: 3 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+          <section aria-labelledby="co-h" style="background: #FFFFFF; border: 1px solid #E4E7E5; border-radius: 14px">
+            <div style="padding: 16px 20px; border-bottom: 1px solid #EEF0EE; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap">
+              <h2 id="co-h" style="margin: 0; font-size: 16px; font-weight: 600">Coaches and trainers</h2>
+              <span style="font-size: 13px; color: #5E6661">Sorted by how full their classes are</span>
+            </div>
+            <div style="overflow-x: auto">
+              <table style="width: 100%; min-width: 760px; border-collapse: collapse; font-size: 14px">
+                <thead><tr style="text-align: left; color: #5E6661">
+                  <th scope="col" style="padding: 10px 20px; font-weight: 500; border-bottom: 1px solid #EEF0EE">Coach</th>
+                  <th scope="col" style="padding: 10px 12px; font-weight: 500; border-bottom: 1px solid #EEF0EE; text-align: right">Classes</th>
+                  <th scope="col" style="padding: 10px 12px; font-weight: 500; border-bottom: 1px solid #EEF0EE">How full</th>
+                  <th scope="col" style="padding: 10px 12px; font-weight: 500; border-bottom: 1px solid #EEF0EE; text-align: right">No-shows</th>
+                  <th scope="col" style="padding: 10px 12px; font-weight: 500; border-bottom: 1px solid #EEF0EE; text-align: right">Regulars kept</th>
+                  <th scope="col" style="padding: 10px 12px; font-weight: 500; border-bottom: 1px solid #EEF0EE; text-align: right">PT sessions</th>
+                  <th scope="col" style="padding: 10px 12px; font-weight: 500; border-bottom: 1px solid #EEF0EE; text-align: right">PT sold</th>
+                  <th scope="col" style="padding: 10px 20px 10px 12px; font-weight: 500; border-bottom: 1px solid #EEF0EE; text-align: right">Rating</th>
+                </tr></thead>
+                <tbody>
+                  <sc-for list="{{coaches}}" as="c" hint-placeholder-count="6">
+                    <tr>
+                      <th scope="row" style="padding: 12px 20px; border-bottom: 1px solid #EEF0EE; text-align: left; font-weight: 400">
+                        <div style="display: flex; align-items: center; gap: 10px">
+                          <span style="width: 32px; height: 32px; border-radius: 999px; background: #E8ECE9; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600">{{c.ini}}</span>
+                          <span><span style="display: block; font-weight: 600">{{c.name}}</span><span style="display: block; font-size: 13px; color: #5E6661">{{c.role}}</span></span>
+                        </div>
+                      </th>
+                      <td style="padding: 12px; border-bottom: 1px solid #EEF0EE; text-align: right; font-family: 'Geist Mono', monospace">{{c.classes}}</td>
+                      <td style="padding: 12px; border-bottom: 1px solid #EEF0EE">
+                        <div style="display: flex; align-items: center; gap: 8px">
+                          <div style="width: 90px; height: 6px; border-radius: 3px; background: #EEF0EE; overflow: hidden"><div style="height: 6px; width: {{c.fill}}; background: {{c.fillBar}}"></div></div>
+                          <span style="font-family: 'Geist Mono', monospace; color: {{c.fillFg}}">{{c.fill}}</span>
+                        </div>
+                      </td>
+                      <td style="padding: 12px; border-bottom: 1px solid #EEF0EE; text-align: right; font-family: 'Geist Mono', monospace; color: {{c.nsFg}}">{{c.noshow}}</td>
+                      <td style="padding: 12px; border-bottom: 1px solid #EEF0EE; text-align: right; font-family: 'Geist Mono', monospace">{{c.kept}}</td>
+                      <td style="padding: 12px; border-bottom: 1px solid #EEF0EE; text-align: right; font-family: 'Geist Mono', monospace">{{c.pt}}</td>
+                      <td style="padding: 12px; border-bottom: 1px solid #EEF0EE; text-align: right; font-family: 'Geist Mono', monospace">{{c.sold}}</td>
+                      <td style="padding: 12px 20px 12px 12px; border-bottom: 1px solid #EEF0EE; text-align: right; font-family: 'Geist Mono', monospace">{{c.rating}}</td>
+                    </tr>
+                  </sc-for>
+                </tbody>
+              </table>
+            </div>
+            <div style="padding: 12px 20px 16px; font-size: 13px; color: #5E6661; line-height: 1.6">
+              <strong style="color: #3D4540">How full</strong>: booked spots out of capacity. <strong style="color: #3D4540">Regulars kept</strong>: members who came to this coach in October and came back in November. <strong style="color: #3D4540">Rating</strong>: members rate a class from the WhatsApp message they get afterwards.
+            </div>
+          </section>
+
+          <section aria-labelledby="fd-h" style="background: #FFFFFF; border: 1px solid #E4E7E5; border-radius: 14px">
+            <div style="padding: 16px 20px; border-bottom: 1px solid #EEF0EE">
+              <h2 id="fd-h" style="margin: 0; font-size: 16px; font-weight: 600">Front desk</h2>
+            </div>
+            <div style="display: flex; flex-wrap: wrap">
+              <sc-for list="{{desk}}" as="d" hint-placeholder-count="2">
+                <div style="flex: 1 1 280px; padding: 18px 20px; border-bottom: 1px solid #EEF0EE; display: flex; flex-direction: column; gap: 12px">
+                  <div style="display: flex; align-items: center; gap: 10px">
+                    <span style="width: 32px; height: 32px; border-radius: 999px; background: #E8ECE9; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600">{{d.ini}}</span>
+                    <span style="font-weight: 600">{{d.name}}</span>
+                  </div>
+                  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+                    <div><div style="font-size: 13px; color: #5E6661">Trials who joined</div><div style="font-family: 'Geist Mono', monospace; font-size: 18px">{{d.conv}}</div><div style="font-size: 13px; color: #5E6661">{{d.convNote}}</div></div>
+                    <div><div style="font-size: 13px; color: #5E6661">Collected</div><div style="font-family: 'Geist Mono', monospace; font-size: 18px">{{d.collected}}</div></div>
+                    <div><div style="font-size: 13px; color: #5E6661">Renewals</div><div style="font-family: 'Geist Mono', monospace; font-size: 18px">{{d.renewals}}</div></div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </section>
+        </div>
+
+        <div style="flex: 2 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+          <section aria-labelledby="sh-h" style="background: #FFFFFF; border: 1px solid #E4E7E5; border-radius: 14px">
+            <div style="padding: 16px 20px; border-bottom: 1px solid #EEF0EE; display: flex; justify-content: space-between; align-items: center">
+              <h2 id="sh-h" style="margin: 0; font-size: 16px; font-weight: 600">On shift now</h2>
+              <span style="font-family: 'Geist Mono', monospace; font-size: 13px; color: #5E6661">16:40</span>
+            </div>
+            <sc-for list="{{shift}}" as="s" hint-placeholder-count="4">
+              <div style="padding: 10px 20px; border-bottom: 1px solid #EEF0EE; display: flex; gap: 12px; align-items: center">
+                <span style="width: 8px; height: 8px; border-radius: 999px; background: {{s.dot}}"></span>
+                <span style="flex: 1; min-width: 0">{{s.name}} <span style="color: #5E6661">· {{s.role}}</span></span>
+                <span style="font-family: 'Geist Mono', monospace; font-size: 13px; color: #3D4540">{{s.hours}}</span>
+              </div>
+            </sc-for>
+          </section>
+
+          <section aria-labelledby="lv-h" style="background: #FFFFFF; border: 1px solid #E4E7E5; border-radius: 14px; padding: 16px 20px; display: flex; flex-direction: column; gap: 10px">
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px">
+              <h2 id="lv-h" style="margin: 0; font-size: 16px; font-weight: 600">Leave request</h2>
+              <span style="display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; background: #FCEFD9; color: #8A4B00; font-size: 12px; font-weight: 500"><span style="width: 6px; height: 6px; border-radius: 999px; background: currentColor"></span>Waiting</span>
+            </div>
+            <div><strong>Maya Khoury</strong>, 1 – 3 December (family wedding)</div>
+            <div style="font-size: 14px; color: #3D4540">4 classes need a cover coach. Suggested: Nour for Yoga on Tue and Thu, Lea for Pilates on Wed.</div>
+            <div style="display: flex; gap: 8px; margin-top: 4px">
+              <button type="button" style="flex: 1; height: 44px; border-radius: 10px; border: 0; background: #111412; color: #FFFFFF; font: inherit; font-weight: 600; cursor: pointer">Approve with cover</button>
+              <button type="button" style="height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid #E4E7E5; background: #FFFFFF; color: #111412; font: inherit; font-weight: 600; cursor: pointer">Decline</button>
+            </div>
+          </section>
+
+          <section aria-labelledby="pr-h" style="background: #FFFFFF; border: 1px solid #E4E7E5; border-radius: 14px">
+            <div style="padding: 16px 20px; border-bottom: 1px solid #EEF0EE; display: flex; justify-content: space-between; align-items: center">
+              <h2 id="pr-h" style="margin: 0; font-size: 16px; font-weight: 600">November payroll</h2>
+              <span style="font-size: 13px; color: #5E6661">Ready on 30 Nov</span>
+            </div>
+            <div style="padding: 8px 20px 16px; display: flex; flex-direction: column; gap: 8px; font-size: 14px">
+              <div style="display: flex; justify-content: space-between"><span>Base salaries (10 staff)</span><span style="font-family: 'Geist Mono', monospace">$3,400</span></div>
+              <div style="display: flex; justify-content: space-between"><span>Class pay (150 classes)</span><span style="font-family: 'Geist Mono', monospace">$1,140</span></div>
+              <div style="display: flex; justify-content: space-between"><span>PT commission (147 sessions)</span><span style="font-family: 'Geist Mono', monospace">$660</span></div>
+              <div style="display: flex; justify-content: space-between; border-top: 1px solid #EEF0EE; padding-top: 10px; font-weight: 600"><span>Estimated total</span><span style="font-family: 'Geist Mono', monospace">$5,200</span></div>
+              <a href="#" style="margin-top: 4px; font-weight: 600; min-height: 44px; display: inline-flex; align-items: center">Open payroll →</a>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#C8F135","options":["#C8F135","#FF6B2C","#4D8BFF","#F5F5F2"]},"$preview":{"width":1440,"height":1300}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const accent = this.props.accent ?? '#C8F135';
+    const ICON = {
+      today: 'M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z',
+      schedule: 'M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z',
+      members: 'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75',
+      training: 'M6.5 6.5h11M6.5 17.5h11M8 12h8M5 5h3v14H5zM16 5h3v14h-3zM2 9.5v5M22 9.5v5',
+      money: 'M2 6h20v12H2zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM6 12h.01M18 12h.01',
+      team: 'M4 7h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2zM16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2',
+      messages: 'M7.9 20A9 9 0 1 0 4 16.1L2 22z',
+      settings: 'M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6'
+    };
+    const active = 'team';
+    const items = [
+      ['today', 'Today', 'CRM-Today.dc.html', '7'], ['schedule', 'Schedule', '#', ''], ['members', 'Members', 'CRM-Member.dc.html', '486'],
+      ['training', 'Training', '#', ''], ['money', 'Money', 'CRM-Money.dc.html', ''], ['team', 'Team', 'CRM-Team.dc.html', ''],
+      ['messages', 'Messages', 'WA-Assistant.dc.html', '3'], ['settings', 'Settings', '#', '']
+    ];
+    const nav = items.map(([k, label, href, badge]) => {
+      const on = k === active;
+      return { label, href, badge, d: ICON[k], current: on ? 'page' : 'false', bg: on ? '#111412' : 'transparent', fg: on ? '#FFFFFF' : '#3D4540', fw: on ? 600 : 500, badgeFg: on ? '#C9CFCB' : '#5E6661' };
+    });
+    const tabs = ['Staff', 'Shifts', 'Leave · 1', 'Payroll', 'Performance'].map((label, i) => ({
+      label, on: i === 4 ? 'true' : 'false', line: i === 4 ? '#111412' : 'transparent', fg: i === 4 ? '#111412' : '#5E6661', fw: i === 4 ? 600 : 500
+    }));
+    const coach = (ini, name, role, classes, fill, noshow, kept, pt, sold, rating) => ({
+      ini, name, role, classes, fill: fill + '%', noshow: noshow + '%', kept: kept + '%', pt, sold, rating,
+      fillBar: fill < 65 ? '#8A4B00' : '#111412', fillFg: fill < 65 ? '#8A4B00' : '#111412', nsFg: noshow >= 11 ? '#A12C22' : '#111412'
+    });
+    return {
+      accent, nav, tabs,
+      coaches: [
+        coach('KS', 'Karim Saliba', 'Spin and HIIT', 38, 91, 6, 94, 0, 0, '4.9'),
+        coach('JN', 'Joe Nassar', 'Strength', 30, 84, 7, 88, 22, 3, '4.7'),
+        coach('MK', 'Maya Khoury', 'Yoga and Pilates', 34, 78, 8, 90, 12, 1, '4.8'),
+        coach('LF', 'Lea Frem', 'HIIT and Boxing', 26, 72, 11, 81, 8, 1, '4.6'),
+        coach('RA', 'Rami Aoun', 'Personal trainer · strength', 10, 65, 9, 86, 64, 5, '4.9'),
+        coach('NF', 'Nour Fakhoury', 'Personal trainer · mobility', 12, 58, 12, 79, 41, 2, '4.5')
+      ],
+      desk: [
+        { ini: 'SM', name: 'Sara Mansour', conv: '9 of 14', convNote: '64%', collected: '$7,820', renewals: '31' },
+        { ini: 'TA', name: 'Tony Abi Nader', conv: '5 of 11', convNote: '45%', collected: '$4,150', renewals: '18' }
+      ],
+      shift: [
+        { name: 'Sara Mansour', role: 'Front desk', hours: '14:00 – 22:00', dot: '#1F9D5C' },
+        { name: 'Joe Nassar', role: 'Gym floor', hours: '12:00 – 20:00', dot: '#1F9D5C' },
+        { name: 'Nour Fakhoury', role: 'Coach', hours: '15:00 – 21:00', dot: '#1F9D5C' },
+        { name: 'Karim Saliba', role: 'Coach, arrives later', hours: '18:30 – 21:30', dot: '#B9C0BB' },
+        { name: 'Lea Frem', role: 'Coach, arrives later', hours: '17:00 – 19:00', dot: '#B9C0BB' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -7,6 +7,8 @@ Built by **solutiions.dev** as a **demo system to sell to gyms** (Lebanon first)
 3. **Owner's WhatsApp assistant**: the owner asks questions and gets things done in the system from WhatsApp.
 4. **Member WhatsApp automations**: reminders for classes, PT sessions and payments, plus follow-ups.
 
+Design canvas (step 0b, waiting for Mario's approval): https://claude.ai/artifact/92Zr4x9P5eiCF9FsnxHEEF (copy in `/design`).
+
 Demo brand: **VOLT Fitness Club**, Beirut (made up). The name, logo, colors, address and contact details live in **one file** (`src/lib/brand.ts`) so the demo can be rebranded for each gym we pitch.
 
 ---
@@ -59,7 +61,7 @@ The final look is decided in **step 0b (design canvas)**. Starting point:
 | divider | #EEF0EE | Rows inside cards |
 | ink | #111412 | Main text, primary buttons, active nav |
 | muted | #5E6661 | Secondary text |
-| accent | = brand accent, used sparingly (active nav marker, primary button). Configurable. |
+| accent | = brand accent, only in the logo mark and small highlights. Primary buttons and the active menu item use ink. Configurable. |
 
 **Status colors** (text on background, all must pass 4.5:1 contrast; final values set in step 0b)
 | Membership | Booking | Payment |
@@ -213,7 +215,7 @@ Same as Mario's other projects (EV-workshop CRM, Studiio OS):
 ## 8. Build steps (one at a time: stop and show Mario after each)
 
 0. **Brief & rules** ✅ This file, `CLAUDE.md`, `PROGRESS.md`, `KICKOFF.md`, repo branches.
-0b. **Design canvas**: the key screens for approval before building: website Home, Timetable + booking, Memberships; CRM Today, Member page, Money; the WhatsApp assistant chat. Saved as an artifact and in `/design`.
+0b. **Design canvas** ✅ drawn, waiting for approval: website Home, Timetable + booking (clickable), Memberships, Home on phone, Arabic booking on phone; CRM Today, Member page, Money, Team performance, Today on phone; WhatsApp owner's assistant and member reminders. Saved as an artifact and in `/design`.
 1. **Website, clickable, sample data**: every page in section 4, EN + AR, booking flow with a fake confirmation (shows the WhatsApp message it would send).
 2. **CRM, clickable, sample data**: all 8 sections with realistic sample data (≈ 250 members, 6 coaches, 3 months of payments and attendance).
 3. **WhatsApp demo**: scripted owner assistant (`/admin/assistant`), Automations screen with EN/AR previews, member-side message previews, `/guide` demo page.
