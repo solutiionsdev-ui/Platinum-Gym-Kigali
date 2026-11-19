@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+/*
+ * CRM design tokens (BRIEF section 2, approved canvas in /design).
+ * Calm and light, same family as the EV-workshop CRM. Status colors are for status only.
+ */
+:root {
+  --accent: #c8f135;
+}
+
+@theme {
+  --color-bg: #f6f7f6;
+  --color-surface: #ffffff;
+  --color-border: #e4e7e5;
+  --color-divider: #eef0ee;
+  --color-ink: #111412;
+  --color-ink-2: #3d4540;
+  --color-muted: #5e6661;
+  --color-faint: #8a938e;
+  --color-soft: #e8ece9;
+  --color-bar-muted: #b9c0bb;
+  --color-link: #0f7a57;
+  --color-link-hover: #0a5a40;
+  --color-online: #1f9d5c;
+
+  /* Status pairs: text on background, all 4.5:1 or better */
+  --color-ok: #11683f;
+  --color-ok-bg: #ddf2e5;
+  --color-warn: #8a4b00;
+  --color-warn-bg: #fcefd9;
+  --color-bad: #a12c22;
+  --color-bad-bg: #fbe4e1;
+  --color-info: #1e4fb8;
+  --color-info-bg: #e3ebfc;
+  --color-trial: #5b3ba8;
+  --color-trial-bg: #eee8fa;
+  --color-neutral: #4a524d;
+  --color-neutral-bg: #eef0ee;
+  --color-later: #1f2a24;
+
+  --font-sans: var(--font-geist), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+@theme inline {
+  --color-accent: var(--accent);
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid #111412;
+  outline-offset: 2px;
+}
+
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}

@@ -43,11 +43,38 @@ Every page in English (`/en/...`) and Arabic (`/ar/...`, right to left). `/` ope
 ### Small differences from the design (on purpose)
 - Booking happens in the timetable's side panel (sheet on phones), as on the canvas, so there's no separate `/book/...` page from BRIEF section 4.
 - Header "Free trial" opens its own `/trial` page; the Home page also has the trial form.
-- Tuesday's timetable gained the 09:00 Spin and 14:00 Yoga that the CRM Today screen shows. The CRM's 16:00 Mobility class isn't on the website yet (no Mobility class type); fix in step 2.
+- Tuesday's timetable gained the 09:00 Spin and 14:00 Yoga that the CRM Today screen shows. The canvas's 16:00 Mobility class was dropped: the CRM reads the same timetable as the website, so Today shows 9 classes.
+
+## Step 2: CRM, clickable, sample data · built 19 Nov 2026, waiting for Mario's click-through
+
+Open http://localhost:1122/admin (English only, separate look from the website).
+
+### What's in it
+- **Today** (`/admin`): summary sentence, 4 numbers, "Needs you" built from the data (overdue payments, ending membership, new leads, full class with waitlist, nearly empty class, leave request, exchange rate), classes and PT today.
+- **Schedule**: the same week as the website; open a class to see who's booked, the waitlist and (for past classes) who came.
+- **Members**: 520 sample members (486 active) with search and filters (ending soon, owes money, not seen in 2 weeks…); every member has a page. Rana Haddad (`/admin/members/m-001`) has the full detail from the canvas.
+- **Leads and trials** (`/admin/members/leads`): pipeline New → Contacted → Trial booked → Trial done → Joined / Lost.
+- **Check-in** (`/admin/members/check-in`): search by name or phone, warns if someone owes money or the membership ended.
+- **Training**: trainers, PT sessions today, packages running low.
+- **Money**: month summary, 6-month chart, where money came from, who owes, exchange rate (can be set), expenses, latest payments.
+- **Team**: coach performance, front desk numbers, staff list, who's on shift, Maya's leave request, payroll estimate.
+- **Messages**: all 15 automatic WhatsApp messages with on/off switches and English/Arabic previews, latest messages.
+- **Settings**: gym details, hours, prices, class types, who can see what.
+- Phones: top bar, bottom bar (Today, Schedule, Check in, Members, More).
+
+### How it's built
+- `src/app/admin` has its own layout and styles (`admin.css`), separate from the website.
+- Sample data in `src/lib/crm-sample-data.ts` (members are generated the same way every time), read only through `src/lib/crm-data.ts`. The timetable comes from the website's `src/lib/data.ts`, so both sides agree.
+- Buttons that would send or save something show a short message at the bottom instead (nothing is stored until step 4).
+- Test builds while the site runs: `NEXT_BUILD_DIR=.next-check npm run build` (a plain `npm run build` overwrites the running site's files and breaks it until restarted).
+
+### Not in step 2 (on purpose)
+- No logins or roles yet (step 4). Everyone sees everything.
+- The owner's WhatsApp assistant chat is step 3; Messages shows a card for it.
 
 ## Next
-- Mario clicks through the website (desktop and phone, English and Arabic).
-- Then **Step 2, the CRM** on sample data (KICKOFF.md).
+- Mario clicks through the website and the CRM.
+- Then **Step 3, the WhatsApp demo** (scripted assistant + `/guide` demo page), KICKOFF.md.
 
 ## Open questions
 - Does Mario have a reference gym website or Instagram for the look?
