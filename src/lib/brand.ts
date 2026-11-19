@@ -5,6 +5,8 @@
 export const brand = {
   name: "VOLT Fitness Club",
   short: "VOLT",
+  /** The gym owner: shown in the CRM and addressed by the WhatsApp assistant. */
+  owner: { name: "Wael Abou Samra", first: "Wael", initials: "WA" },
   /** Website accent. The CRM only uses it in the logo mark. */
   accent: "#C8F135",
   phone: "+961 1 234 567",

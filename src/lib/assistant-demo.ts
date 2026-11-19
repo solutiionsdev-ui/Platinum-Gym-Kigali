@@ -13,6 +13,7 @@ import {
   fmtDate, getCoachStats, getExpiringSoon, getLeads, getMembers, getMoney, getNotSeen, getOverdue, getPtToday, getTodayClasses,
   PLAN_LABELS, PLAN_PRICES, usd, type CrmMember,
 } from "./crm-data";
+import { brand } from "./brand";
 import { demoToday, getClassType, getCoach, getCoaches, getRoomName, getSessionsForDay, isFull, isPast, spotsLeft } from "./data";
 import type { Session } from "./types";
 
@@ -243,7 +244,7 @@ export function dailySummary() {
   const expiring = getExpiringSoon();
   const leads = getLeads().filter((l) => l.stage === "new");
   return (
-    `*Good morning Nadim. Today, Tue 24 Nov:*\n` +
+    `*Good morning ${brand.owner.first}. Today, Tue 24 Nov:*\n` +
     `• ${classes.length} classes${full.length ? `, ${full.map((c) => `${c.time} ${c.name}`).join(" and ")} full` : ""}\n` +
     `• ${getPtToday().length} PT sessions\n` +
     `• ${overdue.length} payments overdue, ${usd(overdue.reduce((s, m) => s + m.owes, 0))}\n` +
@@ -301,7 +302,7 @@ export function respond(input: string, pending: Pending): BotTurn {
         return {
           replies: [
             {
-              text: `Recorded: ${usd(pending.amount)} ${pending.method} from ${member.name} for ${pending.what}. Logged as confirmed by Nadim, just now. Receipt sent on WhatsApp.`,
+              text: `Recorded: ${usd(pending.amount)} ${pending.method} from ${member.name} for ${pending.what}. Logged as confirmed by ${brand.owner.first}, just now. Receipt sent on WhatsApp.`,
               quote: { to: first(member.name), text: `Thanks ${first(member.name)}! We received ${usd(pending.amount)} for ${pending.what}. This is your receipt. See you at VOLT.` },
             },
           ],

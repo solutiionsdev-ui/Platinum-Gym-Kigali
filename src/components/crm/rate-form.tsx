@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { brand } from "@/lib/brand";
 import { Chip } from "./ui";
 import { useToast } from "./toast";
 
@@ -26,7 +27,7 @@ export function RateForm({ yesterday }: { yesterday: number }) {
       </div>
       <div className="text-sm text-ink-2">
         {rate ? (
-          <>Today: <strong className="font-mono text-ink">{rate.toLocaleString("en-US")} LBP</strong> per $1, set by Nadim at 16:40</>
+          <>Today: <strong className="font-mono text-ink">{rate.toLocaleString("en-US")} LBP</strong> per $1, set by {brand.owner.first} at 16:40</>
         ) : (
           <>Yesterday: <strong className="font-mono text-ink">{yesterday.toLocaleString("en-US")} LBP</strong> per $1, set by Sara Mansour at 08:12</>
         )}

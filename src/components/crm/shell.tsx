@@ -7,6 +7,7 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
+import { brand } from "@/lib/brand";
 import { useToast } from "./toast";
 
 const NAV = [
@@ -82,9 +83,9 @@ export function CrmShell({ children }: { children: ReactNode }) {
           <ExternalLink aria-hidden className="size-4" /> Demo guide
         </Link>
         <div className="flex items-center gap-2.5 px-2.5 pt-2">
-          <span className="inline-flex size-[34px] items-center justify-center rounded-full bg-soft text-[13px] font-semibold">NR</span>
+          <span className="inline-flex size-[34px] items-center justify-center rounded-full bg-soft text-[13px] font-semibold">{brand.owner.initials}</span>
           <span className="leading-tight">
-            <span className="block text-sm font-semibold">Nadim Rizk</span>
+            <span className="block text-sm font-semibold">{brand.owner.name}</span>
             <span className="block text-xs text-muted">Owner</span>
           </span>
         </div>
@@ -96,7 +97,9 @@ export function CrmShell({ children }: { children: ReactNode }) {
           <Mark size={30} />
           <span className="font-bold tracking-[0.04em]">VOLT</span>
         </Link>
-        <span className="inline-flex size-[34px] items-center justify-center rounded-full bg-soft text-[13px] font-semibold">NR</span>
+        <span className="inline-flex size-[34px] items-center justify-center rounded-full bg-soft text-[13px] font-semibold" title={brand.owner.name}>
+          {brand.owner.initials}
+        </span>
       </header>
 
       <main id="main" className="min-w-0 flex-1 px-4 pb-28 pt-5 sm:px-8 sm:pt-7 lg:pb-12">

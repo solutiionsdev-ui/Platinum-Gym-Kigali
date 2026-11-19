@@ -8,6 +8,7 @@ import {
   activeCount, fmtDate, getExpiringSoon, getFullWithWaitlist, getLeads, getMoney, getOverdue, getPtToday, getQuietClasses, getTodayClasses,
   PLAN_LABELS, spotsLeft, statusCounts, usd,
 } from "@/lib/crm-data";
+import { brand } from "@/lib/brand";
 import { getClassType, getCoach, getSessionsForDay, demoToday } from "@/lib/data";
 
 export const metadata: Metadata = { title: "Today" };
@@ -73,7 +74,7 @@ export default function TodayPage() {
     <>
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h1 className="text-[26px] font-semibold tracking-[-0.01em]">Good afternoon, Nadim</h1>
+          <h1 className="text-[26px] font-semibold tracking-[-0.01em]">Good afternoon, {brand.owner.first}</h1>
           <div className="text-muted">Tuesday 24 November · <span className="font-mono">16:40</span></div>
         </div>
         <div className="flex flex-wrap items-center gap-2.5">
