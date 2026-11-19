@@ -68,15 +68,18 @@ export function CrmShell({ children }: { children: ReactNode }) {
             </Link>
           );
         })}
-        <div className="mt-auto flex flex-col gap-1 rounded-xl border border-border px-3 py-3.5">
-          <div className="flex items-center gap-2 text-sm font-semibold">
+        <Link href="/admin/messages/assistant" className="mt-auto flex flex-col gap-1 rounded-xl border border-border px-3 py-3.5 hover:border-bar-muted">
+          <span className="flex items-center gap-2 text-sm font-semibold">
             <span aria-hidden className="size-2 rounded-full bg-online" />
             WhatsApp assistant
-          </div>
-          <div className="text-[13px] text-muted">Demo mode · real one in step 5</div>
-        </div>
+          </span>
+          <span className="text-[13px] text-muted">Demo mode · try it</span>
+        </Link>
         <Link href="/en" className="flex min-h-11 items-center gap-2 px-3 text-sm text-muted hover:text-ink">
           <ExternalLink aria-hidden className="size-4" /> View website
+        </Link>
+        <Link href="/guide" className="-mt-2 flex min-h-11 items-center gap-2 px-3 text-sm text-muted hover:text-ink">
+          <ExternalLink aria-hidden className="size-4" /> Demo guide
         </Link>
         <div className="flex items-center gap-2.5 px-2.5 pt-2">
           <span className="inline-flex size-[34px] items-center justify-center rounded-full bg-soft text-[13px] font-semibold">NR</span>
@@ -142,8 +145,11 @@ export function CrmShell({ children }: { children: ReactNode }) {
                 {n.label}
               </Link>
             ))}
-            <Link href="/en" className="flex min-h-12 items-center gap-3 text-[17px] text-muted">
+            <Link href="/en" className="flex min-h-12 items-center gap-3 border-b border-divider text-[17px] text-muted">
               <ExternalLink aria-hidden className="size-5" /> View website
+            </Link>
+            <Link href="/guide" className="flex min-h-12 items-center gap-3 text-[17px] text-muted">
+              <ExternalLink aria-hidden className="size-5" /> Demo guide
             </Link>
           </div>
         </div>

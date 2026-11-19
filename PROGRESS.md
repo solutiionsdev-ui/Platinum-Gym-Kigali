@@ -66,15 +66,24 @@ Open http://localhost:1122/admin (English only, separate look from the website).
 - `src/app/admin` has its own layout and styles (`admin.css`), separate from the website.
 - Sample data in `src/lib/crm-sample-data.ts` (members are generated the same way every time), read only through `src/lib/crm-data.ts`. The timetable comes from the website's `src/lib/data.ts`, so both sides agree.
 - Buttons that would send or save something show a short message at the bottom instead (nothing is stored until step 4).
-- Test builds while the site runs: `NEXT_BUILD_DIR=.next-check npm run build` (a plain `npm run build` overwrites the running site's files and breaks it until restarted).
+- Test builds while the site runs: `NEXT_BUILD_DIR=.next-check npm run build && rm -rf .next-check` (a plain `npm run build` overwrites the running site's files and breaks it until restarted; leaving `.next-check` around confuses the type check).
 
 ### Not in step 2 (on purpose)
 - No logins or roles yet (step 4). Everyone sees everything.
 - The owner's WhatsApp assistant chat is step 3; Messages shows a card for it.
 
+## Step 3: WhatsApp demo · built 19 Nov 2026, waiting for Mario's click-through
+
+- **Owner's assistant** (`/admin/messages/assistant`): WhatsApp-style chat that starts with the 08:00 daily summary. Type, tap a suggestion, or press the microphone for a Franco-Arabic voice note ("7ot Rana Haddad bi spin lyom 7 l masa"). Understands: who owes, how full tonight is, booking a member into a class, recording a payment, who hasn't come in 2 weeks, memberships ending, coach performance, money collected, new trials, cancelling a class, prices, personal reminders.
+  - Follows the brief's rules: several members match → asks which (try "Book Rami into spin"); money → asks for a yes; group messages → shows the count and the text, asks for a yes.
+  - Logic in `src/lib/assistant-demo.ts`, answers built from the same sample data as the CRM.
+- **What members see** (`/admin/messages/member`): Rana's phone with the booking confirmation, 2-hour reminder, rating after class and PT renewal offer, in English or Arabic.
+- **Automatic messages** (`/admin/messages`): the 15 messages with switches and previews (from step 2), now with tabs to the two screens above.
+- **Demo guide** (`/guide`): every screen with what to click, plus a 10-minute script for showing a gym owner. Linked from the CRM sidebar.
+
 ## Next
-- Mario clicks through the website and the CRM.
-- Then **Step 3, the WhatsApp demo** (scripted assistant + `/guide` demo page), KICKOFF.md.
+- Mario clicks through everything, starting at http://localhost:1122/guide.
+- Then **Step 3b: preview link** on Vercel so gym owners can open the demo without Mario's computer (KICKOFF.md).
 
 ## Open questions
 - Does Mario have a reference gym website or Instagram for the look?
