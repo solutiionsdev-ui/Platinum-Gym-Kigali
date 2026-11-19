@@ -7,7 +7,7 @@
 - Branches on GitHub: `main`, `mario-branch`, `michel-branch`.
 - Defaults chosen (BRIEF section 10): demo brand VOLT Fitness Club (Beirut), English + Arabic for website and WhatsApp, USD + LBP, memberships + classes + PT, website dark and bold, CRM calm.
 
-## Step 0b: Design canvas · drawn 19 Nov 2026, waiting for approval
+## Step 0b: Design canvas · approved by Mario 19 Nov 2026
 Canvas: https://claude.ai/artifact/92Zr4x9P5eiCF9FsnxHEEF (copy of every screen in `/design`, see `design/README.md`).
 
 12 screens in three rows:
@@ -23,8 +23,7 @@ Decisions made while designing (Mario can change any):
 - Added Team performance and phone versions beyond the original 0b list, since HR performance and phone use were in Mario's request.
 
 ## Next
-- Mario reviews the canvas and leaves comments or asks for changes.
-- After approval: **Step 1, the website** on sample data (KICKOFF.md).
+- **Step 1, the website** on sample data (KICKOFF.md), matching the approved canvas.
 
 ## Open questions
 - Does Mario have a reference gym website or Instagram for the look?
