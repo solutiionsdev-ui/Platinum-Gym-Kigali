@@ -22,8 +22,32 @@ Decisions made while designing (Mario can change any):
 - One demo day across all screens: Tuesday 24 November 2026, 16:40, with matching numbers (e.g. $355 overdue from 3 members, $1,240 collected today, Rana Haddad booked into 20:15 Spin).
 - Added Team performance and phone versions beyond the original 0b list, since HR performance and phone use were in Mario's request.
 
+## Step 1: Website, clickable, sample data · built 19 Nov 2026, waiting for Mario's click-through
+
+### What's in it
+Every page in English (`/en/...`) and Arabic (`/ar/...`, right to left). `/` opens the English site.
+- Home, Timetable + booking (`/classes`), class pages (`/classes/spin` …), Memberships, Personal training, trainer pages (`/trainers/rami` …), Facilities, Free trial (`/trial`, and `/trial?plan=12m` for "Request this plan"), About, Contact.
+- Member's private page from WhatsApp links: `/en/m/7KQ2` (Rana's bookings, cancel buttons).
+- Booking: pick a class → name + WhatsApp number → confirmation showing the WhatsApp message and when the reminder goes out. Full classes offer the waitlist. Classes before "now" (Tuesday 16:40 in the demo) show as Finished.
+- Phones: menu button, a pinned "Book a free trial" bar, booking form as a sheet from the bottom.
+
+### How it's built
+- Next.js 15 + TypeScript + Tailwind 4, same as the EV-workshop CRM.
+- Brand (name, accent, address, hours, WhatsApp number) only in `src/lib/brand.ts`.
+- All text in `src/i18n/en.ts` and `src/i18n/ar.ts`. Sample data in `src/lib/sample-data.ts`, read only through `src/lib/data.ts`.
+- Forms don't save anything yet (step 4). WhatsApp buttons go to the Contact page until a real number is set in `brand.ts`.
+
+### Running it on this computer
+`npm run dev` in this folder → http://localhost:1122 (it runs in the "Gym site :1122" tab of the Terminal panel).
+
+### Small differences from the design (on purpose)
+- Booking happens in the timetable's side panel (sheet on phones), as on the canvas, so there's no separate `/book/...` page from BRIEF section 4.
+- Header "Free trial" opens its own `/trial` page; the Home page also has the trial form.
+- Tuesday's timetable gained the 09:00 Spin and 14:00 Yoga that the CRM Today screen shows. The CRM's 16:00 Mobility class isn't on the website yet (no Mobility class type); fix in step 2.
+
 ## Next
-- **Step 1, the website** on sample data (KICKOFF.md), matching the approved canvas.
+- Mario clicks through the website (desktop and phone, English and Arabic).
+- Then **Step 2, the CRM** on sample data (KICKOFF.md).
 
 ## Open questions
 - Does Mario have a reference gym website or Instagram for the look?

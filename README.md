@@ -13,6 +13,14 @@ Demo gym system by solutiions.dev: public website, CRM for the owner and staff, 
 - `mario-branch`: Mario's work
 - `michel-branch`: Michel's work
 
+## Run the website
+In the Terminal, inside this folder:
+```
+npm install   # first time only
+npm run dev
+```
+Then open http://localhost:1122 (English) or http://localhost:1122/ar (Arabic).
+
 ## How to start (Mario)
 1. Open the **Claude** desktop app → **Code**.
 2. Choose this folder: `SOLUTIIONS WEBSITE /GYM-CRM-WEBSITE`.
