@@ -53,7 +53,7 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
               <MessageCircle aria-hidden className="size-[18px]" strokeWidth={1.8} />
               {t.common.whatsappUs}
             </a>
-            <a href="https://maps.google.com/?q=Sassine+Square+Beirut" className={btn.outline}>{t.contact.openMaps}</a>
+            <a href="https://maps.google.com/?q=Nyarutarama+Kigali" className={btn.outline}>{t.contact.openMaps}</a>
           </div>
         </div>
       </div>

@@ -103,21 +103,21 @@ export function MembersList({ rows, initialQuery = "" }: { rows: MemberRow[]; in
       </div>
 
       <div className="rounded-[14px] border border-border bg-surface">
-        <div className="hidden grid-cols-[minmax(0,2.2fr)_minmax(0,1.3fr)_120px_minmax(0,1fr)_minmax(0,1fr)_70px_70px] gap-4 border-b border-divider px-5 py-2.5 text-sm text-muted lg:grid">
+        <div className="hidden grid-cols-[minmax(0,2.2fr)_minmax(0,1.3fr)_120px_minmax(0,1fr)_minmax(0,1fr)_70px_96px] gap-4 border-b border-divider px-5 py-2.5 text-sm text-muted lg:grid">
           <span>Member</span>
           <span>Plan</span>
           <span>Status</span>
           <span>Ends</span>
           <span>Last visit</span>
           <span className="text-end">4 weeks</span>
-          <span className="text-end">Owes</span>
+          <span className="text-end">Owes (RWF)</span>
         </div>
         {filtered.length === 0 && <p className="px-5 py-10 text-center text-muted">No members match. Try another name or filter.</p>}
         {filtered.slice(0, shown).map((r) => (
           <Link
             key={r.id}
             href={`/admin/members/${r.id}`}
-            className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 gap-y-1 border-b border-divider px-5 py-3 last:border-0 hover:bg-bg lg:grid-cols-[minmax(0,2.2fr)_minmax(0,1.3fr)_120px_minmax(0,1fr)_minmax(0,1fr)_70px_70px]"
+            className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 gap-y-1 border-b border-divider px-5 py-3 last:border-0 hover:bg-bg lg:grid-cols-[minmax(0,2.2fr)_minmax(0,1.3fr)_120px_minmax(0,1fr)_minmax(0,1fr)_70px_96px]"
           >
             <span className="min-w-0">
               <span className="block truncate font-medium">{r.name}</span>
@@ -137,7 +137,7 @@ export function MembersList({ rows, initialQuery = "" }: { rows: MemberRow[]; in
             </span>
             <span className={clsx("hidden text-sm lg:block", r.lastVisitDays >= 14 ? "text-bad" : "text-ink-2")}>{r.lastVisit}</span>
             <span className="hidden text-end font-mono text-sm lg:block">{r.visits4w}</span>
-            <span className={clsx("hidden text-end font-mono text-sm lg:block", r.owes > 0 ? "font-semibold text-bad" : "text-muted")}>{r.owes > 0 ? `$${r.owes}` : "–"}</span>
+            <span className={clsx("hidden text-end font-mono text-sm lg:block", r.owes > 0 ? "font-semibold text-bad" : "text-muted")}>{r.owes > 0 ? r.owes.toLocaleString("en-US") : "–"}</span>
           </Link>
         ))}
       </div>

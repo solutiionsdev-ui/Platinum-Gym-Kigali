@@ -87,6 +87,16 @@ Open http://localhost:1122/admin (English only, separate look from the website).
 - Colors are unchanged (lime accent). The design canvas on claude.ai still shows VOLT; it stays as the layout reference.
 - Still sample data: address, hours, prices, coaches, members.
 
+## Move to Kigali · 20 Nov 2026
+- Platinum Gym is in **Kigali**; GitHub repo renamed to `Platinum-Gym-Kigali` (old address redirects; this folder is still `GYM-CRM-WEBSITE`).
+- **English only:** Arabic text, fonts, right-to-left styles and the language button removed. `/ar` now shows "not found". Second language can come back later (`src/lib/i18n.ts`).
+- **Money in RWF** everywhere: plans 60,000 / 165,000 / 300,000 / 540,000 RWF, PT 25,000 / 115,000 / 210,000 RWF, CRM totals in RWF. Big prices show the number large and "RWF" small (`PriceTag`).
+- **Payments:** cash, card, bank transfer, MTN MoMo, Airtel Money. The LBP exchange-rate box became "Mobile money to match" (payments that arrived without a member name); Today's "Needs you" has a matching item.
+- **People:** Rwandan coaches (Eric, Aline, Jean-Paul, Grace, Patrick, Diane), front desk (Clarisse, Arsène), 520 members with +250 numbers. Featured member: Sandrine Uwimana (`/admin/members/m-001`, `/en/m/7KQ2`). Trainer pages are now `/en/trainers/patrick` etc.
+- **Address and hours:** KG 9 Ave, Nyarutarama, Kigali (sample). Mon–Fri 06–22, Sat 07–20, Sun 08–14.
+- **Assistant:** voice note "Shyira Sandrine Uwimana muri spin ya 7pm uyu munsi" (Kinyarwanda + English); understands "yego"/"oya"; payments like "Fabrice Murenzi paid 60,000 MoMo" or "50k airtel"; the "which member?" demo is "Book Kevin into spin".
+- Still sample data: address, hours, prices, coaches, members, colors (lime). The design canvas on claude.ai still shows the old Beirut/VOLT version.
+
 ## Next
 - Mario clicks through everything, starting at http://localhost:1122/guide.
 - Then **Step 3b: preview link** on Vercel so gym owners can open the demo without Mario's computer (KICKOFF.md).

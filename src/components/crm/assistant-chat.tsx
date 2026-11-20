@@ -164,7 +164,7 @@ export function AssistantChat({ starters = true }: { starters?: boolean }) {
         <div className="flex min-w-0 flex-[1_1_320px] flex-col gap-5">
           <section aria-labelledby="try-h" className="rounded-[14px] border border-border bg-surface p-5">
             <h2 id="try-h" className="text-base font-semibold">Try asking</h2>
-            <p className="mt-1 text-sm text-muted">Tap one, type your own, or press the microphone to send a voice note in Lebanese Franco.</p>
+            <p className="mt-1 text-sm text-muted">Tap one, type your own, or press the microphone to send a voice note in Kinyarwanda and English.</p>
             <div className="mt-3 flex flex-col gap-2">
               {STARTERS.map((s) => (
                 <button key={s} type="button" onClick={() => sendText(s)} disabled={typing}
@@ -181,7 +181,7 @@ export function AssistantChat({ starters = true }: { starters?: boolean }) {
           <section aria-labelledby="rules-h" className="rounded-[14px] border border-border bg-surface p-5 text-sm">
             <h2 id="rules-h" className="text-base font-semibold">How it behaves</h2>
             <ul className="mt-2 flex flex-col gap-2 text-ink-2">
-              <li><strong className="text-ink">Never guesses who.</strong> One exact member → it acts and says who. Several → it asks (try &ldquo;Book Rami into spin&rdquo;).</li>
+              <li><strong className="text-ink">Never guesses who.</strong> One exact member → it acts and says who. Several → it asks (try &ldquo;Book Kevin into spin&rdquo;).</li>
               <li><strong className="text-ink">Money needs your yes.</strong> Payments, discounts and refunds are confirmed first and logged.</li>
               <li><strong className="text-ink">Group messages need your yes.</strong> It shows how many people and the exact text first.</li>
               <li><strong className="text-ink">Daily summary at 08:00</strong>, like the first message here.</li>

@@ -1,6 +1,6 @@
 /**
  * The owner's WhatsApp assistant, scripted for the demo (step 3).
- * It recognises a set of questions and commands (English, Franco-Arabic and a little Arabic)
+ * It recognises a set of questions and commands in English, plus a few Kinyarwanda words (yego, oya, shyira, muri)
  * and answers from the sample data, so the numbers match the rest of the CRM.
  * The real assistant (step 5) runs on Claude with tools that read and change the database.
  *
@@ -11,7 +11,7 @@
  */
 import {
   fmtDate, getCoachStats, getExpiringSoon, getLeads, getMembers, getMoney, getNotSeen, getOverdue, getPtToday, getTodayClasses,
-  PLAN_LABELS, PLAN_PRICES, usd, type CrmMember,
+  PLAN_LABELS, PLAN_PRICES, rwf, type CrmMember,
 } from "./crm-data";
 import { brand } from "./brand";
 import { demoToday, getClassType, getCoach, getCoaches, getRoomName, getSessionsForDay, isFull, isPast, spotsLeft } from "./data";
@@ -34,16 +34,16 @@ export type Pending =
 export type BotTurn = { replies: { text: string; quote?: { to: string; text: string } }[]; buttons: string[]; pending: Pending };
 
 const CLASS_WORDS: Record<string, string[]> = {
-  spin: ["spin", "spinning", "سبين", "bike"],
+  spin: ["spin", "spinning", "bike"],
   hiit: ["hiit"],
-  strength: ["strength", "weights", "قوة"],
-  boxing: ["boxing", "box", "ملاكمة"],
-  yoga: ["yoga", "يوغا"],
-  pilates: ["pilates", "بيلاتس"],
+  strength: ["strength", "weights"],
+  boxing: ["boxing", "box"],
+  yoga: ["yoga"],
+  pilates: ["pilates"],
 };
 
-const YES = /^(yes|yeah|yep|ok|okay|sure|send|go|do it|confirm|eh|ee|aywa|yalla|tayeb|نعم|اي|إي|ايه|أكيد|يلا)\b/i;
-const NO = /^(no|not now|nope|cancel|stop|la2|la|لا|مش هلق)\b/i;
+const YES = /^(yes|yeah|yep|ok|okay|sure|send|go|do it|confirm|yego|ego)\b/i;
+const NO = /^(no|not now|nope|cancel|stop|oya)\b/i;
 
 const first = (name: string) => name.split(" ")[0];
 const dayName = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
@@ -75,22 +75,22 @@ function findClassType(text: string) {
 
 function findHour(text: string): number | null {
   const t = text.toLowerCase();
-  // A number on its own ("7", "7pm", "19:00", "7 l masa"), not the 7 in Franco words like "7ot".
-  const m = t.match(/(?:^|\s)(\d{1,2})(?::(\d{2}))?\s*(pm|am|l ?masa|el ?masa|masa|بالليل|مساء)?(?=\s|$|[^a-z0-9])/);
+  // A number on its own ("7", "7pm", "19:00"), not a digit glued to a word.
+  const m = t.match(/(?:^|\s)(\d{1,2})(?::(\d{2}))?\s*(pm|am)?(?=\s|$|[^a-z0-9])/);
   if (!m) return null;
   let h = Number(m[1]);
   if (h > 23) return null;
   const evening = m[3] && !/am/.test(m[3]);
   if (evening && h < 12) h += 12;
-  if (!m[3] && h >= 5 && h <= 9 && /(tonight|lyom|al lail|el lel|masa)/.test(t)) h += 12;
+  if (!m[3] && h >= 5 && h <= 9 && /(tonight|uyu munsi|today)/.test(t)) h += 12;
   return h;
 }
 
-/** The member part of "book Rana Haddad into tonight's spin". */
+/** The member part of "book Sandrine Uwimana into tonight's spin". */
 function nameFromBooking(text: string) {
   const cleaned = text
-    .replace(/^(please\s+)?(book|put|add|7ot|7ott|7otte|sajjel|sajel|حط|احجز)\s+/i, "")
-    .replace(/\s+(in|into|for|to|bi|b|fi|ب|في)\s+.*$/i, "")
+    .replace(/^(please\s+)?(book|put|add|shyira)\s+/i, "")
+    .replace(/\s+(in|into|for|to|muri|mu)\s+.*$/i, "")
     .replace(/\s+(spin|hiit|strength|boxing|yoga|pilates)\b.*$/i, "");
   return cleaned.trim();
 }
@@ -164,11 +164,11 @@ function confirmBooking(member: CrmMember, s: Session, waitlist = false): BotTur
 
 function bookFlow(text: string): BotTurn | null {
   const typeSlug = findClassType(text);
-  const isBooking = /^(please\s+)?(book|put|add|7ot|7ott|7otte|sajjel|sajel|حط|احجز)\b/i.test(text.trim());
+  const isBooking = /^(please\s+)?(book|put|add|shyira)\b/i.test(text.trim());
   if (!isBooking) return null;
   const name = nameFromBooking(text);
   if (!typeSlug) {
-    return { replies: [{ text: `Which class should I book ${name || "them"} into? For example "book ${name || "Rana"} into tonight's spin".` }], buttons: [], pending: null };
+    return { replies: [{ text: `Which class should I book ${name || "them"} into? For example "book ${name || "Sandrine"} into tonight's spin".` }], buttons: [], pending: null };
   }
   const matches = matchMembers(name);
   if (matches.length === 0) {
@@ -193,11 +193,12 @@ function bookFlow(text: string): BotTurn | null {
 }
 
 function paymentFlow(text: string): BotTurn | null {
-  const m = text.match(/^(.+?)\s+(paid|payed|dafa3|dafa3it|دفع|دفعت)\s+\$?(\d+)\s*\$?(?:\s*(cash|card|whish|omt|transfer|lbp))?/i);
+  const m = text.match(/^(.+?)\s+(paid|payed|yishyuye)\s+(\d[\d,]*)\s*(k)?\s*(?:rwf|frw)?(?:\s*(?:by|with|on|via)?\s*(cash|card|momo|mtn momo|mtn|airtel money|airtel|transfer))?/i);
   if (!m) return null;
   const matches = matchMembers(m[1]);
-  const amount = Number(m[3]);
-  const method = m[4] ? m[4][0].toUpperCase() + m[4].slice(1).toLowerCase() : "Cash USD";
+  const amount = Number(m[3].replace(/,/g, "")) * (m[4] ? 1000 : 1);
+  const METHODS: Record<string, string> = { cash: "Cash", card: "Card", momo: "MTN MoMo", "mtn momo": "MTN MoMo", mtn: "MTN MoMo", "airtel money": "Airtel Money", airtel: "Airtel Money", transfer: "Bank transfer" };
+  const method = m[5] ? METHODS[m[5].toLowerCase()] ?? m[5] : "Cash";
   if (matches.length !== 1) {
     return {
       replies: [{ text: matches.length === 0 ? `I can't find a member called "${m[1]}".` : `${matches.length} members match "${m[1]}". Send the full name so I record it on the right person.` }],
@@ -211,8 +212,8 @@ function paymentFlow(text: string): BotTurn | null {
     replies: [
       {
         text:
-          `Record *${usd(amount)} ${method}* from *${member.name}* for ${what}?` +
-          (member.owes > 0 && amount !== member.owes ? `\nHeads up: they owe ${usd(member.owes)}, so ${usd(Math.max(member.owes - amount, 0))} would stay open.` : "") +
+          `Record *${rwf(amount)} ${method}* from *${member.name}* for ${what}?` +
+          (member.owes > 0 && amount !== member.owes ? `\nHeads up: they owe ${rwf(member.owes)}, so ${rwf(Math.max(member.owes - amount, 0))} would stay open.` : "") +
           "\nMoney changes need your yes, and they're logged with who and when.",
       },
     ],
@@ -222,7 +223,7 @@ function paymentFlow(text: string): BotTurn | null {
 }
 
 function cancelClassFlow(text: string): BotTurn | null {
-  if (!/^(cancel|ulghi|لغي|ألغ)/i.test(text.trim())) return null;
+  if (!/^(cancel|ulghi)/i.test(text.trim())) return null;
   const typeSlug = findClassType(text);
   const hour = findHour(text);
   const s = getSessionsForDay(demoToday).find((x) => !isPast(x) && (!typeSlug || x.type === typeSlug) && (hour === null || Number(x.time.split(":")[0]) === hour));
@@ -247,26 +248,26 @@ export function dailySummary() {
     `*Good morning ${brand.owner.first}. Today, Tue 24 Nov:*\n` +
     `• ${classes.length} classes${full.length ? `, ${full.map((c) => `${c.time} ${c.name}`).join(" and ")} full` : ""}\n` +
     `• ${getPtToday().length} PT sessions\n` +
-    `• ${overdue.length} payments overdue, ${usd(overdue.reduce((s, m) => s + m.owes, 0))}\n` +
+    `• ${overdue.length} payments overdue, ${rwf(overdue.reduce((s, m) => s + m.owes, 0))}\n` +
     `• ${expiring.length} memberships end this week\n` +
     `• ${leads.length} new trial requests from the website\n` +
-    `• On shift: Sara at the desk, Joe on the floor`
+    `• On shift: Clarisse at the desk, Jean-Paul on the floor`
   );
 }
 
 export const STARTERS = [
   "Who hasn't paid this month?",
   "How full is tonight?",
-  "Book Rana Haddad into tonight's 7pm spin",
+  "Book Sandrine Uwimana into tonight's 7pm spin",
   "Who hasn't come in 2 weeks?",
-  "Omar Itani paid 55 cash",
-  "How is Karim doing this month?",
+  "Fabrice Murenzi paid 60,000 MoMo",
+  "How is Eric doing this month?",
   "Collected this month?",
   "Cancel tonight's 20:30 yoga",
-  "Book Rami into spin",
+  "Book Kevin into spin",
 ];
 
-export const VOICE_NOTE = { seconds: 6, transcript: "7ot Rana Haddad bi spin lyom 7 l masa", meaning: "Put Rana Haddad in spin today at 7 in the evening" };
+export const VOICE_NOTE = { seconds: 5, transcript: "Shyira Sandrine Uwimana muri spin ya 7pm uyu munsi", meaning: "Put Sandrine Uwimana in today's 7pm spin (Kinyarwanda and English)" };
 
 /** Works out the assistant's answer to one owner message. */
 export function respond(input: string, pending: Pending): BotTurn {
@@ -302,8 +303,8 @@ export function respond(input: string, pending: Pending): BotTurn {
         return {
           replies: [
             {
-              text: `Recorded: ${usd(pending.amount)} ${pending.method} from ${member.name} for ${pending.what}. Logged as confirmed by ${brand.owner.first}, just now. Receipt sent on WhatsApp.`,
-              quote: { to: first(member.name), text: `Thanks ${first(member.name)}! We received ${usd(pending.amount)} for ${pending.what}. This is your receipt. See you at ${brand.short}.` },
+              text: `Recorded: ${rwf(pending.amount)} ${pending.method} from ${member.name} for ${pending.what}. Logged as confirmed by ${brand.owner.first}, just now. Receipt sent on WhatsApp.`,
+              quote: { to: first(member.name), text: `Thanks ${first(member.name)}! We received ${rwf(pending.amount)} for ${pending.what}. This is your receipt. See you at ${brand.short}.` },
             },
           ],
           buttons: [],
@@ -321,7 +322,7 @@ export function respond(input: string, pending: Pending): BotTurn {
   if (flow) return flow;
 
   // Who owes money
-  if (/(paid|pay|owe|overdue|dafa3|dafe3|مين ما دفع|دفع|مستحق|money owed)/.test(t) && !/collect/.test(t)) {
+  if (/(paid|pay|owe|overdue|money owed)/.test(t) && !/collect/.test(t)) {
     const overdue = getOverdue();
     const total = overdue.reduce((s, m) => s + m.owes, 0);
     const due = getMoney().dueSoon;
@@ -329,9 +330,9 @@ export function respond(input: string, pending: Pending): BotTurn {
       replies: [
         {
           text:
-            `*${overdue.length} members are overdue, ${usd(total)} in total:*\n` +
-            overdue.map((m) => `• ${m.name} · ${usd(m.owes)} · ${m.daysLate} days (${m.owesFor})`).join("\n") +
-            `\n\n${due.length} more payments are due in the next week (${usd(due.reduce((s, d) => s + d.amount, 0))}).\nSend each overdue member a payment reminder?`,
+            `*${overdue.length} members are overdue, ${rwf(total)} in total:*\n` +
+            overdue.map((m) => `• ${m.name} · ${rwf(m.owes)} · ${m.daysLate} days (${m.owesFor})`).join("\n") +
+            `\n\n${due.length} more payments are due in the next week (${rwf(due.reduce((s, d) => s + d.amount, 0))}).\nSend each overdue member a payment reminder?`,
         },
       ],
       buttons: ["Yes, send", "Not now"],
@@ -340,7 +341,7 @@ export function respond(input: string, pending: Pending): BotTurn {
   }
 
   // Tonight / classes
-  if (/(tonight|how full|full|classes today|class today|lyom|lel|الليلة|حصص اليوم)/.test(t)) {
+  if (/(tonight|how full|full|classes today|class today)/.test(t)) {
     const later = getTodayClasses().filter((c) => c.state !== "done");
     return {
       replies: [
@@ -357,7 +358,7 @@ export function respond(input: string, pending: Pending): BotTurn {
   }
 
   // Not seen
-  if (/(haven'?t come|havent come|not seen|missing|disappeared|2 weeks|two weeks|ma ejo|ma 2ejo|ما إجو|غايبين)/.test(t)) {
+  if (/(haven'?t come|havent come|not seen|missing|disappeared|2 weeks|two weeks)/.test(t)) {
     const away = getNotSeen(14);
     const msg = `Hi {name}, it's been two weeks! Your spot is waiting. Here's this week's timetable: ${brand.shortLink}/classes`;
     return {
@@ -376,7 +377,7 @@ export function respond(input: string, pending: Pending): BotTurn {
   }
 
   // Expiring
-  if (/(expir|ending|ends|renew|ينتهي|بيخلص)/.test(t)) {
+  if (/(expir|ending|ends|renew)/.test(t)) {
     const exp = getExpiringSoon();
     return {
       replies: [
@@ -395,15 +396,15 @@ export function respond(input: string, pending: Pending): BotTurn {
   }
 
   // Money collected
-  if (/(collect|revenue|income|profit|kam jebna|kam fet|money|مدخول|قديش)/.test(t)) {
+  if (/(collect|revenue|income|profit|money)/.test(t)) {
     const money = getMoney();
     return {
       replies: [
         {
           text:
-            `*November so far:* ${usd(money.in)} in, ${usd(money.out)} out, *${usd(money.in - money.out)} profit*.\n` +
-            `Today: ${usd(money.collectedToday)} collected (8 payments).\n` +
-            `Biggest income: memberships ${usd(money.sources[0].amount)}, personal training ${usd(money.sources[1].amount)}.`,
+            `*November so far:* ${rwf(money.in)} in, ${rwf(money.out)} out, *${rwf(money.in - money.out)} profit*.\n` +
+            `Today: ${rwf(money.collectedToday)} collected (8 payments).\n` +
+            `Biggest income: memberships ${rwf(money.sources[0].amount)}, personal training ${rwf(money.sources[1].amount)}.`,
         },
       ],
       buttons: ["Who hasn't paid this month?"],
@@ -412,7 +413,7 @@ export function respond(input: string, pending: Pending): BotTurn {
   }
 
   // Coach performance
-  const coach = getCoaches().find((c) => t.includes(c.first.en.toLowerCase()) && /(how|doing|performance|stats|month|kif)/.test(t));
+  const coach = getCoaches().find((c) => t.includes(c.first.en.toLowerCase()) && /(how|doing|performance|stats|month)/.test(t));
   if (coach) {
     const s = getCoachStats().find((x) => x.slug === coach.slug)!;
     const all = getCoachStats();
@@ -434,7 +435,7 @@ export function respond(input: string, pending: Pending): BotTurn {
   }
 
   // Leads and trials
-  if (/(trial|lead|new people|jded|جدد|تجربة)/.test(t)) {
+  if (/(trial|lead|new people)/.test(t)) {
     const leads = getLeads();
     const fresh = leads.filter((l) => l.stage === "new");
     return {
@@ -453,7 +454,7 @@ export function respond(input: string, pending: Pending): BotTurn {
   }
 
   // Summary
-  if (/(summary|today|kif l nhar|shu fi|شو في|ملخص|morning)/.test(t)) {
+  if (/(summary|today|morning)/.test(t)) {
     return { replies: [{ text: dailySummary() }], buttons: [], pending: null };
   }
 
@@ -464,15 +465,15 @@ export function respond(input: string, pending: Pending): BotTurn {
   }
 
   // Prices
-  if (/(price|how much|kam|سعر)/.test(t)) {
-    return { replies: [{ text: `Monthly ${usd(PLAN_PRICES.monthly)} · 3 months ${usd(PLAN_PRICES["3m"])} · 6 months ${usd(PLAN_PRICES["6m"])} · 12 months ${usd(PLAN_PRICES["12m"])} · 10-class pack ${usd(PLAN_PRICES.pack10)}.` }], buttons: [], pending: null };
+  if (/(price|how much)/.test(t)) {
+    return { replies: [{ text: `Monthly ${rwf(PLAN_PRICES.monthly)} · 3 months ${rwf(PLAN_PRICES["3m"])} · 6 months ${rwf(PLAN_PRICES["6m"])} · 12 months ${rwf(PLAN_PRICES["12m"])} · 10-class pack ${rwf(PLAN_PRICES.pack10)}.` }], buttons: [], pending: null };
   }
 
   return {
     replies: [
       {
         text:
-          "In this demo I understand questions like:\n• Who hasn't paid this month?\n• How full is tonight?\n• Book Rana Haddad into tonight's spin\n• Omar Itani paid 55 cash\n• Who hasn't come in 2 weeks?\n• How is Karim doing?\n\nThe real assistant (step 5) understands anything you write or say.",
+          "In this demo I understand questions like:\n• Who hasn't paid this month?\n• How full is tonight?\n• Book Sandrine Uwimana into tonight's spin\n• Fabrice Murenzi paid 60,000 MoMo\n• Who hasn't come in 2 weeks?\n• How is Eric doing?\n\nThe real assistant (step 5) understands anything you write or say.",
       },
     ],
     buttons: [],

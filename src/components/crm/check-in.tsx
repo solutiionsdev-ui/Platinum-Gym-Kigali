@@ -83,7 +83,7 @@ export function CheckIn({ rows, startCount }: { rows: CheckRow[]; startCount: nu
           );
         })}
       </ul>
-      {q.trim().length < 2 && <p className="text-sm text-muted">Try “Rana”, “Hadi” or “Nadia”.</p>}
+      {q.trim().length < 2 && <p className="text-sm text-muted">Try “Sandrine”, “Olivier” or “Chantal”.</p>}
     </div>
   );
 }

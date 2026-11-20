@@ -8,12 +8,11 @@ type Screen = { href: string; title: string; click: string };
 const SECTIONS: { title: string; sub: string; screens: Screen[] }[] = [
   {
     title: "Website",
-    sub: "What members and visitors see. English and Arabic, works on phones.",
+    sub: "What members and visitors see. Works on phones.",
     screens: [
-      { href: "/en", title: "Home", click: "Scroll the page; the 'Today at …' strip shows spots left in tonight's classes." },
-      { href: "/ar", title: "Home in Arabic", click: "Same site, right to left. The عربي / English button switches any page." },
+      { href: "/en", title: "Home", click: "Scroll the page; the 'Today at Platinum' strip shows spots left in tonight's classes." },
       { href: "/en/classes", title: "Timetable and booking", click: "Pick Tuesday 20:15 Spin, type any name and number, confirm: you see the WhatsApp message the member gets." },
-      { href: "/en/memberships", title: "Memberships and prices", click: "Press 'Request this plan' on 12 months." },
+      { href: "/en/memberships", title: "Memberships and prices", click: "Prices in RWF. Press 'Request this plan' on 12 months." },
       { href: "/en/training", title: "Personal training", click: "Open a trainer and book a free consultation." },
       { href: "/en/trial", title: "Free trial", click: "Fill the form: you see the WhatsApp reply. Saving it as a lead in the CRM comes with the database (step 4)." },
       { href: "/en/m/7KQ2", title: "Member's private page", click: "The link members get on WhatsApp. Cancel a booking, no login." },
@@ -25,12 +24,12 @@ const SECTIONS: { title: string; sub: string; screens: Screen[] }[] = [
     screens: [
       { href: "/admin", title: "Today", click: "'Needs you' is the to-do list. Press 'Send reminders' or 'Offer 20:15'." },
       { href: "/admin/members", title: "Members", click: "Filter 'Owes money' or 'Not seen in 2 weeks'. Search by name or phone." },
-      { href: "/admin/members/m-001", title: "Member page (Rana)", click: "Membership, visits, body scans, payments, PT package, WhatsApp history." },
+      { href: "/admin/members/m-001", title: "Member page (Sandrine)", click: "Membership, visits, body scans, payments, PT package, WhatsApp history." },
       { href: "/admin/members/leads", title: "Leads and trials", click: "From website request to joined. Press 'Send offer' on a finished trial." },
-      { href: "/admin/members/check-in", title: "Check-in", click: "Type 'Hadi': he owes $160 and his membership ends Saturday." },
+      { href: "/admin/members/check-in", title: "Check-in", click: "Type 'Olivier': he owes 115,000 RWF and his membership ends Saturday." },
       { href: "/admin/schedule", title: "Schedule", click: "Open 19:00 Spin to see who's booked and the waitlist." },
-      { href: "/admin/money", title: "Money", click: "November profit, who owes, set today's LBP rate." },
-      { href: "/admin/team", title: "Team performance", click: "Which coach fills classes, keeps members, sells PT. Approve Maya's leave." },
+      { href: "/admin/money", title: "Money", click: "November profit, who owes, mobile money payments to match." },
+      { href: "/admin/team", title: "Team performance", click: "Which coach fills classes, keeps members, sells PT. Approve Aline's leave." },
       { href: "/admin/settings", title: "Settings", click: "Gym details, prices, class types, who can see what." },
     ],
   },
@@ -39,22 +38,22 @@ const SECTIONS: { title: string; sub: string; screens: Screen[] }[] = [
     sub: "The owner's assistant and the automatic messages members receive.",
     screens: [
       { href: "/admin/messages/assistant", title: "Owner's assistant", click: "Tap 'Who hasn't paid this month?', then press the microphone to send a voice note." },
-      { href: "/admin/messages/member", title: "What members see", click: "Rana's phone: confirmation, reminder, rating, PT renewal. Switch to Arabic." },
-      { href: "/admin/messages", title: "Automatic messages", click: "15 messages with on/off switches and English/Arabic previews." },
+      { href: "/admin/messages/member", title: "What members see", click: "Sandrine's phone: confirmation, reminder, rating, PT renewal." },
+      { href: "/admin/messages", title: "Automatic messages", click: "15 messages with on/off switches and previews." },
     ],
   },
 ];
 
 const SCRIPT = [
-  ["Open the website on your phone", "Show the Arabic version with one tap.", "/ar"],
+  ["Open the website on your phone", "It works like an app, nothing to download.", "/en"],
   ["Book a class as a new member", "Tuesday 20:15 Spin. Point at the WhatsApp confirmation: no app, no password.", "/en/classes"],
   ["Switch to the owner's side", "Today's 'Needs you' list: what to deal with first, not a wall of charts.", "/admin"],
   ["Ask the assistant who hasn't paid", "Then 'Yes, send': three reminders go out.", "/admin/messages/assistant"],
-  ["Send the voice note", "'7ot Rana Haddad bi spin lyom 7 l masa': it sees 19:00 is full and offers 20:15.", "/admin/messages/assistant"],
-  ["Show what Rana receives", "Confirmation, reminder 2 hours before, rating after class, in her language.", "/admin/messages/member"],
-  ["Money", "Profit this month, who owes, LBP rate.", "/admin/money"],
+  ["Send the voice note", "'Shyira Sandrine Uwimana muri spin ya 7pm uyu munsi': it sees 19:00 is full and offers 20:15.", "/admin/messages/assistant"],
+  ["Show what Sandrine receives", "Confirmation, reminder 2 hours before, rating after class, PT renewal.", "/admin/messages/member"],
+  ["Money", "Profit this month, who owes, MoMo payments to match.", "/admin/money"],
   ["Team", "Coach performance the owner never had in numbers before.", "/admin/team"],
-  ["Front desk check-in", "Type 'Hadi': it warns he owes money.", "/admin/members/check-in"],
+  ["Front desk check-in", "Type 'Olivier': it warns he owes money.", "/admin/members/check-in"],
 ] as const;
 
 export default function GuidePage() {

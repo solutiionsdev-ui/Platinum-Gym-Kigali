@@ -25,7 +25,7 @@ export default function MessagesPage() {
         <div className="min-w-0 flex-[1_1_300px]">
           <div className="font-semibold">Owner&apos;s WhatsApp assistant</div>
           <div className="text-sm text-muted">
-            Ask &ldquo;who hasn&apos;t paid?&rdquo; or send a voice note like &ldquo;book Rana into tonight&apos;s spin&rdquo;. It answers from the CRM and asks before money changes or group messages.
+            Ask &ldquo;who hasn&apos;t paid?&rdquo; or send a voice note like &ldquo;book Sandrine into tonight&apos;s spin&rdquo;. It answers from the CRM and asks before money changes or group messages.
           </div>
         </div>
         <Link href="/admin/messages/assistant" className={button.primary}>Try the assistant</Link>

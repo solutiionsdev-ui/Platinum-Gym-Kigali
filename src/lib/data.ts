@@ -2,6 +2,7 @@
  * Every page reads data through these functions. Today they return sample data;
  * in step 4 they will read from Supabase without the pages changing.
  */
+import { money } from "./brand";
 import type { Lang } from "./i18n";
 import {
   classTypes, coaches, compareRows, demoMembers, DEMO_NOW, DEMO_TODAY, facilities, faqs, passes, plans, ptPackages, rooms, sessions, WEEK_DATES,
@@ -46,8 +47,8 @@ export const getUpcomingToday = () => getSessionsForDay(DEMO_TODAY).filter((s) =
 /** The next class today that still has room, for the hero card. */
 export const getNextOpenClass = () => getUpcomingToday().find((s) => !isFull(s));
 
-/** "$55" in English, "55$" in Arabic. */
-export const formatPrice = (n: number, lang: Lang) => (lang === "ar" ? `${n.toLocaleString("en-US")}$` : `$${n.toLocaleString("en-US")}`);
+/** "60,000 RWF" */
+export const formatPrice = (n: number) => money(n);
 
 /** Two hours before a class, for the reminder message. */
 export function reminderTime(time: string) {

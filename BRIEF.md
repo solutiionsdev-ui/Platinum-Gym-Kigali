@@ -1,6 +1,10 @@
 # Gym System — Project Brief
 
-Built by **solutiions.dev** as a **demo system to sell to gyms** (Lebanon first). One product with four parts:
+Built by **solutiions.dev** as a **demo system to sell to gyms**. First client pitch: **Platinum Gym, Kigali (Rwanda)**, owner Gael.
+
+> **Changed 20 Nov 2026: Kigali.** The demo moved from Beirut to Kigali. English only (Arabic removed), prices in **RWF**, payments by cash, card, **MTN MoMo** and **Airtel Money**, Rwandan names, Kigali address. Where this brief still mentions Arabic, USD/LBP or Lebanon, the Kigali choice wins.
+
+One product with four parts:
 
 1. **Website** for members and visitors: see the gym, its classes, prices and trainers, and book.
 2. **CRM** for the owner and staff: classes, members, money, team and performance.
@@ -28,8 +32,8 @@ Demo brand: **Platinum Gym**, owner **Gael** (changed from the made-up VOLT Fitn
 3. **WhatsApp-first** for everything member-facing. Members book with their name + WhatsApp number. No passwords.
 4. Front desk screens are designed for a **phone or tablet** at the reception desk.
 5. Money changes (discounts, price edits, payments, refunds, freezes that move an end date) **always require confirmation** and are logged.
-6. Prices in **USD**; support recording **LBP** payments with the day's exchange rate.
-7. Website and WhatsApp messages in **English + Arabic** (Arabic is right-to-left). The CRM is in English.
+6. Prices in **Rwandan francs (RWF)**, written "60,000 RWF". Mobile money (MTN MoMo, Airtel Money) is a normal way to pay, and payments that arrive without a name get matched to a member.
+7. Everything in **English** (website, WhatsApp messages, CRM). A second language (French or Kinyarwanda) can be added later; the code keeps the `/en` prefix for that.
 
 ---
 
@@ -48,7 +52,7 @@ The final look is decided in **step 0b (design canvas)**. Starting point:
 | accent | #C8F135 | Buttons, highlights (electric lime). **Changeable per gym** from `brand.ts` |
 | on-accent | #0B0B0C | Text on accent buttons |
 
-- **Fonts:** a condensed display font for big headlines (e.g. Barlow Condensed or Anton, uppercase), Geist for body text, **IBM Plex Sans Arabic** for Arabic.
+- **Fonts:** a condensed display font for big headlines (e.g. Barlow Condensed or Anton, uppercase), Geist for body text.
 - Big full-bleed photos, short punchy copy, large buttons (min 48px). Sticky "Book a free trial" button + WhatsApp button on phones.
 - Photos: royalty-free stock or AI-generated for the demo, replaced with the real gym's photos per client.
 
@@ -84,7 +88,7 @@ The final look is decided in **step 0b (design canvas)**. Starting point:
 7. **Free trial / day pass** booking.
 8. **About, FAQ, contact & location** (map, hours, parking).
 9. **"My bookings" page**: a private link sent on WhatsApp (`/m/<code>`) showing the member's upcoming bookings, membership end date, PT sessions left, with cancel buttons. No login.
-10. **English / Arabic** switch on every page.
+10. English only for now (see principle 7).
 
 ### B. CRM (`/admin`)
 1. **Today**: "Needs you" list (section 9), today's classes with bookings, PT sessions today, check-ins so far, money collected today.
@@ -93,18 +97,18 @@ The final look is decided in **step 0b (design canvas)**. Starting point:
 4. **Members**: list with status filters; member page with contact, plan, start/end dates, freeze history, payments, bookings and attendance, PT package balance, body measurements and progress, health notes and waiver, emergency contact, notes, WhatsApp history.
 5. **Leads & trials**: requests from the website and WhatsApp, pipeline **New → Contacted → Trial booked → Trial done → Joined / Lost**, with who followed up and when.
 6. **Personal training**: PT packages sold, sessions left, each trainer's PT calendar, session notes.
-7. **Money (accounting)**: income by type (memberships, PT, day passes, extras), payments (cash USD, cash LBP, card, transfer, Whish, OMT), receipts, who owes what, expenses by category (rent, salaries, utilities, generator/fuel, equipment, marketing), monthly **profit & loss**, daily exchange rate.
+7. **Money (accounting)**: income by type (memberships, PT, day passes, extras), payments (cash, card, bank transfer, MTN MoMo, Airtel Money), receipts, who owes what, mobile money to match, expenses by category (rent, salaries, security, utilities, equipment, marketing), monthly **profit & loss**.
 8. **Team (HR)**: employees (role, contract, pay type: monthly / hourly / per class, PT commission %), shift schedule, clock-in/out, leave requests, monthly payroll (base + classes + PT commission − advances).
 9. **Performance**: per coach: classes taught, average fill rate, attendance and no-show rate, members kept (retention of their regulars), PT sessions delivered, PT packages sold, member ratings. Per front desk: trials converted, payments collected, renewals made. Ranking for the month, kept simple.
 10. **Messages**: WhatsApp inbox, one conversation per member, staff can reply.
-11. **Automations**: every automatic message (section 3D) with on/off, timing, English + Arabic preview, and a log of what was sent.
+11. **Automations**: every automatic message (section 3D) with on/off, timing, a preview, and a log of what was sent.
 12. **Reports**: revenue trend, active members over time, churn and renewals, class popularity, peak hours.
 13. **Settings**: gym info and brand, plans and prices, class types, rooms, opening hours, staff roles and access, WhatsApp templates, exchange rate.
 
 ### C. Owner's WhatsApp assistant
 One WhatsApp Business number for the gym. Members message it normally. The **owner's personal number is whitelisted** → assistant mode with full access. Staff numbers can get limited access (e.g. coaches: their own classes and attendance, no money).
 
-Understands text and **voice notes** in Lebanese Arabic, Franco-Arab and English.
+Understands text and **voice notes** in English, Kinyarwanda and French (the demo shows a Kinyarwanda/English voice note).
 
 - **Ask**: "How many members expire this week?", "How full is tonight's 7pm spin?", "Who owes money?", "Collected this month?", "Who hasn't come in 2 weeks?", "How is Karim doing this month?" (coach performance), "Trials this week and how many joined?"
 - **Do**: book or cancel a member's class, cancel a session and notify everyone booked, record a payment, freeze or extend a membership, add an expense, send a reminder or a renewal offer to one member, send a message to everyone booked in a class.
@@ -134,9 +138,9 @@ Understands text and **voice notes** in Lebanese Arabic, Franco-Arab and English
 | Welcome (how to book, hours, rules) | When they join |
 | Birthday | On the day |
 
-- **Quiet hours**: nothing automatic between 22:00 and 08:00 (Beirut time).
+- **Quiet hours**: nothing automatic between 22:00 and 07:00 (Kigali time).
 - Members can reply **STOP** to stop non-essential messages; booking confirmations and payment messages still go out.
-- Each member gets messages in their language (English or Arabic).
+- Messages are in English.
 
 **WhatsApp platform rules to respect**
 - Free-form replies only within 24 hours of the member's last message.
@@ -148,7 +152,7 @@ Understands text and **voice notes** in Lebanese Arabic, Franco-Arab and English
 ## 4. Screens
 
 ### Website
-`/` Home · `/classes` Timetable · `/classes/[type]` Class detail · `/book/[session]` Booking · `/memberships` Prices · `/training` Personal training · `/trainers/[slug]` Trainer · `/facilities` · `/trial` Free trial · `/about` · `/contact` · `/m/[code]` My bookings · Arabic versions of every page.
+`/` Home · `/classes` Timetable · `/classes/[type]` Class detail · `/book/[session]` Booking · `/memberships` Prices · `/training` Personal training · `/trainers/[slug]` Trainer · `/facilities` · `/trial` Free trial · `/about` · `/contact` · `/m/[code]` My bookings. All under `/en/…`.
 
 ### CRM (menu: 8 sections)
 Today · Schedule · Members (incl. Check-in and Leads) · Training (PT) · Money · Team (incl. Performance) · Messages (incl. Automations and Assistant) · Settings. Reports live inside Money and Team where they answer a question.
@@ -202,13 +206,13 @@ Today · Schedule · Members (incl. Check-in and Leads) · Training (PT) · Mone
 Same as Mario's other projects (EV-workshop CRM, Studiio OS):
 - **Next.js 15** (App Router) + **TypeScript** + **Tailwind CSS 4** + **lucide-react**. One app: website at `/`, CRM at `/admin`.
 - All data reads go through **`src/lib/data.ts`**; sample data lives in **`src/lib/sample-data.ts`** so the database can replace it without touching pages.
-- English/Arabic text in simple dictionary files (`src/i18n/en.ts`, `src/i18n/ar.ts`), Arabic pages right-to-left.
+- Website text in a dictionary file (`src/i18n/en.ts`), ready for a second language later.
 - **Supabase** (step 4): Postgres, logins for staff, storage for photos, row-level security per role.
 - **Vercel** for hosting and preview links.
 - **WhatsApp Cloud API** (Meta) for all WhatsApp messages (step 5).
 - **Scheduled jobs** (reminders, 08:00 summary): n8n or Supabase scheduled functions, decided at step 5.
 - **Claude (Anthropic API)** for the owner's assistant, with tools that read and change CRM data; a speech-to-text service for voice notes. Model chosen at step 5.
-- Online card payments: later, provider to be chosen (options differ in Lebanon).
+- Online payments: later, likely MTN MoMo / Airtel Money APIs or a Rwandan card gateway, to be chosen.
 
 ---
 
@@ -243,7 +247,7 @@ Same as Mario's other projects (EV-workshop CRM, Studiio OS):
 
 ## 10. Defaults chosen (19 Nov 2026)
 
-Demo brand (VOLT Fitness Club, Beirut; renamed Platinum Gym on 20 Nov 2026) · website + WhatsApp in English and Arabic, CRM in English · USD with LBP recording · memberships + group classes + personal training · website bold and dark, CRM calm and clean. Mario can change any of these.
+Demo brand (VOLT Fitness Club, Beirut; renamed Platinum Gym on 20 Nov 2026) · since 20 Nov: Kigali, English only, RWF with MTN MoMo and Airtel Money · memberships + group classes + personal training · website bold and dark, CRM calm and clean. Mario can change any of these.
 
 ---
 
@@ -253,9 +257,9 @@ Demo brand (VOLT Fitness Club, Beirut; renamed Platinum Gym on 20 Nov 2026) · w
 - Plans and prices; class packs; student/couple/corporate deals; joining fee?
 - Class types, rooms and capacities; cancellation rule (how late can members cancel?)
 - How coaches and trainers are paid (monthly, per class, PT commission %)
-- Payment methods they accept; how they handle LBP
+- Payment methods they accept (MoMo / Airtel merchant codes?)
 - Freeze rules (how many days per year, fee?)
 - Do they sell supplements or drinks (needs a small shop/stock module)?
 - Who can give discounts besides the owner
-- Arabic: simple standard Arabic or Lebanese dialect for WhatsApp messages?
+- Do members want WhatsApp messages in Kinyarwanda or French as well as English?
 - Do they already use a system or Excel we need to import members from?

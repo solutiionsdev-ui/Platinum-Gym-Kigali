@@ -2,11 +2,11 @@ import { Dumbbell, Droplet, UserCheck, Users } from "lucide-react";
 import Link from "next/link";
 import { LeadForm } from "@/components/site/lead-form";
 import { whatsappHref } from "@/components/site/footer";
-import { Arrow, Container, Eyebrow, LevelBars, PhotoPlaceholder, SectionHead, btn } from "@/components/ui";
+import { Arrow, Container, Eyebrow, LevelBars, PhotoPlaceholder, SectionHead, btn, PriceTag } from "@/components/ui";
 import { MessageCircle } from "lucide-react";
 import { brand } from "@/lib/brand";
 import {
-  formatPrice, getClassType, getClassTypes, getCoach, getNextOpenClass, getPlans, getRoomName, getUpcomingToday, isFull, spotsLeft,
+  getClassType, getClassTypes, getCoach, getNextOpenClass, getPlans, getRoomName, getUpcomingToday, isFull, spotsLeft,
 } from "@/lib/data";
 import { getDict, href, langFrom } from "@/lib/i18n";
 
@@ -19,7 +19,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
   const nextType = next && getClassType(next.type);
   const nextCoach = next && getCoach(next.coach);
   const today = getUpcomingToday();
-  const homeCoaches = ["karim", "maya", "rami", "nour"].map((s) => getCoach(s)!).filter(Boolean);
+  const homeCoaches = ["eric", "aline", "patrick", "diane"].map((s) => getCoach(s)!).filter(Boolean);
 
   return (
     <>
@@ -184,7 +184,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
                     {p.best && <span className="rounded-full bg-accent px-2.5 py-1 text-xs font-bold uppercase tracking-[0.1em] text-bg">{t.memberships.bestValue}</span>}
                   </div>
                   <div className="flex flex-wrap items-baseline gap-2">
-                    <span className="font-display text-[64px] leading-none">{formatPrice(p.price, lang)}</span>
+                    <span className="font-display text-[64px] leading-none"><PriceTag n={p.price} /></span>
                     <span className="text-muted">{p.per[lang]}</span>
                   </div>
                   <ul className="flex flex-col gap-1 text-muted">

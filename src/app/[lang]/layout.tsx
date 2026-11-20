@@ -1,17 +1,16 @@
 import type { Metadata } from "next";
-import { Anton, Geist, Geist_Mono, IBM_Plex_Sans_Arabic } from "next/font/google";
+import { Anton, Geist, Geist_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
 import type { CSSProperties, ReactNode } from "react";
 import { MobileCta, SiteFooter } from "@/components/site/footer";
 import { SiteHeader } from "@/components/site/header";
 import { brand } from "@/lib/brand";
-import { dirOf, getDict, isLang, languages } from "@/lib/i18n";
+import { getDict, isLang, languages } from "@/lib/i18n";
 import "../globals.css";
 
 const anton = Anton({ variable: "--font-anton", weight: "400", subsets: ["latin"] });
 const geist = Geist({ variable: "--font-geist", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
-const plexArabic = IBM_Plex_Sans_Arabic({ variable: "--font-plex-arabic", weight: ["400", "500", "600", "700"], subsets: ["arabic"] });
 
 export const dynamicParams = false;
 
@@ -35,8 +34,7 @@ export default async function SiteLayout({ children, params }: { children: React
   return (
     <html
       lang={lang}
-      dir={dirOf(lang)}
-      className={`${anton.variable} ${geist.variable} ${geistMono.variable} ${plexArabic.variable}`}
+      className={`${anton.variable} ${geist.variable} ${geistMono.variable}`}
       style={{ "--accent": brand.accent } as CSSProperties}
     >
       <body className="min-h-screen font-sans text-base leading-normal antialiased">

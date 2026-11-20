@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { CheckIn, type CheckRow } from "@/components/crm/check-in";
 import { MembersTabs } from "@/components/crm/members-tabs";
 import { PageHead } from "@/components/crm/ui";
-import { fmtDate, getMembers, PLAN_LABELS, usd } from "@/lib/crm-data";
+import { fmtDate, getMembers, PLAN_LABELS, rwf } from "@/lib/crm-data";
 
 export const metadata: Metadata = { title: "Check-in" };
 
@@ -15,7 +15,7 @@ export default function CheckInPage() {
     plan: `${PLAN_LABELS[m.planId]} · ends ${fmtDate(m.end, false)}`,
     warning:
       m.owes > 0
-        ? `Owes ${usd(m.owes)} (${m.owesFor})`
+        ? `Owes ${rwf(m.owes)} (${m.owesFor})`
         : m.status === "expired"
           ? `Membership ended ${fmtDate(m.end)}`
           : m.status === "frozen"

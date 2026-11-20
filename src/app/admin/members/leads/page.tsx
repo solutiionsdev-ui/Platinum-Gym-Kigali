@@ -11,7 +11,7 @@ const STAGES: { key: LeadStage; label: string; action?: string; toast?: string }
   { key: "new", label: "New", action: "Message", toast: "WhatsApp hello sent with a link to book a free trial" },
   { key: "contacted", label: "Contacted", action: "Book trial", toast: "Trial booking opens here" },
   { key: "trial_booked", label: "Trial booked" },
-  { key: "trial_done", label: "Trial done", action: "Send offer", toast: "First-month offer sent on WhatsApp ($45 instead of $55)" },
+  { key: "trial_done", label: "Trial done", action: "Send offer", toast: "First-month offer sent on WhatsApp (50,000 RWF instead of 60,000 RWF)" },
   { key: "joined", label: "Joined this week" },
   { key: "lost", label: "Lost" },
 ];

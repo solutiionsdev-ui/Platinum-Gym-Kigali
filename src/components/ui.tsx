@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { ArrowRight, ImageIcon } from "lucide-react";
 import type { ReactNode } from "react";
+import { brand } from "@/lib/brand";
 
 /** Button-looking links and buttons. */
 export const btn = {
@@ -57,6 +58,16 @@ export function LevelBars({ level, label }: { level: number; label: string }) {
         <span key={n} className={clsx("h-1.5 w-[18px] rounded-[3px]", n <= level ? "bg-accent" : "bg-line")} />
       ))}
     </span>
+  );
+}
+
+/** A big price: the number in the display font, the currency small next to it. */
+export function PriceTag({ n }: { n: number }) {
+  return (
+    <>
+      {n.toLocaleString("en-US")}
+      <span className="ms-1.5 align-baseline font-sans text-[0.32em] font-semibold tracking-normal text-muted">{brand.currency}</span>
+    </>
   );
 }
 

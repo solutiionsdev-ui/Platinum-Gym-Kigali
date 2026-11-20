@@ -48,7 +48,7 @@ export default function SettingsPage() {
           {[...getPlans().map((p) => ({ name: p.name.en, price: p.price })), ...getPasses().map((p) => ({ name: p.name.en, price: p.price }))].map((p) => (
             <div key={p.name} className="flex items-center justify-between gap-3 border-b border-divider px-5 py-2.5 last:border-0">
               <span>{p.name}</span>
-              <span className="flex items-center gap-1.5 text-muted">$<input aria-label={`${p.name} price`} className={`${field} w-24 font-mono`} defaultValue={p.price} /></span>
+              <span className="flex items-center gap-1.5 text-muted"><input aria-label={`${p.name} price`} className={`${field} w-28 font-mono`} defaultValue={p.price} />RWF</span>
             </div>
           ))}
         </Card>
@@ -57,7 +57,7 @@ export default function SettingsPage() {
           {getPtPackages().map((p) => (
             <div key={p.name.en} className="flex items-center justify-between gap-3 border-b border-divider px-5 py-2.5 last:border-0">
               <span>{p.name.en}</span>
-              <span className="flex items-center gap-1.5 text-muted">$<input aria-label={`${p.name.en} price`} className={`${field} w-24 font-mono`} defaultValue={p.price} /></span>
+              <span className="flex items-center gap-1.5 text-muted"><input aria-label={`${p.name.en} price`} className={`${field} w-28 font-mono`} defaultValue={p.price} />RWF</span>
             </div>
           ))}
         </Card>

@@ -1,8 +1,8 @@
 import { Check, ChevronDown } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Container, btn } from "@/components/ui";
-import { formatPrice, getCompareRows, getFaqs, getPasses, getPlans, getPtPackages } from "@/lib/data";
+import { Container, btn, PriceTag } from "@/components/ui";
+import { getCompareRows, getFaqs, getPasses, getPlans, getPtPackages } from "@/lib/data";
 import { getDict, href, langFrom } from "@/lib/i18n";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
@@ -27,7 +27,7 @@ export default async function MembershipsPage({ params }: { params: Promise<{ la
               <span className="text-lg font-semibold">{p.name[lang]}</span>
               {p.best && <span className="rounded-full bg-accent px-2.5 py-1 text-xs font-bold uppercase tracking-[0.1em] text-bg">{t.memberships.bestValue}</span>}
             </div>
-            <div className="font-display text-[60px] leading-none">{formatPrice(p.price, lang)}</div>
+            <div className="font-display text-[60px] leading-none"><PriceTag n={p.price} /></div>
             <div className="-mt-1.5 text-[15px] text-muted">{p.per[lang]}</div>
             <ul className="mt-1.5 flex flex-col gap-2 text-[15px]">
               {p.points.map((pt) => (
@@ -56,7 +56,7 @@ export default async function MembershipsPage({ params }: { params: Promise<{ la
               <div className="text-lg font-semibold">{p.name[lang]}</div>
               <div className="text-[15px] text-muted">{p.note[lang]}</div>
             </div>
-            <div className="font-display text-[40px] leading-none">{formatPrice(p.price, lang)}</div>
+            <div className="font-display text-[40px] leading-none"><PriceTag n={p.price} /></div>
           </div>
         ))}
       </div>
@@ -101,7 +101,7 @@ export default async function MembershipsPage({ params }: { params: Promise<{ la
             <div key={k.name.en} className="flex min-w-0 flex-[1_1_300px] flex-col gap-2.5 rounded-[20px] border border-line bg-surface p-[26px]">
               <div className="text-lg font-semibold">{k.name[lang]}</div>
               <div className="flex items-baseline gap-2.5">
-                <span className="font-display text-[52px] leading-none">{formatPrice(k.price, lang)}</span>
+                <span className="font-display text-[52px] leading-none"><PriceTag n={k.price} /></span>
                 <span className="text-muted">{k.per[lang]}</span>
               </div>
               <div className="text-[15px] text-muted">{k.note[lang]}</div>

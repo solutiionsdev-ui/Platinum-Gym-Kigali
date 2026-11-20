@@ -1,12 +1,12 @@
 import clsx from "clsx";
-import { ArrowLeftRight, CalendarOff, CheckSquare, Clock, DollarSign, ListOrdered, Plus, Search, TrendingDown, UserPlus } from "lucide-react";
+import { CalendarOff, CheckSquare, Clock, DollarSign, ListOrdered, Plus, Search, Smartphone, TrendingDown, UserPlus } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { DemoButton } from "@/components/crm/shell";
 import { Bar, Card, Chip, Fact, Summary, button } from "@/components/crm/ui";
 import {
-  activeCount, fmtDate, getExpiringSoon, getFullWithWaitlist, getLeads, getMoney, getOverdue, getPtToday, getQuietClasses, getTodayClasses,
-  PLAN_LABELS, spotsLeft, statusCounts, usd,
+  activeCount, fmtDate, getExpiringSoon, getLeaveRequest, getFullWithWaitlist, getLeads, getMoney, getOverdue, getPtToday, getQuietClasses, getTodayClasses,
+  PLAN_LABELS, spotsLeft, statusCounts, rwf,
 } from "@/lib/crm-data";
 import { brand } from "@/lib/brand";
 import { getClassType, getCoach, getSessionsForDay, demoToday } from "@/lib/data";
@@ -36,11 +36,12 @@ export default function TodayPage() {
   const classes = getTodayClasses();
   const done = classes.filter((c) => c.state === "done").length;
   const pt = getPtToday();
+  const leave = getLeaveRequest();
 
   type Need = { tone: string; icon: typeof Clock; title: string; sub: string; action: string; toast?: string; href?: string };
   const needs: Need[] = [
     {
-      tone: "bg-bad-bg text-bad", icon: DollarSign, title: `${overdue.length} payments overdue · ${usd(overdueSum)}`,
+      tone: "bg-bad-bg text-bad", icon: DollarSign, title: `${overdue.length} payments overdue · ${rwf(overdueSum)}`,
       sub: overdue.map((m) => `${m.name} ${m.daysLate} days`).join(" · "), action: "Send reminders",
       toast: `WhatsApp payment reminders sent to ${overdue.length} members`,
     },
@@ -66,8 +67,8 @@ export default function TodayPage() {
       sub: `${quiet.booked} of ${quiet.cap} booked so far`, action: "Promote it",
       toast: `WhatsApp invite sent to 38 members who often book ${quietType.name.en}`,
     },
-    { tone: "bg-neutral-bg text-neutral", icon: CalendarOff, title: "Maya asked for leave, 1 – 3 December", sub: "4 of her classes need a cover coach", action: "Review", href: "/admin/team" },
-    { tone: "bg-neutral-bg text-neutral", icon: ArrowLeftRight, title: "No exchange rate set for today", sub: "Needed before taking LBP payments", action: "Set rate", href: "/admin/money#rate" },
+    { tone: "bg-neutral-bg text-neutral", icon: CalendarOff, title: `${leave.first} asked for leave, ${leave.dates}`, sub: `${leave.classes} classes need a cover coach`, action: "Review", href: "/admin/team" },
+    { tone: "bg-neutral-bg text-neutral", icon: Smartphone, title: `${money.unmatched.length} mobile money payments to match`, sub: "MTN MoMo and Airtel Money payments that came in without a member name", action: "Match", href: "/admin/money#momo" },
   ].filter(Boolean) as Need[];
 
   return (
@@ -101,7 +102,7 @@ export default function TodayPage() {
       </div>
 
       <Summary>
-        So far today: <strong>142 check-ins</strong> and <strong>{usd(money.collectedToday)} collected</strong>. <strong>{classes.length} classes</strong> ({done} done)
+        So far today: <strong>142 check-ins</strong> and <strong>{rwf(money.collectedToday)} collected</strong>. <strong>{classes.length} classes</strong> ({done} done)
         and <strong>{pt.length} PT sessions</strong>. <strong>{needs.length} things need you</strong>, the most urgent first.
       </Summary>
 
@@ -109,7 +110,7 @@ export default function TodayPage() {
         <Fact label="Active members" value={String(activeCount())} note="+12 this month" />
         <Fact label="Memberships ending in 7 days" value={String(statusCounts().expiring)} note="5 already renewed" />
         <Fact label="Trials this week" value="11" note="6 joined so far" />
-        <Fact label="Collected in November" value={usd(money.in)} note={`${usd(overdueSum + money.dueSoon.reduce((s, d) => s + d.amount, 0))} still to collect`} />
+        <Fact label="Collected in November" value={rwf(money.in)} note={`${rwf(overdueSum + money.dueSoon.reduce((s, d) => s + d.amount, 0))} still to collect`} />
       </div>
 
       <div className="flex flex-wrap items-start gap-5">

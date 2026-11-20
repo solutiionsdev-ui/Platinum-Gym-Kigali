@@ -6,8 +6,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { LogoMark, Wordmark } from "@/components/logo";
-import { Container, btn } from "@/components/ui";
-import { getDict, href, switchLangPath, type Lang } from "@/lib/i18n";
+import { Container } from "@/components/ui";
+import { getDict, href, type Lang } from "@/lib/i18n";
 
 export function SiteHeader({ lang }: { lang: Lang }) {
   const t = getDict(lang);
@@ -26,7 +26,6 @@ export function SiteHeader({ lang }: { lang: Lang }) {
     { path: "/contact", label: t.nav.contact },
   ];
   const isActive = (path: string) => pathname === href(lang, path) || pathname.startsWith(href(lang, path) + "/");
-  const other: Lang = lang === "en" ? "ar" : "en";
 
   return (
     <header className="border-b border-line-soft">
@@ -50,9 +49,6 @@ export function SiteHeader({ lang }: { lang: Lang }) {
         </nav>
 
         <div className="flex items-center gap-2.5">
-          <Link href={switchLangPath(pathname, other)} lang={other} hrefLang={other} className={btn.pill}>
-            {t.otherLangLabel}
-          </Link>
           <Link href={href(lang, "/trial")} className="hidden min-h-[44px] items-center rounded-full bg-accent px-5 text-[15px] font-semibold text-bg transition hover:brightness-95 sm:inline-flex">
             {t.nav.freeTrial}
           </Link>

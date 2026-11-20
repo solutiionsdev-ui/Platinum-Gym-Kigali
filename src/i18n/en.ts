@@ -1,9 +1,8 @@
 import { brand } from "@/lib/brand";
 
-/** English website text. Arabic in ar.ts must have exactly the same keys. */
+/** Website text (English only since the move to Kigali, 20 Nov 2026). */
 export const en = {
   langName: "English",
-  otherLangLabel: "عربي",
   nav: {
     home: "Home",
     classes: "Classes",
@@ -49,7 +48,7 @@ export const en = {
   fullShort: "Full · waitlist",
 
   home: {
-    eyebrow: "Achrafieh, Beirut · Open daily from 6:00",
+    eyebrow: "Nyarutarama, Kigali · Open 7 days a week",
     title1: "Stronger",
     title2: "every",
     titleAccent: "week.",
@@ -62,7 +61,7 @@ export const en = {
     offerTitle: "Train your way",
     offerText: "One membership covers the gym floor, every group class and the recovery area. Add a coach when you want a plan.",
     offers: [
-      { title: "Open gym", text: "Free weights, racks and machines, every day from 6:00. Coaches on the floor to check your form." },
+      { title: "Open gym", text: "Free weights, racks and machines, open 7 days a week. Coaches on the floor to check your form." },
       { title: "Group classes", text: "40+ classes a week: Spin, HIIT, Strength, Boxing, Yoga and Pilates. See spots left before you book." },
       { title: "Personal training", text: "One-to-one sessions with a written plan, monthly check-ins and progress you can see." },
       { title: "Recovery", text: "Sauna, a stretching zone and a body-composition scan every month for members." },
@@ -106,9 +105,9 @@ export const en = {
     formBook: "Book this class",
     formWait: "Join the waitlist",
     fullName: "Full name",
-    namePlaceholder: "e.g. Rana Haddad",
+    namePlaceholder: "e.g. Sandrine Uwimana",
     phone: "WhatsApp number",
-    phonePlaceholder: "+961 3 123 456",
+    phonePlaceholder: "+250 788 123 456",
     firstTime: `This is my first class at ${brand.short} (free trial)`,
     confirm: "Confirm booking",
     joinWaitlist: "Join waitlist",
@@ -149,7 +148,7 @@ export const en = {
     metaTitle: "Memberships",
     title: "Memberships",
     intro:
-      "Prices in US dollars. No joining fee. Pay at the desk in cash (USD or LBP at the day's rate), by card, or with Whish or OMT. Your membership starts the day you pay, and the receipt comes on WhatsApp.",
+      "Prices in Rwandan francs. No joining fee. Pay at the desk in cash or by card, or with MTN MoMo or Airtel Money. Your membership starts the day you pay, and the receipt comes on WhatsApp.",
     bestValue: "Best value",
     request: "Request this plan",
     noCommitment: "No commitment",
@@ -158,10 +157,10 @@ export const en = {
     ptTitle: "Personal training",
     ptText: "Start with a free 20-minute consultation. Your trainer writes a plan, books your sessions and tracks your measurements every month.",
     bookConsult: "Book a free consultation",
-    trainersLine: "Trainers: Rami Aoun (strength), Nour Fakhoury (mobility), Joe Nassar (powerlifting)",
+    trainersLine: "Trainers: Patrick Habimana (strength), Diane Mukamana (mobility), Jean-Paul Niyonzima (powerlifting)",
     faqTitle: "Questions",
     requestDone: "Request sent. The front desk will message you on WhatsApp within the hour to arrange payment.",
-    requestIntro: "Leave your name and number. The front desk confirms on WhatsApp and arranges payment at the desk, by card, or with Whish or OMT.",
+    requestIntro: "Leave your name and number. The front desk confirms on WhatsApp and arranges payment at the desk, by card, or with MTN MoMo or Airtel Money.",
   },
 
   training: {
@@ -202,14 +201,14 @@ export const en = {
     done: "Thanks! We got your request.",
     doneText: "This is the WhatsApp message you get right now:",
     waTrial: (name: string) =>
-      `Hi ${name}, thanks for booking a free trial at ${brand.short}. Sara from the front desk will message you shortly to pick a class that fits your level and schedule.`,
+      `Hi ${name}, thanks for booking a free trial at ${brand.short}. Clarisse from the front desk will message you shortly to pick a class that fits your level and schedule.`,
     waConsult: (name: string, trainer: string) =>
       `Hi ${name}, thanks for booking a free consultation${trainer ? " with " + trainer : ""}. We'll send you a time on WhatsApp shortly.`,
     another: "Send another request",
     planPick: "Plan",
     submitPlan: "Send my request",
     waPlan: (name: string, plan: string) =>
-      `Hi ${name}, thanks for choosing the ${plan} plan. Sara from the front desk will message you within the hour to arrange payment. Your membership starts the day you pay.`,
+      `Hi ${name}, thanks for choosing the ${plan} plan. Clarisse from the front desk will message you within the hour to arrange payment. Your membership starts the day you pay.`,
   },
 
   contact: {
@@ -226,7 +225,7 @@ export const en = {
     metaTitle: "About",
     title: `About ${brand.short}`,
     paragraphs: [
-      `${brand.name} is a neighbourhood gym in Achrafieh for people who want to get stronger without the fuss. Small classes, coaches who know your name, and a timetable that fits around work.`,
+      `${brand.name} is a neighbourhood gym in Nyarutarama for people who want to get stronger without the fuss. Small classes, coaches who know your name, and a timetable that fits around work.`,
       "We keep things simple: one membership covers the gym floor, every group class and the recovery area. Booking takes a minute and everything else happens on WhatsApp.",
     ],
     values: [

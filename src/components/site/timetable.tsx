@@ -252,7 +252,7 @@ function Done({ lang, session, person, onAnother }: { lang: Lang; session: Sessi
   const type = getClassType(session.type)!;
   const coach = getCoach(session.coach)!;
   const full = isFull(session);
-  const first = person.name.split(/\s+/)[0] || (lang === "ar" ? "رنا" : "Rana");
+  const first = person.name.split(/\s+/)[0] || "Sandrine";
   const day = `${t.daysLong[session.day]} ${weekDates[session.day]} ${t.monthShort}`;
   const text = full
     ? t.timetable.waWait({ name: first, cls: type.name[lang], coach: coach.first[lang], day, time: session.time, place: session.waiting + 1 })

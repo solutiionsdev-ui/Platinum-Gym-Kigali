@@ -2,16 +2,17 @@
  * Every CRM page reads data through these functions. Sample data today; Supabase in step 4.
  * The timetable is shared with the website (src/lib/data.ts), so both sides always agree.
  */
+import { money } from "./brand";
 import { getClassType, getCoach, getSessionsForDay, isFull, isPast, spotsLeft, demoToday } from "./data";
 import {
-  automations, coachStats, DEMO_DATE, daysBetween, deskStats, leads, memberExtras, members, money, onShift, payroll, PLAN_LABELS, previewValues,
+  automations, coachStats, DEMO_DATE, daysBetween, deskStats, leads, leaveRequest, memberExtras, members, money as moneyData, onShift, payroll, PLAN_LABELS, previewValues,
   ptToday, recentMessages, staff, type CrmMember, type MemberStatus,
 } from "./crm-sample-data";
 
 export { DEMO_DATE, PLAN_LABELS, type CrmMember, type MemberStatus };
 export const DEMO_TIME = "16:40";
 
-export const PLAN_PRICES: Record<CrmMember["planId"], number> = { monthly: 55, "3m": 150, "6m": 280, "12m": 500, pack10: 80, student: 40, trial: 0 };
+export const PLAN_PRICES: Record<CrmMember["planId"], number> = { monthly: 60000, "3m": 165000, "6m": 300000, "12m": 540000, pack10: 90000, student: 40000, trial: 0 };
 
 /* ---------- Formatting ---------- */
 
@@ -20,7 +21,7 @@ export function fmtDate(iso: string, withYear = true) {
   const [y, m, d] = iso.split("-").map(Number);
   return `${d} ${MONTHS[m - 1]}${withYear ? " " + y : ""}`;
 }
-export const usd = (n: number) => `$${n.toLocaleString("en-US")}`;
+export const rwf = money;
 export const daysLeft = (m: CrmMember) => daysBetween(DEMO_DATE, m.end);
 export function lastVisitLabel(iso: string) {
   const ago = daysBetween(iso, DEMO_DATE);
@@ -51,7 +52,7 @@ export function statusCounts() {
   return c;
 }
 export const getOverdue = () =>
-  members.filter((m) => m.owes > 0).map((m) => ({ ...m, daysLate: money.overdueDays[m.name] ?? 1 })).sort((a, b) => b.daysLate - a.daysLate);
+  members.filter((m) => m.owes > 0).map((m) => ({ ...m, daysLate: moneyData.overdueDays[m.name] ?? 1 })).sort((a, b) => b.daysLate - a.daysLate);
 export const getExpiringSoon = () => members.filter((m) => m.status === "expiring").sort((a, b) => a.end.localeCompare(b.end));
 export const getNotSeen = (days = 14) =>
   members.filter((m) => (m.status === "active" || m.status === "expiring") && daysBetween(m.lastVisit, DEMO_DATE) >= days);
@@ -84,11 +85,11 @@ export function getMemberDetail(m: CrmMember) {
   const types = ["Spin", "HIIT", "Strength", "Boxing", "Yoga", "Pilates"];
   const a = types[Math.floor(rand() * 6)];
   const b = types.filter((t) => t !== a)[Math.floor(rand() * 5)];
-  const methods = ["Cash USD", "Card", "Whish", "OMT", "Bank transfer"];
-  const desk = rand() < 0.6 ? "Sara Mansour" : "Tony Abi Nader";
+  const methods = ["Cash", "Card", "MTN MoMo", "Airtel Money", "Bank transfer"];
+  const desk = rand() < 0.6 ? "Clarisse Umutoni" : "Arsène Nkusi";
   const payments = m.planId === "trial" ? [] : [{ date: fmtDate(m.start), item: `${PLAN_LABELS[m.planId]} membership`, method: `${methods[Math.floor(rand() * 5)]} · ${desk}`, amount: PLAN_PRICES[m.planId] }];
   const wa: { text: string; when: string; scheduled?: boolean }[] = [];
-  if (m.owes > 0) wa.push({ text: `Payment overdue reminder · ${usd(m.owes)}`, when: "Today 16:45" });
+  if (m.owes > 0) wa.push({ text: `Payment overdue reminder · ${rwf(m.owes)}`, when: "Today 16:45" });
   if (m.status === "expiring") wa.push({ text: `Membership ends ${fmtDate(m.end, false)}: renewal reminder`, when: "This week" });
   if (m.status === "expired") wa.push({ text: "Renewal offer: 5 extra days if renewed this week", when: fmtDate(addDaysIso(m.end, 1), false) });
   if (m.status === "trial") wa.push({ text: "Trial follow-up with first-month offer", when: "Evening of the trial" });
@@ -153,7 +154,8 @@ export const getPtToday = () => ptToday;
 /* ---------- Leads, money, team, messages ---------- */
 
 export const getLeads = () => leads;
-export const getMoney = () => money;
+export const getMoney = () => moneyData;
+export const getLeaveRequest = () => leaveRequest;
 export const getStaff = () => staff;
 export const getCoachStats = () => coachStats;
 export const getDeskStats = () => deskStats;
@@ -162,7 +164,7 @@ export const getPayroll = () => payroll;
 export const getAutomations = () => automations;
 export const getRecentMessages = () => recentMessages;
 
-export function fillTemplate(text: string, lang: "en" | "ar") {
-  const v = previewValues[lang] as Record<string, string>;
+export function fillTemplate(text: string) {
+  const v = previewValues;
   return text.replace(/\{(\w+)\}/g, (_, k: string) => v[k] ?? `{${k}}`);
 }

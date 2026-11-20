@@ -2,7 +2,7 @@ import clsx from "clsx";
 import type { Metadata } from "next";
 import { DemoButton } from "@/components/crm/shell";
 import { Bar, Card, Chip, Initials, PageHead, Summary, button } from "@/components/crm/ui";
-import { getCoachStats, getDeskStats, getOnShift, getPayroll, getStaff, usd } from "@/lib/crm-data";
+import { getCoachStats, getDeskStats, getLeaveRequest, getOnShift, getPayroll, getStaff, rwf } from "@/lib/crm-data";
 import { getCoach } from "@/lib/data";
 
 export const metadata: Metadata = { title: "Team" };
@@ -11,6 +11,7 @@ export default function TeamPage() {
   const stats = getCoachStats();
   const desk = getDeskStats();
   const payroll = getPayroll();
+  const leave = getLeaveRequest();
   const totalClasses = stats.reduce((s, c) => s + c.classes, 0);
   const avgFill = Math.round(stats.reduce((s, c) => s + c.fill * c.classes, 0) / totalClasses);
   const fullest = [...stats].sort((a, b) => b.fill - a.fill)[0];
@@ -85,7 +86,7 @@ export default function TeamPage() {
                   <div className="flex items-center gap-2.5"><Initials name={d.name} size={32} /><span className="font-semibold">{d.name}</span></div>
                   <div className="grid grid-cols-3 gap-3">
                     <div><div className="text-[13px] text-muted">Trials who joined</div><div className="font-mono text-lg">{d.converted} of {d.trials}</div><div className="text-[13px] text-muted">{Math.round((d.converted / d.trials) * 100)}%</div></div>
-                    <div><div className="text-[13px] text-muted">Collected</div><div className="font-mono text-lg">{usd(d.collected)}</div></div>
+                    <div><div className="text-[13px] text-muted">Collected</div><div className="font-mono text-lg">{rwf(d.collected)}</div></div>
                     <div><div className="text-[13px] text-muted">Renewals</div><div className="font-mono text-lg">{d.renewals}</div></div>
                   </div>
                 </div>
@@ -125,20 +126,20 @@ export default function TeamPage() {
               <h2 className="text-base font-semibold">Leave request</h2>
               <Chip cls="bg-warn-bg text-warn">Waiting</Chip>
             </div>
-            <div><strong>Maya Khoury</strong>, 1 – 3 December (family wedding)</div>
-            <div className="text-sm text-ink-2">4 classes need a cover coach. Suggested: Nour for Yoga on Tue and Thu, Lea for Pilates on Wed.</div>
+            <div><strong>{leave.name}</strong>, {leave.dates} ({leave.reason})</div>
+            <div className="text-sm text-ink-2">{leave.classes} classes need a cover coach. Suggested: {leave.cover}.</div>
             <div className="mt-1 flex gap-2">
-              <DemoButton message="Leave approved. Nour and Lea got a WhatsApp asking them to cover, and booked members will be told." className={clsx(button.primary, "flex-1")}>Approve with cover</DemoButton>
-              <DemoButton message="Maya was told on WhatsApp that the leave was declined" className={button.secondary}>Decline</DemoButton>
+              <DemoButton message="Leave approved. Diane and Grace got a WhatsApp asking them to cover, and booked members will be told." className={clsx(button.primary, "flex-1")}>Approve with cover</DemoButton>
+              <DemoButton message={`${leave.first} was told on WhatsApp that the leave was declined`} className={button.secondary}>Decline</DemoButton>
             </div>
           </Card>
 
           <Card title="November payroll" id="payroll" aside={<span className="text-[13px] text-muted">Ready on 30 Nov</span>}>
             <div className="flex flex-col gap-2 px-5 pb-4 pt-2 text-sm">
-              <div className="flex justify-between"><span>Base salaries ({getStaff().length} staff)</span><span className="font-mono">{usd(payroll.base)}</span></div>
-              <div className="flex justify-between"><span>Class pay ({payroll.classes} classes)</span><span className="font-mono">{usd(payroll.classPay)}</span></div>
-              <div className="flex justify-between"><span>PT commission ({payroll.ptSessions} sessions)</span><span className="font-mono">{usd(payroll.ptCommission)}</span></div>
-              <div className="flex justify-between border-t border-divider pt-2.5 font-semibold"><span>Estimated total</span><span className="font-mono">{usd(payroll.base + payroll.classPay + payroll.ptCommission)}</span></div>
+              <div className="flex justify-between"><span>Base salaries ({getStaff().length} staff)</span><span className="font-mono">{rwf(payroll.base)}</span></div>
+              <div className="flex justify-between"><span>Class pay ({payroll.classes} classes)</span><span className="font-mono">{rwf(payroll.classPay)}</span></div>
+              <div className="flex justify-between"><span>PT commission ({payroll.ptSessions} sessions)</span><span className="font-mono">{rwf(payroll.ptCommission)}</span></div>
+              <div className="flex justify-between border-t border-divider pt-2.5 font-semibold"><span>Estimated total</span><span className="font-mono">{rwf(payroll.base + payroll.classPay + payroll.ptCommission)}</span></div>
             </div>
           </Card>
         </div>

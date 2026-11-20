@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { DemoButton } from "@/components/crm/shell";
 import { Card, Chip, Initials, PageHead, Summary, button } from "@/components/crm/ui";
-import { getCoachStats, getMembers, getPtClients, getPtToday } from "@/lib/crm-data";
+import { getCoachStats, getMembers, getPtClients, getPtToday, rwf } from "@/lib/crm-data";
 import { getCoach, getPtPackages, getTrainers } from "@/lib/data";
 
 export const metadata: Metadata = { title: "Training" };
@@ -83,7 +83,7 @@ export default function TrainingPage() {
         {getPtPackages().map((p) => (
           <div key={p.name.en} className="flex items-center justify-between gap-3 border-b border-divider px-5 py-3 last:border-0">
             <span>{p.name.en} <span className="text-sm text-muted">· {p.note.en}</span></span>
-            <span className="font-mono font-medium">${p.price}</span>
+            <span className="font-mono font-medium">{rwf(p.price)}</span>
           </div>
         ))}
       </Card>

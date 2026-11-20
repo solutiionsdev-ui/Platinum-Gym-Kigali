@@ -5,7 +5,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { DemoButton } from "@/components/crm/shell";
 import { Bar, Card, Chip, Initials, StatusChip, button } from "@/components/crm/ui";
-import { daysLeft, fmtDate, getMember, getMemberDetail, lastVisitLabel, PLAN_LABELS, PLAN_PRICES, usd } from "@/lib/crm-data";
+import { daysLeft, fmtDate, getMember, getMemberDetail, lastVisitLabel, PLAN_LABELS, PLAN_PRICES, rwf } from "@/lib/crm-data";
 import { daysBetween } from "@/lib/crm-sample-data";
 import { getCoach } from "@/lib/data";
 
@@ -43,7 +43,7 @@ export default async function MemberPage({ params }: { params: Params }) {
             {m.ptLeft !== null && <span className="inline-flex h-6 items-center rounded-full border border-border px-2.5 text-[13px] text-ink-2">PT client</span>}
           </div>
           <div className="mt-0.5 text-muted">
-            <span className="font-mono">{m.phone}</span> · Member since {fmtDate(m.since)} · Messages in {m.lang}
+            <span className="font-mono">{m.phone}</span> · Member since {fmtDate(m.since)}
           </div>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -82,9 +82,9 @@ export default async function MemberPage({ params }: { params: Params }) {
               </div>
               <Bar pct={used} className="h-2" />
               <div className="flex flex-wrap gap-x-7 gap-y-1 text-sm text-ink-2">
-                <span>Price <strong className="text-ink">{usd(PLAN_PRICES[m.planId])}</strong></span>
+                <span>Price <strong className="text-ink">{rwf(PLAN_PRICES[m.planId])}</strong></span>
                 {m.owes > 0 ? (
-                  <span className="text-bad">Owes <strong>{usd(m.owes)}</strong> for {m.owesFor}</span>
+                  <span className="text-bad">Owes <strong>{rwf(m.owes)}</strong> for {m.owesFor}</span>
                 ) : (
                   <span>Nothing owed</span>
                 )}
@@ -164,7 +164,7 @@ export default async function MemberPage({ params }: { params: Params }) {
                 <span className="w-[100px] font-mono text-muted">{p.date}</span>
                 <span className="min-w-44 flex-1">{p.item}</span>
                 <span className="w-[200px] text-sm text-muted">{p.method}</span>
-                <span className="w-16 text-end font-mono font-medium">{usd(p.amount)}</span>
+                <span className="w-16 text-end font-mono font-medium">{rwf(p.amount)}</span>
               </div>
             ))}
           </Card>
