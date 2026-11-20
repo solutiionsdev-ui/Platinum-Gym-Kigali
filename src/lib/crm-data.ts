@@ -151,6 +151,27 @@ export { spotsLeft };
 
 export const getPtToday = () => ptToday;
 
+export type PtSession = { id: string; day: number; time: string; mins: number; member: string; memberId: string; trainer: string; note: string; done: boolean };
+
+/** Personal training for the whole demo week: today's real list plus sample sessions on the other days. */
+export function getPtWeek(): PtSession[] {
+  const out: PtSession[] = ptToday.map((p, i) => ({ id: `pt-${demoToday}-${i}`, day: demoToday, mins: 60, ...p }));
+  const slots: [string, string][] = [["07:00", "emmanuel"], ["08:00", "mido"], ["12:30", "gael"], ["17:00", "emmanuel"], ["19:00", "gael"]];
+  for (let day = 0; day < 7; day++) {
+    if (day === demoToday) continue;
+    const n = day === 6 ? 1 : day === 5 ? 3 : 4;
+    const people = getRoster(`pt-${day}`, n);
+    people.forEach((m, i) => {
+      const [time, trainer] = slots[(i + day) % slots.length];
+      out.push({
+        id: `pt-${day}-${i}`, day, time, mins: 60, member: m.name, memberId: m.id, trainer,
+        note: m.ptLeft !== null ? `${m.ptLeft} sessions left` : "Free consultation", done: day < demoToday,
+      });
+    });
+  }
+  return out;
+}
+
 /* ---------- Leads, money, team, messages ---------- */
 
 export const getLeads = () => leads;

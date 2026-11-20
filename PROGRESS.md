@@ -114,8 +114,26 @@ Built from Gael's current site (platinumgymkigali.com) to show him an upgrade. K
 - **Assistant:** voice note "Shyira Sandrine Uwimana muri abs ya 6:30pm uyu munsi" → 18:30 is full, offers 19:30; "Book Kevin into boxing" asks which Kevin. Each member's WhatsApp confirmation now carries their own link (Sandrine keeps `/m/7KQ2`).
 - Checked: every page at phone and desktop width (no sideways scroll, all photos load), 134 internal links, quiz, tour, online form, assistant flows, typecheck, lint, test build.
 
+## CRM: Platinum look, website connection, calendar · 20 Nov 2026
+Mario's choices: calendar view **and** Google Calendar sync; black & gold with light pages; website connected "live in the same browser".
+
+- **Look:** black sidebar (and phone top bar) with Gael's logo and the PLATINUM wordmark, gold for the active menu item and main buttons, dark-gold links, light pages for tables. Browser tab icon is now a gold circle "P" (was the old lime). Assistant chat, member phone and demo guide use the real logo.
+- **Website → CRM, live** (`src/lib/demo-store.ts`): bookings, free trial / PT / package / program forms and the online coaching form are saved in the browser (localStorage) and show up instantly in the CRM, also in another tab:
+  - a pop-up in the CRM ("Website: Demo Tester booked Abs & Core at 19:30"), and a gold dot on Today;
+  - Today: "From the website, live" card;
+  - Calendar: the class's numbers go up, a gold website badge, the person on top of the class list;
+  - Leads: "Website · new" cards (forms in New, first-visit bookings in Trial booked);
+  - Training: online coaching requests on top of the online clients.
+  - The website's own timetable counts them too (spots left drop).
+  - Each device keeps its own demo data; Settings → "Clear website test data" resets it. The database (step 4) makes it work across phones.
+- **Calendar** (`/admin/schedule`, menu "Calendar"): week grid of every class and PT session (PT for the whole week is sample data from `getPtWeek()`), today highlighted with a "now" line at 16:40, filter by coach, hide classes or PT, Day view (default on phones), side panel with who's booked, waitlist and actions. `?session=<id>` opens a class.
+- **Calendar sync:**
+  - Website booking confirmation: "Google Calendar" (pre-filled event) and "iPhone / Outlook" (.ics file).
+  - Real calendar feed: `/api/calendar` (all classes, repeating weekly), `?coach=emmanuel` (one coach), `?session=<id>` (one class). Google Calendar can subscribe once the demo is online.
+  - Settings → Calendar sync: "Connect Google Calendar" (demo button, the real sign-in comes later), what syncs, and the subscribe link with Copy / Download.
+
 ## Next
-- Mario clicks through, starting at http://localhost:1122/en and http://localhost:1122/guide.
+- Mario clicks through, starting at http://localhost:1122/en and http://localhost:1122/guide. Best demo: website and CRM side by side in two tabs of the same browser.
 - Then **Step 3b: preview link** on Vercel so Gael can open the demo on his phone (KICKOFF.md).
 
 ## Questions for Gael

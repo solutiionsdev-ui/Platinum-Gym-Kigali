@@ -16,10 +16,10 @@ const SECTIONS: { title: string; sub: string; screens: Screen[] }[] = [
       { href: "/en/online", title: "Online coaching", click: "For people outside Rebero or abroad. Fill the 4 questions and see the WhatsApp reply." },
       { href: "/en/tour", title: "Virtual tour", click: "Tap a zone on the map to see it. Sauna and changing rooms wait for 360° photos. Video loads on tap." },
       { href: "/en/first-visit", title: "Your first visit", click: "What happens step by step, what to bring, gym words made simple." },
-      { href: "/en/classes", title: "Timetable and booking", click: "Pick Tuesday 19:30 Abs & Core, type any name and number, confirm: you see the WhatsApp message the member gets." },
+      { href: "/en/classes", title: "Timetable and booking", click: "Pick Tuesday 19:30 Abs & Core, type any name and number, confirm: the WhatsApp message, 'Add to Google Calendar', and it lands in the CRM." },
       { href: "/en/memberships", title: "Memberships and prices", click: "Prices in RWF. Press 'Request this plan' on 12 months." },
       { href: "/en/training", title: "Personal training", click: "Open a trainer and book a free consultation." },
-      { href: "/en/trial", title: "Free trial", click: "Fill the form: you see the WhatsApp reply. Saving it as a lead in the CRM comes with the database (step 4)." },
+      { href: "/en/trial", title: "Free trial", click: "Fill the form: you see the WhatsApp reply, and it appears in the CRM's Leads straight away (same browser)." },
       { href: "/en/m/7KQ2", title: "Member's private page", click: "The link members get on WhatsApp. Cancel a booking, no login." },
     ],
   },
@@ -27,16 +27,16 @@ const SECTIONS: { title: string; sub: string; screens: Screen[] }[] = [
     title: "CRM",
     sub: "The owner and staff side. Sample data: 520 members, demo day Tuesday 24 November, 16:40.",
     screens: [
-      { href: "/admin", title: "Today", click: "'Needs you' is the to-do list. Press 'Send reminders' or 'Offer 20:15'." },
+      { href: "/admin", title: "Today", click: "'Needs you' is the to-do list. 'From the website, live' shows bookings and forms the moment they're sent." },
       { href: "/admin/members", title: "Members", click: "Filter 'Owes money' or 'Not seen in 2 weeks'. Search by name or phone." },
       { href: "/admin/members/m-001", title: "Member page (Sandrine)", click: "Membership, visits, body scans, payments, PT package, WhatsApp history." },
-      { href: "/admin/members/leads", title: "Leads and trials", click: "From website request to joined. Press 'Send offer' on a finished trial." },
+      { href: "/admin/members/leads", title: "Leads and trials", click: "From website request to joined. Website requests arrive with a gold 'Website · new' tag." },
       { href: "/admin/members/check-in", title: "Check-in", click: "Type 'Olivier': he owes 115,000 RWF and his package ends Saturday." },
-      { href: "/admin/schedule", title: "Schedule", click: "Open tonight's 18:30 Abs & Core to see who's booked and the waitlist." },
+      { href: "/admin/schedule", title: "Calendar", click: "Week view of every class and PT session. Filter by coach. Click 19:30 Abs & Core to see who booked, website bookings on top." },
       { href: "/admin/money", title: "Money", click: "November profit, who owes, mobile money payments to match." },
       { href: "/admin/team", title: "Team performance", click: "Which coach fills classes, keeps members, sells PT. Approve Donyori's leave." },
       { href: "/admin/training", title: "Training & online clients", click: "PT today, packages running low, and the online coaching clients with their Monday check-ins." },
-      { href: "/admin/settings", title: "Settings", click: "Gym details, prices, class types, who can see what." },
+      { href: "/admin/settings", title: "Settings", click: "Google Calendar sync and a calendar link to subscribe to. 'Clear website test data' resets the demo." },
     ],
   },
   {
@@ -56,7 +56,8 @@ const SCRIPT = [
   ["Show the programs", "Men and women split, explained in simple words, with a normal week and what changes.", "/en/programs"],
   ["Virtual tour and online coaching", "Walk the gym on the map; online plans for people who can't come in.", "/en/tour"],
   ["Book a class as a new member", "Tuesday 19:30 Abs & Core. Point at the WhatsApp confirmation: no app, no password.", "/en/classes"],
-  ["Switch to the owner's side", "Today's 'Needs you' list: what to deal with first, not a wall of charts.", "/admin"],
+  ["Switch to the owner's side", "The booking you just made is already in 'From the website, live'. Then the 'Needs you' list: what to deal with first.", "/admin"],
+  ["Open the calendar", "The whole week, classes and PT, per coach. Click 19:30 Abs & Core: the new booking is on top. Settings syncs it with Google Calendar.", "/admin/schedule"],
   ["Ask the assistant who hasn't paid", "Then 'Yes, send': three reminders go out.", "/admin/messages/assistant"],
   ["Send the voice note", "'Shyira Sandrine Uwimana muri abs ya 6:30pm uyu munsi': it sees 18:30 is full and offers 19:30.", "/admin/messages/assistant"],
   ["Show what Sandrine receives", "Confirmation, reminder 2 hours before, rating after class, Monday program check-in.", "/admin/messages/member"],
@@ -70,8 +71,9 @@ export default function GuidePage() {
     <main className="mx-auto flex max-w-[1080px] flex-col gap-10 px-4 py-10 sm:px-8">
       <header className="flex flex-col gap-2">
         <div className="flex items-center gap-2.5">
-          <LogoMark size={36} tone="dark" />
-          <span className="font-bold tracking-[0.04em]">{brand.name} · demo system</span>
+          <LogoMark image size={40} rounded="circle" />
+          <span className="font-[family-name:var(--font-anton)] text-[22px] tracking-[0.08em]">{brand.wordmark}</span>
+          <span className="text-muted">· demo system</span>
         </div>
         <h1 className="text-[32px] font-semibold tracking-[-0.01em]">Demo guide</h1>
         <p className="max-w-[680px] text-[17px] text-ink-2">

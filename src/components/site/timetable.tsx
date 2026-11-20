@@ -1,13 +1,15 @@
 "use client";
 
 import clsx from "clsx";
-import { CalendarCheck, Check, ChevronLeft, ChevronRight, X } from "lucide-react";
+import { CalendarCheck, CalendarPlus, Check, ChevronLeft, ChevronRight, Download, X } from "lucide-react";
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { WhatsAppBubble } from "@/components/ui";
 import { brand } from "@/lib/brand";
+import { googleCalendarUrl, icsUrl } from "@/lib/calendar";
 import {
   demoToday, getClassType, getClassTypes, getCoach, getRoomName, getSessions, getSessionsForDay, isFull, isPast, reminderTime, spotsLeft, weekDates,
 } from "@/lib/data";
+import { addWebBooking, useDemoData, withWebBookings } from "@/lib/demo-store";
 import { getDict, type Lang } from "@/lib/i18n";
 import type { Session } from "@/lib/types";
 
@@ -21,13 +23,19 @@ export function Timetable({ lang, initialType = "all", initialSession }: { lang:
   const [selected, setSelected] = useState<Session | undefined>(preselected);
   const [step, setStep] = useState<Step>("form");
   // What the person typed, kept so the confirmation can use it and the next booking is pre-filled.
-  const [person, setPerson] = useState({ name: "", trial: true });
+  const [person, setPerson] = useState<Person>({ name: "", trial: true, waitlist: false });
+  // Bookings made on this website in this browser count too (the CRM sees the same ones).
+  const web = useDemoData();
+  const live = selected && withWebBookings(selected, web);
 
   const types = getClassTypes();
-  const list = getSessionsForDay(day).filter((s) => filter === "all" || s.type === filter);
+  const list = getSessionsForDay(day)
+    .filter((s) => filter === "all" || s.type === filter)
+    .map((s) => withWebBookings(s, web));
 
   function pick(s: Session) {
-    setSelected(s);
+    // Keep the timetable's own numbers; website bookings are added on top when shown.
+    setSelected(getSessions().find((x) => x.id === s.id));
     setStep("form");
   }
 
@@ -153,19 +161,21 @@ export function Timetable({ lang, initialType = "all", initialSession }: { lang:
               <p className="text-muted">{t.timetable.pickText}</p>
             </div>
           )}
-          {selected && step === "form" && (
+          {live && step === "form" && (
             <BookingForm
               lang={lang}
-              session={selected}
+              session={live}
               initial={person}
               onClose={() => setSelected(undefined)}
-              onDone={(p) => {
-                setPerson(p);
+              onDone={(p, phone) => {
+                const b = addWebBooking({ sessionId: live.id, name: p.name, phone, trial: p.trial, waitlist: p.waitlist });
+                // Each person gets their own private link in the WhatsApp message (made-up code in the demo).
+                setPerson({ ...p, code: b.id.slice(0, 4).toUpperCase() });
                 setStep("done");
               }}
             />
           )}
-          {selected && step === "done" && <Done lang={lang} session={selected} person={person} onAnother={() => setSelected(undefined)} />}
+          {live && step === "done" && <Done lang={lang} session={live} person={person} onAnother={() => setSelected(undefined)} />}
         </aside>
         {selected && <div aria-hidden className="fixed inset-0 z-40 bg-black/60 lg:hidden" onClick={() => setSelected(undefined)} />}
       </div>
@@ -173,11 +183,11 @@ export function Timetable({ lang, initialType = "all", initialSession }: { lang:
   );
 }
 
-type Person = { name: string; trial: boolean };
+type Person = { name: string; trial: boolean; waitlist: boolean; code?: string };
 
 function BookingForm({
   lang, session, initial, onClose, onDone,
-}: { lang: Lang; session: Session; initial: Person; onClose: () => void; onDone: (p: Person) => void }) {
+}: { lang: Lang; session: Session; initial: Person; onClose: () => void; onDone: (p: Person, phone: string) => void }) {
   const t = getDict(lang);
   const type = getClassType(session.type)!;
   const coach = getCoach(session.coach)!;
@@ -202,7 +212,7 @@ function BookingForm({
     };
     setErrors(next);
     if (next.name || next.phone) return;
-    onDone({ name: name.trim(), trial });
+    onDone({ name: name.trim(), trial, waitlist: full }, phone.trim());
   }
 
   const field = "min-h-[50px] w-full rounded-[14px] border border-control bg-bg px-4 text-base text-ink placeholder:text-faint";
@@ -251,14 +261,15 @@ function Done({ lang, session, person, onAnother }: { lang: Lang; session: Sessi
   const t = getDict(lang);
   const type = getClassType(session.type)!;
   const coach = getCoach(session.coach)!;
-  const full = isFull(session);
+  // Whether this person went on the waitlist (the class may have filled up with their booking).
+  const full = person.waitlist;
   const first = person.name.split(/\s+/)[0] || "Sandrine";
   const day = `${t.daysLong[session.day]} ${weekDates[session.day]} ${t.monthShort}`;
   const text = full
-    ? t.timetable.waWait({ name: first, cls: type.name[lang], coach: coach.first[lang], day, time: session.time, place: session.waiting + 1 })
+    ? t.timetable.waWait({ name: first, cls: type.name[lang], coach: coach.first[lang], day, time: session.time, place: Math.max(1, session.waiting) })
     : t.timetable.waBooked({
         name: first, cls: type.name[lang], coach: coach.first[lang], day, time: session.time, room: getRoomName(session.room, lang),
-        trial: person.trial, link: `${brand.shortLink}/m/7KQ2`,
+        trial: person.trial, link: `${brand.shortLink}/m/${person.code ?? "7KQ2"}`,
       });
 
   return (
@@ -270,6 +281,21 @@ function Done({ lang, session, person, onAnother }: { lang: Lang; session: Sessi
       <p className="text-muted">{t.timetable.messageIntro(first)}</p>
       <WhatsAppBubble text={text} />
       <p className="text-sm text-muted">{full ? t.timetable.waitNote : t.timetable.reminderNote(reminderTime(session.time))}</p>
+      {!full && (
+        <div className="flex flex-col gap-2 rounded-2xl border border-line bg-bg p-4">
+          <div className="text-sm font-semibold">Add it to your calendar</div>
+          <div className="flex flex-wrap gap-2">
+            <a href={googleCalendarUrl(session)} target="_blank" rel="noopener noreferrer"
+              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-ink px-4 text-[15px] font-semibold text-bg transition hover:bg-white">
+              <CalendarPlus aria-hidden className="size-[18px]" /> Google Calendar
+            </a>
+            <a href={icsUrl(session)} download
+              className="inline-flex min-h-11 items-center gap-2 rounded-full border border-control px-4 text-[15px] font-semibold transition hover:border-ink-2">
+              <Download aria-hidden className="size-[18px]" /> iPhone / Outlook
+            </a>
+          </div>
+        </div>
+      )}
       <button type="button" onClick={onAnother} className="min-h-12 rounded-full border border-control font-semibold transition hover:border-ink-2">
         {t.timetable.bookAnother}
       </button>

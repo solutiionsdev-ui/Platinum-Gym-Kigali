@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { OnlineClientsCard } from "@/components/crm/online-clients";
 import { DemoButton } from "@/components/crm/shell";
 import { Card, Chip, Initials, PageHead, Summary, button } from "@/components/crm/ui";
 import { getCoachStats, getMembers, getOnlineClients, getPtClients, getPtToday, rwf } from "@/lib/crm-data";
@@ -80,41 +81,7 @@ export default function TrainingPage() {
         </Card>
       </div>
 
-      <Card
-        title={<>Online coaching <span className="font-mono font-normal text-muted">{online.length} clients</span></>}
-        id="online"
-        aside={<span className="text-[13px] text-muted">Programs sent on WhatsApp · check-in every Monday</span>}
-      >
-        <div className="overflow-x-auto">
-          <table className="w-full min-w-[760px] border-collapse text-sm">
-            <thead>
-              <tr className="text-muted">
-                {["Client", "Where", "Program", "Progress", "Next check-in", ""].map((h) => (
-                  <th key={h} scope="col" className="border-b border-divider px-5 py-2.5 text-start font-medium">{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {online.map((o) => (
-                <tr key={o.id}>
-                  <td className="border-b border-divider px-5 py-3 font-medium">{o.name}</td>
-                  <td className="border-b border-divider px-5 py-3 text-ink-2">{o.where}</td>
-                  <td className="border-b border-divider px-5 py-3">{o.program}</td>
-                  <td className="border-b border-divider px-5 py-3 text-ink-2">{o.week}</td>
-                  <td className="border-b border-divider px-5 py-3">
-                    <Chip cls={o.status === "check_in_due" ? "bg-warn-bg text-warn" : o.status === "quiet" ? "bg-bad-bg text-bad" : "bg-ok-bg text-ok"}>{o.nextCheckIn}</Chip>
-                  </td>
-                  <td className="border-b border-divider px-5 py-3 text-end">
-                    <DemoButton message={`Check-in sent to ${o.name} on WhatsApp with this week's plan`} className={button.small}>
-                      {o.status === "quiet" ? "Nudge" : "Send check-in"}
-                    </DemoButton>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </Card>
+      <OnlineClientsCard online={online} />
 
       <Card title="Packages and prices" id="packages" aside={<Link href="/admin/settings" className="text-sm font-semibold text-link hover:underline">Edit in Settings →</Link>}>
         {getPtPackages().map((p) => (

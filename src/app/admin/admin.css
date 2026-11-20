@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 /*
- * CRM design tokens (BRIEF section 2, approved canvas in /design).
- * Calm and light, same family as the EV-workshop CRM. Status colors are for status only.
+ * CRM design tokens. Platinum look: black sidebar with the logo, gold for buttons and the active menu,
+ * light pages so numbers and tables stay easy to read. Status colors are for status only.
  */
 :root {
   --accent: #f4c842;
 }
 
 @theme {
-  --color-bg: #f6f7f6;
+  --color-bg: #f5f5f2;
   --color-surface: #ffffff;
   --color-border: #e4e7e5;
   --color-divider: #eef0ee;
@@ -19,8 +19,15 @@
   --color-faint: #8a938e;
   --color-soft: #e8ece9;
   --color-bar-muted: #b9c0bb;
-  --color-link: #0f7a57;
-  --color-link-hover: #0a5a40;
+  --color-link: #7a5900;
+  --color-link-hover: #573f00;
+
+  /* Black sidebar and top bar */
+  --color-side: #0b0b0c;
+  --color-side-2: #17181a;
+  --color-side-line: #2a2c2f;
+  --color-side-text: #ecece8;
+  --color-side-muted: #a3a6a1;
   --color-online: #1f9d5c;
 
   /* Status pairs: text on background, all 4.5:1 or better */
@@ -54,6 +61,9 @@ body {
 :focus-visible {
   outline: 2px solid #111412;
   outline-offset: 2px;
+}
+.on-dark :focus-visible {
+  outline-color: var(--accent);
 }
 
 details > summary {

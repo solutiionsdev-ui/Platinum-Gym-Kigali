@@ -3,6 +3,7 @@ import { CalendarOff, CheckSquare, Clock, DollarSign, ListOrdered, Plus, Search,
 import type { Metadata } from "next";
 import Link from "next/link";
 import { DemoButton } from "@/components/crm/shell";
+import { WebActivity } from "@/components/crm/web-activity";
 import { Bar, Card, Chip, Fact, Summary, button } from "@/components/crm/ui";
 import {
   activeCount, fmtDate, getExpiringSoon, getLeaveRequest, getFullWithWaitlist, getLeads, getMoney, getOverdue, getPtToday, getQuietClasses, getTodayClasses,
@@ -92,7 +93,7 @@ export default function TodayPage() {
               <Plus aria-hidden className="size-[18px]" /> New
             </summary>
             <div className="absolute end-0 z-20 mt-2 flex w-56 flex-col rounded-xl border border-border bg-surface p-1.5 shadow-lg">
-              <Link href="/admin/schedule" className="flex min-h-11 items-center rounded-lg px-3 hover:bg-bg">Book a class</Link>
+              <Link href="/admin/schedule" className="flex min-h-11 items-center rounded-lg px-3 hover:bg-bg">Book a class or PT</Link>
               <Link href="/admin/members/leads" className="flex min-h-11 items-center rounded-lg px-3 hover:bg-bg">Add a lead or member</Link>
               <Link href="/admin/money" className="flex min-h-11 items-center rounded-lg px-3 hover:bg-bg">Record a payment</Link>
               <Link href="/admin/money" className="flex min-h-11 items-center rounded-lg px-3 hover:bg-bg">Add an expense</Link>
@@ -112,6 +113,8 @@ export default function TodayPage() {
         <Fact label="Trials this week" value="11" note="6 joined so far" />
         <Fact label="Collected in November" value={rwf(money.in)} note={`${rwf(overdueSum + money.dueSoon.reduce((s, d) => s + d.amount, 0))} still to collect`} />
       </div>
+
+      <WebActivity />
 
       <div className="flex flex-wrap items-start gap-5">
         <Card title={<>Needs you <span className="font-mono font-normal text-muted">{needs.length}</span></>} aside={<span className="text-[13px] text-muted">Most urgent first</span>} className="flex-[3_1_520px]" id="needs">
@@ -134,7 +137,7 @@ export default function TodayPage() {
         </Card>
 
         <div className="flex min-w-0 flex-[2_1_360px] flex-col gap-5">
-          <Card title="Classes today" aside={<Link href="/admin/schedule" className="text-sm font-semibold text-link hover:underline">Schedule →</Link>} id="classes">
+          <Card title="Classes today" aside={<Link href="/admin/schedule" className="text-sm font-semibold text-link hover:underline">Calendar →</Link>} id="classes">
             {classes.map((c) => (
               <div key={c.id} className="flex items-center gap-3 border-b border-divider px-5 py-2.5 last:border-0">
                 <span className={clsx("w-[46px] font-mono", c.state === "done" ? "text-muted" : "")}>{c.time}</span>

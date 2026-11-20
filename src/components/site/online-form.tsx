@@ -3,6 +3,7 @@
 import clsx from "clsx";
 import { useState, type FormEvent } from "react";
 import { WhatsAppBubble } from "@/components/ui";
+import { addWebLead } from "@/lib/demo-store";
 import { getDict } from "@/lib/i18n";
 
 const GOALS = ["Lose weight", "Build muscle", "Tone & shape", "Get fit & healthy"];
@@ -28,7 +29,13 @@ export function OnlineForm() {
       phone: phone.replace(/\D/g, "").length >= 7 ? undefined : t.timetable.phoneError,
     };
     setErrors(next);
-    if (!next.name && !next.phone) setDone(true);
+    if (next.name || next.phone) return;
+    // Goes to the CRM: Leads board and the Online coaching list on Training.
+    addWebLead({
+      kind: "online", name: name.trim(), phone: phone.trim(), interest: goal,
+      details: [place, `${days} a week`, notes.trim()].filter(Boolean).join(" · "),
+    });
+    setDone(true);
   }
 
   const field = "min-h-[52px] w-full rounded-[14px] border border-control bg-bg px-4 text-base text-ink placeholder:text-faint";

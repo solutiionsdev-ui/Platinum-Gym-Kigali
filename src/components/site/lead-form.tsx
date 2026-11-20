@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { useState, type FormEvent } from "react";
 import { WhatsAppBubble } from "@/components/ui";
 import { getClassTypes, getCoach, getPlans, getTrainers } from "@/lib/data";
+import { addWebLead } from "@/lib/demo-store";
 import { getProgram, getPrograms } from "@/lib/programs";
 import { getDict, type Lang } from "@/lib/i18n";
 
@@ -52,7 +53,10 @@ export function LeadForm({
       phone: phone.replace(/\D/g, "").length >= 7 ? undefined : t.timetable.phoneError,
     };
     setErrors(next);
-    if (!next.name && !next.phone) setDone(true);
+    if (next.name || next.phone) return;
+    // Goes to the CRM's Leads board (same browser until the database, step 4).
+    addWebLead({ kind: mode, name: name.trim(), phone: phone.trim(), interest: options.find((o) => o.value === value)?.label ?? "" });
+    setDone(true);
   }
 
   const first = name.trim().split(/\s+/)[0] || "";

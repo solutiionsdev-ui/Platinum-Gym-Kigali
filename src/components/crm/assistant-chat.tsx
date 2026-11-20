@@ -74,9 +74,9 @@ export function AssistantChat({ starters = true }: { starters?: boolean }) {
     <div className="flex flex-wrap items-start gap-5">
       {/* Phone */}
       <div className="flex h-[720px] max-h-[calc(100vh-140px)] min-h-[520px] w-full max-w-[420px] flex-col overflow-hidden rounded-[22px] border border-border bg-[#ecede9] shadow-sm">
-        <div className="flex items-center gap-3 bg-ink px-3.5 py-3 text-white">
+        <div className="flex items-center gap-3 bg-side px-3.5 py-3 text-white">
           <ChevronLeft aria-hidden className="size-5" />
-          <LogoMark size={40} rounded="circle" />
+          <LogoMark image size={40} rounded="circle" />
           <div className="min-w-0 flex-1 leading-tight">
             <div className="font-semibold">{brand.short} Assistant</div>
             <div className="text-xs text-[#b9c0bb]">{typing ? "typing…" : "On WhatsApp · owner access"}</div>

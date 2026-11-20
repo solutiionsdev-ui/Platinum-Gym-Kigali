@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import { CalendarSync, WebsiteTestData } from "@/components/crm/calendar-sync";
 import { DemoButton } from "@/components/crm/shell";
 import { Card, PageHead, button } from "@/components/crm/ui";
 import { brand } from "@/lib/brand";
-import { getClassTypes, getCoach, getPasses, getPlans, getPtPackages } from "@/lib/data";
+import { getClassTypes, getCoach, getPasses, getPlans, getPtPackages, getTrainers } from "@/lib/data";
 
 export const metadata: Metadata = { title: "Settings" };
 
@@ -16,6 +17,9 @@ export default function SettingsPage() {
       </PageHead>
 
       <div className="grid gap-5 lg:grid-cols-2">
+        <CalendarSync coaches={getTrainers().map((c) => ({ slug: c.slug, name: c.name.en }))} />
+        <WebsiteTestData />
+
         <Card title="Gym details" id="gym">
           <div className="grid gap-3 px-5 py-4 sm:grid-cols-2">
             <label className="flex flex-col gap-1 text-sm font-medium">Name<input className={field} defaultValue={brand.name} /></label>

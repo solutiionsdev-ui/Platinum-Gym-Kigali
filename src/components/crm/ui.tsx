@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { STATUS, type MemberStatus } from "@/lib/crm-data";
 
 export const button = {
-  primary: "inline-flex h-11 items-center justify-center gap-2 rounded-[10px] bg-ink px-4 font-semibold text-white transition hover:bg-black",
+  primary: "inline-flex h-11 items-center justify-center gap-2 rounded-[10px] bg-accent px-4 font-semibold text-ink transition hover:brightness-95",
   secondary:
     "inline-flex h-11 items-center justify-center gap-2 rounded-[10px] border border-border bg-surface px-4 font-semibold text-ink transition hover:border-bar-muted",
   small:
