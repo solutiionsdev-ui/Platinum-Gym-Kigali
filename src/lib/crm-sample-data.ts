@@ -3,6 +3,7 @@
  * Read through src/lib/crm-data.ts so the database (step 4) can replace this file.
  * Demo moment: Tuesday 24 November 2026, 16:40. Numbers match the approved CRM canvas.
  */
+import { brand } from "./brand";
 
 export const DEMO_DATE = "2026-11-24";
 
@@ -388,16 +389,16 @@ export const automations: Automation[] = [
     en: "You have 2 sessions left with {trainer}. Renew 10 sessions for $300? Reply YES.",
     ar: "بقيت لكم جلستان مع {trainer}. هل تريدون تجديد 10 جلسات بـ 300$؟ ردّوا بـ «نعم»." },
   { key: "welcome", name: "Welcome", when: "When they join", on: true, sentWeek: 6,
-    en: "Welcome to VOLT, {name}! Book classes here: {link}. Open daily from 6:00. Questions? Just reply.",
-    ar: "أهلاً بكم في VOLT يا {name}! احجزوا الحصص من هنا: {link}. مفتوح يومياً من الساعة 6:00. أي سؤال؟ ردّوا هنا." },
+    en: "Welcome to {gym}, {name}! Book classes here: {link}. Open daily from 6:00. Questions? Just reply.",
+    ar: "أهلاً بكم في {gym} يا {name}! احجزوا الحصص من هنا: {link}. مفتوح يومياً من الساعة 6:00. أي سؤال؟ ردّوا هنا." },
   { key: "birthday", name: "Birthday", when: "On the day", on: false, sentWeek: 0,
     en: "Happy birthday, {name}! Bring a friend for a free class this week, on us.",
     ar: "عيد ميلاد سعيد يا {name}! أحضروا صديقاً لحصة مجانية هذا الأسبوع، هدية منا." },
 ];
 
 export const previewValues = {
-  en: { name: "Rana", class: "Spin", coach: "Karim", day: "today", time: "20:15", room: "Studio 2", link: "volt.fit/m/7KQ2", trainer: "Rami", plan: "Monthly", amount: "$55", date: "Sat 28 Nov" },
-  ar: { name: "رنا", class: "سبين", coach: "كريم", day: "اليوم", time: "20:15", room: "استوديو 2", link: "volt.fit/m/7KQ2", trainer: "رامي", plan: "الشهري", amount: "55$", date: "السبت 28 تشرين الثاني" },
+  en: { name: "Rana", class: "Spin", coach: "Karim", day: "today", time: "20:15", room: "Studio 2", link: `${brand.shortLink}/m/7KQ2`, gym: brand.short, trainer: "Rami", plan: "Monthly", amount: "$55", date: "Sat 28 Nov" },
+  ar: { name: "رنا", class: "سبين", coach: "كريم", day: "اليوم", time: "20:15", room: "استوديو 2", link: `${brand.shortLink}/m/7KQ2`, gym: brand.shortAr, trainer: "رامي", plan: "الشهري", amount: "55$", date: "السبت 28 تشرين الثاني" },
 };
 
 export const recentMessages = [

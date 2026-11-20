@@ -7,6 +7,7 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
+import { LogoMark } from "@/components/logo";
 import { brand } from "@/lib/brand";
 import { useToast } from "./toast";
 
@@ -26,13 +27,7 @@ function isActive(pathname: string, href: string) {
 }
 
 function Mark({ size = 32 }: { size?: number }) {
-  return (
-    <span className="flex shrink-0 items-center justify-center rounded-[9px] bg-ink" style={{ width: size, height: size }}>
-      <svg width={size * 0.56} height={size * 0.56} viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-        <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z" />
-      </svg>
-    </span>
-  );
+  return <LogoMark size={size} tone="dark" />;
 }
 
 export function CrmShell({ children }: { children: ReactNode }) {
@@ -47,7 +42,7 @@ export function CrmShell({ children }: { children: ReactNode }) {
         <Link href="/admin" className="flex items-center gap-2.5 px-2.5 pb-[18px] pt-1">
           <Mark />
           <span className="leading-tight">
-            <span className="block font-bold tracking-[0.04em]">VOLT</span>
+            <span className="block font-bold tracking-[0.04em]">{brand.short}</span>
             <span className="block text-xs text-muted">Admin</span>
           </span>
         </Link>
@@ -95,7 +90,7 @@ export function CrmShell({ children }: { children: ReactNode }) {
       <header className="sticky top-0 z-30 flex items-center justify-between border-b border-border bg-surface px-4 py-2.5 lg:hidden">
         <Link href="/admin" className="flex items-center gap-2">
           <Mark size={30} />
-          <span className="font-bold tracking-[0.04em]">VOLT</span>
+          <span className="font-bold tracking-[0.04em]">{brand.short}</span>
         </Link>
         <span className="inline-flex size-[34px] items-center justify-center rounded-full bg-soft text-[13px] font-semibold" title={brand.owner.name}>
           {brand.owner.initials}

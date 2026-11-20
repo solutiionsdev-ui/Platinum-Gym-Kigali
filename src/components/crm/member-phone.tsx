@@ -3,6 +3,8 @@
 import clsx from "clsx";
 import { ChevronLeft } from "lucide-react";
 import { useState } from "react";
+import { LogoMark } from "@/components/logo";
+import { brand } from "@/lib/brand";
 
 type Lang = "en" | "ar";
 type Item =
@@ -15,8 +17,8 @@ const THREAD: Item[] = [
   {
     kind: "in", tag: "Automatic · booking confirmed", time: "16:52",
     text: {
-      en: "Hi Rana, you're booked: *Spin with Karim*, today at 20:15, Studio 2.\nCan't make it? Cancel here: volt.fit/m/7KQ2",
-      ar: "مرحباً رنا، تم الحجز: *سبين مع كريم*، اليوم الساعة 20:15، استوديو 2.\nللإلغاء: volt.fit/m/7KQ2",
+      en: `Hi Rana, you're booked: *Spin with Karim*, today at 20:15, Studio 2.\nCan't make it? Cancel here: ${brand.shortLink}/m/7KQ2`,
+      ar: `مرحباً رنا، تم الحجز: *سبين مع كريم*، اليوم الساعة 20:15، استوديو 2.\nللإلغاء: ${brand.shortLink}/m/7KQ2`,
     },
   },
   {
@@ -65,13 +67,9 @@ export function MemberPhone() {
       <div className="flex w-full max-w-[400px] flex-col overflow-hidden rounded-[22px] border border-border bg-[#ecede9] shadow-sm">
         <div className="flex items-center gap-3 border-b border-[#daddd8] bg-white px-3.5 py-3">
           <ChevronLeft aria-hidden className="size-5" />
-          <span className="flex size-10 items-center justify-center rounded-full bg-[#0b0b0c]">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-              <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z" />
-            </svg>
-          </span>
+          <LogoMark size={40} tone="dark" rounded="circle" />
           <div className="min-w-0 flex-1 leading-tight">
-            <div className="font-semibold">VOLT Fitness Club</div>
+            <div className="font-semibold">{brand.name}</div>
             <div className="text-xs text-muted">Business account · Rana&apos;s phone</div>
           </div>
         </div>

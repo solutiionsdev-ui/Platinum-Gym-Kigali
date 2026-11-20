@@ -3,7 +3,9 @@
 import clsx from "clsx";
 import { ChevronLeft, Mic, Play, SendHorizontal } from "lucide-react";
 import { Fragment, useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
+import { LogoMark } from "@/components/logo";
 import { dailySummary, respond, STARTERS, VOICE_NOTE, type ChatMessage, type Pending } from "@/lib/assistant-demo";
+import { brand } from "@/lib/brand";
 
 const WAVE = [6, 10, 16, 12, 20, 14, 8, 18, 22, 12, 9, 16, 20, 11, 7, 14, 19, 10, 6, 12, 17, 13, 8, 15, 11, 7, 10, 6];
 
@@ -74,13 +76,9 @@ export function AssistantChat({ starters = true }: { starters?: boolean }) {
       <div className="flex h-[720px] max-h-[calc(100vh-140px)] min-h-[520px] w-full max-w-[420px] flex-col overflow-hidden rounded-[22px] border border-border bg-[#ecede9] shadow-sm">
         <div className="flex items-center gap-3 bg-ink px-3.5 py-3 text-white">
           <ChevronLeft aria-hidden className="size-5" />
-          <span className="flex size-10 items-center justify-center rounded-full bg-accent">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111412" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-              <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z" />
-            </svg>
-          </span>
+          <LogoMark size={40} rounded="circle" />
           <div className="min-w-0 flex-1 leading-tight">
-            <div className="font-semibold">VOLT Assistant</div>
+            <div className="font-semibold">{brand.short} Assistant</div>
             <div className="text-xs text-[#b9c0bb]">{typing ? "typing…" : "On WhatsApp · owner access"}</div>
           </div>
         </div>

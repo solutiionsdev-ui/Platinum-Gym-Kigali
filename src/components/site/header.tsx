@@ -5,7 +5,7 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { BoltMark, Wordmark } from "@/components/logo";
+import { LogoMark, Wordmark } from "@/components/logo";
 import { Container, btn } from "@/components/ui";
 import { getDict, href, switchLangPath, type Lang } from "@/lib/i18n";
 
@@ -32,7 +32,7 @@ export function SiteHeader({ lang }: { lang: Lang }) {
     <header className="border-b border-line-soft">
       <Container className="flex items-center justify-between gap-6 py-3 sm:py-[18px]">
         <Link href={href(lang)} aria-label={t.common.homeLabel} className="flex items-center gap-2.5">
-          <BoltMark />
+          <LogoMark />
           <Wordmark />
         </Link>
 

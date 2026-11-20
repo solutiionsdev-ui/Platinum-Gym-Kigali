@@ -1,5 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import { LogoMark } from "@/components/logo";
+import { brand } from "@/lib/brand";
 
 type Screen = { href: string; title: string; click: string };
 
@@ -8,7 +10,7 @@ const SECTIONS: { title: string; sub: string; screens: Screen[] }[] = [
     title: "Website",
     sub: "What members and visitors see. English and Arabic, works on phones.",
     screens: [
-      { href: "/en", title: "Home", click: "Scroll the page; the 'Today at VOLT' strip shows spots left in tonight's classes." },
+      { href: "/en", title: "Home", click: "Scroll the page; the 'Today at …' strip shows spots left in tonight's classes." },
       { href: "/ar", title: "Home in Arabic", click: "Same site, right to left. The عربي / English button switches any page." },
       { href: "/en/classes", title: "Timetable and booking", click: "Pick Tuesday 20:15 Spin, type any name and number, confirm: you see the WhatsApp message the member gets." },
       { href: "/en/memberships", title: "Memberships and prices", click: "Press 'Request this plan' on 12 months." },
@@ -60,12 +62,8 @@ export default function GuidePage() {
     <main className="mx-auto flex max-w-[1080px] flex-col gap-10 px-4 py-10 sm:px-8">
       <header className="flex flex-col gap-2">
         <div className="flex items-center gap-2.5">
-          <span className="flex size-9 items-center justify-center rounded-[10px] bg-ink">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-              <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z" />
-            </svg>
-          </span>
-          <span className="font-bold tracking-[0.04em]">VOLT gym system</span>
+          <LogoMark size={36} tone="dark" />
+          <span className="font-bold tracking-[0.04em]">{brand.name} · demo system</span>
         </div>
         <h1 className="text-[32px] font-semibold tracking-[-0.01em]">Demo guide</h1>
         <p className="max-w-[680px] text-[17px] text-ink-2">

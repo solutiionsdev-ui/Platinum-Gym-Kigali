@@ -1,3 +1,5 @@
+import { brand } from "@/lib/brand";
+
 /** English website text. Arabic in ar.ts must have exactly the same keys. */
 export const en = {
   langName: "English",
@@ -32,7 +34,7 @@ export const en = {
     yes: "Yes",
     none: "None",
     back: "Back",
-    homeLabel: "VOLT Fitness Club, home",
+    homeLabel: `${brand.name}, home`,
   },
   levels: ["", "Easy", "Medium", "Intense"],
   intensity: (n: number) => `Intensity ${n} of 3`,
@@ -55,7 +57,7 @@ export const en = {
       "Group classes, open gym and personal coaching under one roof. Book your first class free: no card, no commitment, and the confirmation lands on your WhatsApp.",
     photoHero: "coach leading an evening Spin class",
     nextClass: "Next class",
-    todayAt: "Today at VOLT",
+    todayAt: `Today at ${brand.short}`,
     fullTimetable: "Full timetable",
     offerTitle: "Train your way",
     offerText: "One membership covers the gym floor, every group class and the recovery area. Add a coach when you want a plan.",
@@ -107,7 +109,7 @@ export const en = {
     namePlaceholder: "e.g. Rana Haddad",
     phone: "WhatsApp number",
     phonePlaceholder: "+961 3 123 456",
-    firstTime: "This is my first class at VOLT (free trial)",
+    firstTime: `This is my first class at ${brand.short} (free trial)`,
     confirm: "Confirm booking",
     joinWaitlist: "Join waitlist",
     formNote: "We send the confirmation and a reminder to this number on WhatsApp. No account needed.",
@@ -200,7 +202,7 @@ export const en = {
     done: "Thanks! We got your request.",
     doneText: "This is the WhatsApp message you get right now:",
     waTrial: (name: string) =>
-      `Hi ${name}, thanks for booking a free trial at VOLT. Sara from the front desk will message you shortly to pick a class that fits your level and schedule.`,
+      `Hi ${name}, thanks for booking a free trial at ${brand.short}. Sara from the front desk will message you shortly to pick a class that fits your level and schedule.`,
     waConsult: (name: string, trainer: string) =>
       `Hi ${name}, thanks for booking a free consultation${trainer ? " with " + trainer : ""}. We'll send you a time on WhatsApp shortly.`,
     another: "Send another request",
@@ -222,9 +224,9 @@ export const en = {
 
   about: {
     metaTitle: "About",
-    title: "About VOLT",
+    title: `About ${brand.short}`,
     paragraphs: [
-      "VOLT is a neighbourhood gym in Achrafieh for people who want to get stronger without the fuss. Small classes, coaches who know your name, and a timetable that fits around work.",
+      `${brand.name} is a neighbourhood gym in Achrafieh for people who want to get stronger without the fuss. Small classes, coaches who know your name, and a timetable that fits around work.`,
       "We keep things simple: one membership covers the gym floor, every group class and the recovery area. Booking takes a minute and everything else happens on WhatsApp.",
     ],
     values: [
@@ -253,7 +255,7 @@ export const en = {
   },
 
   footer: {
-    rights: "© 2026 VOLT Fitness Club",
+    rights: `© 2026 ${brand.name}`,
     demo: "Demo website by solutiions.dev",
     faq: "FAQ",
   },

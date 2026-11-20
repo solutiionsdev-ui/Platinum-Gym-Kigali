@@ -40,7 +40,7 @@ export function isPast(s: Session) {
 export const spotsLeft = (s: Session) => Math.max(s.cap - s.booked, 0);
 export const isFull = (s: Session) => spotsLeft(s) === 0;
 
-/** Classes still to come today, for the "Today at VOLT" strip. */
+/** Classes still to come today, for the "Today at …" strip. */
 export const getUpcomingToday = () => getSessionsForDay(DEMO_TODAY).filter((s) => !isPast(s));
 
 /** The next class today that still has room, for the hero card. */

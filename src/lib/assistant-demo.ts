@@ -154,7 +154,7 @@ function confirmBooking(member: CrmMember, s: Session, waitlist = false): BotTur
     replies: [
       {
         text: `Done. *${member.name}* is booked into ${type.name.en} with ${coach.first.en}, ${s.day === demoToday ? "today" : dayName[s.day]} ${s.time}, ${room}. Confirmation sent, reminder at ${remind}.`,
-        quote: { to: first(member.name), text: `Hi ${first(member.name)}, you're booked: ${type.name.en} with ${coach.first.en}, ${s.day === demoToday ? "today" : dayName[s.day]} at ${s.time}, ${room}. Can't make it? Cancel here: volt.fit/m/7KQ2` },
+        quote: { to: first(member.name), text: `Hi ${first(member.name)}, you're booked: ${type.name.en} with ${coach.first.en}, ${s.day === demoToday ? "today" : dayName[s.day]} at ${s.time}, ${room}. Can't make it? Cancel here: ${brand.shortLink}/m/7KQ2` },
       },
     ],
     buttons: [],
@@ -228,7 +228,7 @@ function cancelClassFlow(text: string): BotTurn | null {
   const s = getSessionsForDay(demoToday).find((x) => !isPast(x) && (!typeSlug || x.type === typeSlug) && (hour === null || Number(x.time.split(":")[0]) === hour));
   if (!s) return { replies: [{ text: "Which class? For example \"cancel tonight's 20:30 yoga\"." }], buttons: [], pending: null };
   const type = getClassType(s.type)!;
-  const msg = `Sorry, ${type.name.en} with ${getCoach(s.coach)!.first.en} today at ${s.time} is cancelled. Pick another class here: volt.fit/m/…`;
+  const msg = `Sorry, ${type.name.en} with ${getCoach(s.coach)!.first.en} today at ${s.time} is cancelled. Pick another class here: ${brand.shortLink}/m/…`;
   return {
     replies: [{ text: `Cancel ${sessionLabel(s)}? *${s.booked} members* are booked and each gets this message:`, quote: { to: `${s.booked} members`, text: msg } }],
     buttons: [`Yes, cancel and tell ${s.booked}`, "No"],
@@ -303,7 +303,7 @@ export function respond(input: string, pending: Pending): BotTurn {
           replies: [
             {
               text: `Recorded: ${usd(pending.amount)} ${pending.method} from ${member.name} for ${pending.what}. Logged as confirmed by ${brand.owner.first}, just now. Receipt sent on WhatsApp.`,
-              quote: { to: first(member.name), text: `Thanks ${first(member.name)}! We received ${usd(pending.amount)} for ${pending.what}. This is your receipt. See you at VOLT.` },
+              quote: { to: first(member.name), text: `Thanks ${first(member.name)}! We received ${usd(pending.amount)} for ${pending.what}. This is your receipt. See you at ${brand.short}.` },
             },
           ],
           buttons: [],
@@ -359,7 +359,7 @@ export function respond(input: string, pending: Pending): BotTurn {
   // Not seen
   if (/(haven'?t come|havent come|not seen|missing|disappeared|2 weeks|two weeks|ma ejo|ma 2ejo|ما إجو|غايبين)/.test(t)) {
     const away = getNotSeen(14);
-    const msg = "Hi {name}, it's been two weeks! Your spot is waiting. Here's this week's timetable: volt.fit/classes";
+    const msg = `Hi {name}, it's been two weeks! Your spot is waiting. Here's this week's timetable: ${brand.shortLink}/classes`;
     return {
       replies: [
         {

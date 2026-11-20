@@ -1,4 +1,5 @@
 import type { Dict } from "./en";
+import { brand } from "@/lib/brand";
 
 /** Arabic website text. Same keys as en.ts. Plural "you" so it reads right for everyone. */
 export const ar: Dict = {
@@ -34,7 +35,7 @@ export const ar: Dict = {
     yes: "نعم",
     none: "لا",
     back: "رجوع",
-    homeLabel: "نادي VOLT، الصفحة الرئيسية",
+    homeLabel: `${brand.nameAr}، الصفحة الرئيسية`,
   },
   levels: ["", "سهل", "متوسط", "مكثّف"],
   intensity: (n: number) => `الشدة ${n} من 3`,
@@ -58,7 +59,7 @@ export const ar: Dict = {
       "حصص جماعية، صالة مفتوحة وتدريب شخصي تحت سقف واحد. احجزوا حصتكم الأولى مجاناً: بلا بطاقة ولا التزام، ويصلكم التأكيد على واتساب.",
     photoHero: "مدرّب يقود حصة سبين مسائية",
     nextClass: "الحصة التالية",
-    todayAt: "اليوم في VOLT",
+    todayAt: `اليوم في ${brand.shortAr}`,
     fullTimetable: "الجدول الكامل",
     offerTitle: "تدرّب على طريقتك",
     offerText: "اشتراك واحد يشمل صالة الأوزان وكل الحصص الجماعية ومنطقة الاستشفاء. أضيفوا مدرّباً عندما تريدون خطة.",
@@ -110,7 +111,7 @@ export const ar: Dict = {
     namePlaceholder: "مثال: رنا حداد",
     phone: "رقم واتساب",
     phonePlaceholder: "+961 3 123 456",
-    firstTime: "هذه أول حصة لي في VOLT (تجربة مجانية)",
+    firstTime: `هذه أول حصة لي في ${brand.shortAr} (تجربة مجانية)`,
     confirm: "تأكيد الحجز",
     joinWaitlist: "انضم للانتظار",
     formNote: "نرسل التأكيد وتذكيراً إلى هذا الرقم على واتساب. لا حاجة لحساب.",
@@ -203,7 +204,7 @@ export const ar: Dict = {
     done: "شكراً! وصلنا طلبكم.",
     doneText: "هذه رسالة واتساب التي تصلكم الآن:",
     waTrial: (name: string) =>
-      `مرحباً ${name}، شكراً لحجز حصة تجريبية مجانية في VOLT. ستراسلكم سارة من الاستقبال قريباً لاختيار حصة تناسب مستواكم ووقتكم.`,
+      `مرحباً ${name}، شكراً لحجز حصة تجريبية مجانية في ${brand.shortAr}. ستراسلكم سارة من الاستقبال قريباً لاختيار حصة تناسب مستواكم ووقتكم.`,
     waConsult: (name: string, trainer: string) =>
       `مرحباً ${name}، شكراً لحجز استشارة مجانية${trainer ? " مع " + trainer : ""}. سنرسل لكم موعداً على واتساب قريباً.`,
     another: "إرسال طلب آخر",
@@ -225,9 +226,9 @@ export const ar: Dict = {
 
   about: {
     metaTitle: "من نحن",
-    title: "عن VOLT",
+    title: `عن ${brand.shortAr}`,
     paragraphs: [
-      "VOLT نادٍ رياضي في الأشرفية لمن يريد أن يصبح أقوى من دون تعقيد. حصص صغيرة، ومدرّبون يعرفونكم بالاسم، وجدول يناسب أوقات العمل.",
+      `${brand.shortAr} نادٍ رياضي في الأشرفية لمن يريد أن يصبح أقوى من دون تعقيد. حصص صغيرة، ومدرّبون يعرفونكم بالاسم، وجدول يناسب أوقات العمل.`,
       "نبقي الأمور بسيطة: اشتراك واحد يشمل صالة الأوزان وكل الحصص الجماعية ومنطقة الاستشفاء. الحجز يأخذ دقيقة، وكل ما تبقّى يتمّ على واتساب.",
     ],
     values: [
@@ -256,7 +257,7 @@ export const ar: Dict = {
   },
 
   footer: {
-    rights: "© 2026 نادي VOLT للياقة",
+    rights: `© 2026 ${brand.nameAr}`,
     demo: "موقع تجريبي من solutiions.dev",
     faq: "أسئلة شائعة",
   },
