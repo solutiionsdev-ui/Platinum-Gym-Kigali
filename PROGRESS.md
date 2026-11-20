@@ -82,7 +82,7 @@ Open http://localhost:1122/admin (English only, separate look from the website).
 - **Demo guide** (`/guide`): every screen with what to click, plus a 10-minute script for showing a gym owner. Linked from the CRM sidebar.
 
 ## Rename: Platinum Gym · 20 Nov 2026
-- Gym is now **Platinum Gym** (Arabic: بلاتينوم جيم), owner **Gael Abou Samra**. Everything comes from `src/lib/brand.ts`: name, short name, logo letter, wordmark, owner, short link (`platinumgym.lb`, a placeholder).
+- Gym is now **Platinum Gym** (Arabic: بلاتينوم جيم), owner **Gael**. Everything comes from `src/lib/brand.ts`: name, short name, logo letter, wordmark, owner, short link (`platinumgym.lb`, a placeholder).
 - The VOLT lightning bolt was replaced by a "P" mark (`LogoMark` in `src/components/logo.tsx`), also in the browser tab icon.
 - Colors are unchanged (lime accent). The design canvas on claude.ai still shows VOLT; it stays as the layout reference.
 - Still sample data: address, hours, prices, coaches, members.

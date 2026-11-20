@@ -13,7 +13,7 @@ export const brand = {
   monogram: "P",
   wordmark: "PLATINUM",
   /** The gym owner: shown in the CRM and addressed by the WhatsApp assistant. */
-  owner: { name: "Gael Abou Samra", first: "Gael", initials: "GA" },
+  owner: { name: "Gael", first: "Gael", initials: "G" },
   /** Website accent. The CRM only uses it in the logo mark. */
   accent: "#C8F135",
   phone: "+961 1 234 567",

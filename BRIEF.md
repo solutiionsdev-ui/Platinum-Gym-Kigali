@@ -9,7 +9,7 @@ Built by **solutiions.dev** as a **demo system to sell to gyms** (Lebanon first)
 
 Design canvas (approved screens, 19 Nov 2026): https://claude.ai/artifact/92Zr4x9P5eiCF9FsnxHEEF (copy in `/design`).
 
-Demo brand: **Platinum Gym**, owner **Gael Abou Samra** (changed from the made-up VOLT Fitness Club on 20 Nov 2026). Address, hours, prices, coaches and members are still sample data until the gym sends its real details. The name, logo, colors, address and contact details live in **one file** (`src/lib/brand.ts`) so the demo can be rebranded for each gym we pitch.
+Demo brand: **Platinum Gym**, owner **Gael** (changed from the made-up VOLT Fitness Club on 20 Nov 2026). Address, hours, prices, coaches and members are still sample data until the gym sends its real details. The name, logo, colors, address and contact details live in **one file** (`src/lib/brand.ts`) so the demo can be rebranded for each gym we pitch.
 
 ---
 
