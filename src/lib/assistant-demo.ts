@@ -34,12 +34,14 @@ export type Pending =
 export type BotTurn = { replies: { text: string; quote?: { to: string; text: string } }[]; buttons: string[]; pending: Pending };
 
 const CLASS_WORDS: Record<string, string[]> = {
-  spin: ["spin", "spinning", "bike"],
-  hiit: ["hiit"],
-  strength: ["strength", "weights"],
+  akantu: ["akantu"],
+  abs: ["abs", "core"],
+  traditional: ["traditional", "strength", "weights"],
   boxing: ["boxing", "box"],
-  yoga: ["yoga"],
-  pilates: ["pilates"],
+  steps: ["step", "steps"],
+  aerobics: ["aerobics", "aerobic"],
+  mobility: ["mobility", "stretch"],
+  bootcamp: ["bootcamp"],
 };
 
 const YES = /^(yes|yeah|yep|ok|okay|sure|send|go|do it|confirm|yego|ego)\b/i;
@@ -86,12 +88,21 @@ function findHour(text: string): number | null {
   return h;
 }
 
-/** The member part of "book Sandrine Uwimana into tonight's spin". */
+/** Each member's personal page link. Sandrine (m-001) has the sample page; others get a made-up code. */
+function memberLink(id: string) {
+  if (id === "m-001") return `${brand.shortLink}/m/7KQ2`;
+  const n = Number(id.replace(/\D/g, "")) || 0;
+  const chars = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
+  const code = [0, 1, 2, 3].map((k) => chars[(n * 7 + k * 13 + k * k * 5) % chars.length]).join("");
+  return `${brand.shortLink}/m/${code}`;
+}
+
+/** The member part of "book Sandrine Uwimana into tonight's abs". */
 function nameFromBooking(text: string) {
   const cleaned = text
     .replace(/^(please\s+)?(book|put|add|shyira)\s+/i, "")
     .replace(/\s+(in|into|for|to|muri|mu)\s+.*$/i, "")
-    .replace(/\s+(spin|hiit|strength|boxing|yoga|pilates)\b.*$/i, "");
+    .replace(/\s+(akantu|abs|core|traditional|strength|boxing|steps?|aerobics|mobility|bootcamp)\b.*$/i, "");
   return cleaned.trim();
 }
 
@@ -154,7 +165,7 @@ function confirmBooking(member: CrmMember, s: Session, waitlist = false): BotTur
     replies: [
       {
         text: `Done. *${member.name}* is booked into ${type.name.en} with ${coach.first.en}, ${s.day === demoToday ? "today" : dayName[s.day]} ${s.time}, ${room}. Confirmation sent, reminder at ${remind}.`,
-        quote: { to: first(member.name), text: `Hi ${first(member.name)}, you're booked: ${type.name.en} with ${coach.first.en}, ${s.day === demoToday ? "today" : dayName[s.day]} at ${s.time}, ${room}. Can't make it? Cancel here: ${brand.shortLink}/m/7KQ2` },
+        quote: { to: first(member.name), text: `Hi ${first(member.name)}, you're booked: ${type.name.en} with ${coach.first.en}, ${s.day === demoToday ? "today" : dayName[s.day]} at ${s.time}, ${room}. Can't make it? Cancel here: ${memberLink(member.id)}` },
       },
     ],
     buttons: [],
@@ -168,7 +179,7 @@ function bookFlow(text: string): BotTurn | null {
   if (!isBooking) return null;
   const name = nameFromBooking(text);
   if (!typeSlug) {
-    return { replies: [{ text: `Which class should I book ${name || "them"} into? For example "book ${name || "Sandrine"} into tonight's spin".` }], buttons: [], pending: null };
+    return { replies: [{ text: `Which class should I book ${name || "them"} into? For example "book ${name || "Sandrine"} into tonight's abs".` }], buttons: [], pending: null };
   }
   const matches = matchMembers(name);
   if (matches.length === 0) {
@@ -227,7 +238,7 @@ function cancelClassFlow(text: string): BotTurn | null {
   const typeSlug = findClassType(text);
   const hour = findHour(text);
   const s = getSessionsForDay(demoToday).find((x) => !isPast(x) && (!typeSlug || x.type === typeSlug) && (hour === null || Number(x.time.split(":")[0]) === hour));
-  if (!s) return { replies: [{ text: "Which class? For example \"cancel tonight's 20:30 yoga\"." }], buttons: [], pending: null };
+  if (!s) return { replies: [{ text: "Which class? For example \"cancel tonight's 20:00 boxing\"." }], buttons: [], pending: null };
   const type = getClassType(s.type)!;
   const msg = `Sorry, ${type.name.en} with ${getCoach(s.coach)!.first.en} today at ${s.time} is cancelled. Pick another class here: ${brand.shortLink}/m/…`;
   return {
@@ -251,23 +262,23 @@ export function dailySummary() {
     `• ${overdue.length} payments overdue, ${rwf(overdue.reduce((s, m) => s + m.owes, 0))}\n` +
     `• ${expiring.length} memberships end this week\n` +
     `• ${leads.length} new trial requests from the website\n` +
-    `• On shift: Clarisse at the desk, Jean-Paul on the floor`
+    `• On shift: Clarisse at the desk, Emmanuel on the floor`
   );
 }
 
 export const STARTERS = [
   "Who hasn't paid this month?",
   "How full is tonight?",
-  "Book Sandrine Uwimana into tonight's 7pm spin",
+  "Book Sandrine Uwimana into tonight's 6:30pm abs",
   "Who hasn't come in 2 weeks?",
-  "Fabrice Murenzi paid 60,000 MoMo",
-  "How is Eric doing this month?",
+  "Fabrice Murenzi paid 120,000 MoMo",
+  "How is Emmanuel doing this month?",
   "Collected this month?",
-  "Cancel tonight's 20:30 yoga",
-  "Book Kevin into spin",
+  "Cancel tonight's 20:00 boxing",
+  "Book Kevin into boxing",
 ];
 
-export const VOICE_NOTE = { seconds: 5, transcript: "Shyira Sandrine Uwimana muri spin ya 7pm uyu munsi", meaning: "Put Sandrine Uwimana in today's 7pm spin (Kinyarwanda and English)" };
+export const VOICE_NOTE = { seconds: 5, transcript: "Shyira Sandrine Uwimana muri abs ya 6:30pm uyu munsi", meaning: "Put Sandrine Uwimana in today's 6:30pm abs class (Kinyarwanda and English)" };
 
 /** Works out the assistant's answer to one owner message. */
 export function respond(input: string, pending: Pending): BotTurn {
@@ -279,7 +290,7 @@ export function respond(input: string, pending: Pending): BotTurn {
     if (pending.type === "pick_member") {
       const chosen = getMembers().find((m) => pending.candidates.includes(m.id) && m.name.toLowerCase() === t);
       if (chosen) {
-        const typeSlug = findClassType(pending.classText) ?? "spin";
+        const typeSlug = findClassType(pending.classText) ?? "abs";
         return offerBooking(chosen, typeSlug, findHour(pending.classText));
       }
     }
@@ -343,17 +354,21 @@ export function respond(input: string, pending: Pending): BotTurn {
   // Tonight / classes
   if (/(tonight|how full|full|classes today|class today)/.test(t)) {
     const later = getTodayClasses().filter((c) => c.state !== "done");
+    const full = later.find((c) => c.booked >= c.cap && c.waiting > 0);
+    const alt = full && later.find((c) => c.type === full.type && c.time > full.time && c.booked < c.cap);
     return {
       replies: [
         {
           text:
             `*Still to come today:*\n` +
             later.map((c) => `• ${c.time} ${c.name} with ${c.coachName}: ${c.booked}/${c.cap}${c.booked >= c.cap ? ` FULL, ${c.waiting} waiting` : ""}`).join("\n") +
-            `\n\nWant me to offer the 19:00 Spin waitlist the 20:15 class?`,
+            (full && alt ? `\n\nWant me to offer the ${full.time} ${full.name} waitlist the ${alt.time} class?` : ""),
         },
       ],
-      buttons: ["Yes, offer 20:15", "Not now"],
-      pending: { type: "broadcast", label: "The 5 people waiting for 19:00 Spin were offered 20:15. I'll book whoever says yes.", count: 5 },
+      buttons: full && alt ? [`Yes, offer ${alt.time}`, "Not now"] : [],
+      pending: full && alt
+        ? { type: "broadcast", label: `The ${full.waiting} people waiting for ${full.time} ${full.name} were offered ${alt.time}. I'll book whoever says yes.`, count: full.waiting }
+        : null,
     };
   }
 
@@ -473,7 +488,7 @@ export function respond(input: string, pending: Pending): BotTurn {
     replies: [
       {
         text:
-          "In this demo I understand questions like:\n• Who hasn't paid this month?\n• How full is tonight?\n• Book Sandrine Uwimana into tonight's spin\n• Fabrice Murenzi paid 60,000 MoMo\n• Who hasn't come in 2 weeks?\n• How is Eric doing?\n\nThe real assistant (step 5) understands anything you write or say.",
+          "In this demo I understand questions like:\n• Who hasn't paid this month?\n• How full is tonight?\n• Book Sandrine Uwimana into tonight's abs class\n• Fabrice Murenzi paid 120,000 MoMo\n• Who hasn't come in 2 weeks?\n• How is Emmanuel doing?\n\nThe real assistant (step 5) understands anything you write or say.",
       },
     ],
     buttons: [],

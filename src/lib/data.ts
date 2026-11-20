@@ -5,7 +5,7 @@
 import { money } from "./brand";
 import type { Lang } from "./i18n";
 import {
-  classTypes, coaches, compareRows, demoMembers, DEMO_NOW, DEMO_TODAY, facilities, faqs, passes, plans, ptPackages, rooms, sessions, WEEK_DATES,
+  benefits, classTypes, coaches, compareRows, demoMembers, DEMO_NOW, DEMO_TODAY, facilities, faqs, passes, plans, ptPackages, rooms, sessions, WEEK_DATES,
 } from "./sample-data";
 import type { RoomKey, Session } from "./types";
 
@@ -22,6 +22,7 @@ export const getRoomName = (room: RoomKey, lang: Lang) => rooms[room][lang];
 export const getPlans = () => plans;
 export const getPasses = () => passes;
 export const getCompareRows = () => compareRows;
+export const getBenefits = () => benefits;
 export const getPtPackages = () => ptPackages;
 export const getFaqs = () => faqs;
 export const getFacilities = () => facilities;

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Arrow, Container, LevelBars, PhotoPlaceholder, btn } from "@/components/ui";
+import { Arrow, Container, LevelBars, Photo, PhotoPlaceholder, btn } from "@/components/ui";
 import { getClassType, getClassTypes, getCoach, getRoomName, getSessionsForType, isFull, isPast, spotsLeft, weekDates } from "@/lib/data";
 import { getDict, href, isLang, languages, type Lang } from "@/lib/i18n";
 
@@ -36,7 +36,9 @@ export default async function ClassPage({ params }: { params: Params }) {
       <div className="mt-4 flex flex-wrap gap-12">
         <div className="flex min-w-0 flex-[1_1_480px] flex-col gap-6">
           <h1 className="font-display display-page uppercase">{c.name[lang]}</h1>
-          <p className="max-w-[560px] text-[19px] leading-relaxed text-ink-2">{c.text[lang]}</p>
+          <p className="max-w-[560px] text-[21px] font-medium leading-snug">{c.oneLine[lang]}</p>
+          <p className="max-w-[560px] text-[17px] leading-relaxed text-ink-2">{c.text[lang]}</p>
+          {c.aka && <p className="text-sm text-muted">Called &ldquo;{c.aka[lang]}&rdquo; on the old timetable.</p>}
           <dl className="grid max-w-[560px] grid-cols-3 gap-4 border-y border-line py-5">
             <div>
               <dt className="text-sm text-muted">{t.classPage.duration}</dt>
@@ -44,7 +46,7 @@ export default async function ClassPage({ params }: { params: Params }) {
             </div>
             <div>
               <dt className="text-sm text-muted">{t.classPage.level}</dt>
-              <dd className="mt-1 flex items-center gap-2 text-lg font-semibold">
+              <dd className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-lg font-semibold">
                 <LevelBars level={c.level} label={t.intensity(c.level)} /> {t.levels[c.level]}
               </dd>
             </div>
@@ -67,7 +69,11 @@ export default async function ClassPage({ params }: { params: Params }) {
             </div>
           </div>
         </div>
-        <PhotoPlaceholder label={`${t.common.photo}: ${c.photo[lang]}`} className="min-h-[340px] flex-[1_1_420px] rounded-3xl" />
+        {c.image ? (
+          <Photo k={c.image} alt={c.photo[lang]} className="min-h-[340px] flex-[1_1_420px] rounded-3xl border border-line" />
+        ) : (
+          <PhotoPlaceholder label={`${t.common.photo}: ${c.photo[lang]}`} className="min-h-[340px] flex-[1_1_420px] rounded-3xl" />
+        )}
       </div>
 
       <h2 className="mb-4 mt-14 text-2xl font-semibold">{t.classPage.thisWeek}</h2>
@@ -82,7 +88,7 @@ export default async function ClassPage({ params }: { params: Params }) {
                 {t.daysLong[s.day]} {weekDates[s.day]}
               </div>
               <div className="w-[72px] font-mono text-lg">{s.time}</div>
-              <div className="min-w-0 flex-1 text-muted">
+              <div className="min-w-[200px] flex-1 text-muted">
                 {t.common.with} {coach?.first[lang]} · {getRoomName(s.room, lang)}
               </div>
               <div className={isFull(s) ? "text-muted" : left <= 3 ? "text-warn" : "text-ink-2"}>

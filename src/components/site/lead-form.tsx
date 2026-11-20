@@ -3,10 +3,11 @@
 import clsx from "clsx";
 import { useState, type FormEvent } from "react";
 import { WhatsAppBubble } from "@/components/ui";
-import { getClassTypes, getPlans, getTrainers } from "@/lib/data";
+import { getClassTypes, getCoach, getPlans, getTrainers } from "@/lib/data";
+import { getProgram, getPrograms } from "@/lib/programs";
 import { getDict, type Lang } from "@/lib/i18n";
 
-type Mode = "trial" | "consult" | "plan";
+type Mode = "trial" | "consult" | "plan" | "program";
 
 /**
  * Free trial, PT consultation and "request this plan" form.
@@ -33,14 +34,16 @@ export function LeadForm({
   const [done, setDone] = useState(false);
 
   const options =
-    mode === "plan"
+    mode === "program"
+      ? getPrograms().map((p) => ({ value: p.slug, label: `${p.name} (${p.audience === "everyone" ? "everyone" : p.audience})` }))
+      : mode === "plan"
       ? getPlans().map((p) => ({ value: p.id, label: p.name[lang] }))
       : mode === "consult"
         ? [{ value: "", label: t.trial.anyTrainer }, ...getTrainers().map((c) => ({ value: c.slug, label: c.name[lang] }))]
         : [{ value: "", label: t.trial.notSure }, ...getClassTypes().map((c) => ({ value: c.slug, label: c.name[lang] }))];
-  const selectLabel = mode === "plan" ? t.trial.planPick : mode === "consult" ? t.trial.trainerPick : t.trial.interest;
-  const submitLabel = mode === "plan" ? t.trial.submitPlan : mode === "consult" ? t.trial.submitConsult : t.trial.submit;
-  const value = mode === "plan" && !choice ? options[options.length - 1].value : choice;
+  const selectLabel = mode === "program" ? t.trial.programPick : mode === "plan" ? t.trial.planPick : mode === "consult" ? t.trial.trainerPick : t.trial.interest;
+  const submitLabel = mode === "program" ? t.trial.submitProgram : mode === "plan" ? t.trial.submitPlan : mode === "consult" ? t.trial.submitConsult : t.trial.submit;
+  const value = (mode === "plan" || mode === "program") && !choice ? options[0].value : choice;
 
   function submit(e: FormEvent) {
     e.preventDefault();
@@ -53,8 +56,11 @@ export function LeadForm({
   }
 
   const first = name.trim().split(/\s+/)[0] || "";
+  const chosenProgram = mode === "program" ? getProgram(value) : undefined;
   const message =
-    mode === "plan"
+    chosenProgram
+      ? t.trial.waProgram(first, chosenProgram.name, getCoach(chosenProgram.coach)?.first.en ?? "Your coach")
+      : mode === "plan"
       ? t.trial.waPlan(first, options.find((o) => o.value === value)?.label ?? "")
       : mode === "consult"
         ? t.trial.waConsult(first, options.find((o) => o.value === value && value)?.label ?? "")

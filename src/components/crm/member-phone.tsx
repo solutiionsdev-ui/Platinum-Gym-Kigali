@@ -11,24 +11,24 @@ const THREAD: Item[] = [
   { kind: "day", label: "Today" },
   {
     kind: "in", tag: "Automatic · booking confirmed", time: "16:52",
-    text: `Hi Sandrine, you're booked: *Spin with Eric*, today at 20:15, Studio 2.\nCan't make it? Cancel here: ${brand.shortLink}/m/7KQ2`,
+    text: `Hi Sandrine, you're booked: *Abs & Core with Mido*, today at 19:30, Studio.\nCan't make it? Cancel here: ${brand.shortLink}/m/7KQ2`,
   },
   {
-    kind: "in", tag: "Automatic · 2 hours before class", time: "18:15",
-    text: "Spin with Eric starts at *20:15* in Studio 2. Bring water and a towel. See you there.",
+    kind: "in", tag: "Automatic · 2 hours before class", time: "17:30",
+    text: "Abs & Core with Mido starts at *19:30* in the Studio. Bring water and a towel. See you there.",
     buttons: ["I'm coming", "Cancel my spot"],
   },
-  { kind: "out", time: "18:16", text: "I'm coming" },
+  { kind: "out", time: "17:31", text: "I'm coming" },
   {
     kind: "in", tag: "Automatic · after class", time: "21:10",
-    text: "How was Spin with Eric tonight? Tap a score from 1 to 5.",
+    text: "How was Abs & Core with Mido tonight? Tap a score from 1 to 5.",
     buttons: ["1", "2", "3", "4", "5"],
   },
-  { kind: "day", label: "Friday 27 November" },
+  { kind: "day", label: "Monday 30 November" },
   {
-    kind: "in", tag: "Automatic · PT package running low", time: "08:10",
-    text: "Great session with Patrick this morning. You have *2 sessions left* in your package. Renew 10 sessions for 210,000 RWF?",
-    buttons: ["Yes, renew", "Later"],
+    kind: "in", tag: "Automatic · program check-in", time: "09:00",
+    text: "Good morning Sandrine! Week 6 of *Tone & Shape* starts today.\nMon: legs & glutes · Tue: Aerobics · Thu: arms & back · Fri: legs & glutes · Sat: Step Aerobics.\nReply DONE after each session.",
+    buttons: ["Show me the moves", "Talk to my coach"],
   },
 ];
 
@@ -93,7 +93,7 @@ export function MemberPhone() {
       <div className="flex min-w-0 flex-[1_1_320px] flex-col gap-4 rounded-[14px] border border-border bg-surface p-5">
         <h2 className="text-base font-semibold">Sandrine&apos;s phone</h2>
         <p className="text-sm text-ink-2">
-          Everything here was sent automatically: the booking confirmation the moment the assistant booked the class, the reminder 2 hours before, a rating after class, and the PT renewal offer when the package dropped to 2 sessions.
+          Everything here was sent automatically: the booking confirmation the moment the assistant booked the class, the reminder 2 hours before, a rating after class, and the Monday check-in for the training program she follows.
         </p>
         <p className="text-[13px] text-muted">Ratings feed the coach performance on the Team page. Taps on &ldquo;Cancel my spot&rdquo; free the place for the waitlist automatically.</p>
       </div>

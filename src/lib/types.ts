@@ -1,4 +1,5 @@
 import type { Text } from "./i18n";
+import type { PhotoKey } from "./photos";
 
 export type Level = 1 | 2 | 3;
 export type RoomKey = "studio1" | "studio2" | "floor" | "turf";
@@ -10,7 +11,12 @@ export type ClassType = {
   level: Level;
   perWeek: number;
   text: Text;
+  /** One plain sentence: what the class is, for people new to gyms. */
+  oneLine: Text;
+  /** What the gym's current website calls it, when different. */
+  aka?: Text;
   photo: Text;
+  image?: PhotoKey;
   coaches: string[];
 };
 
@@ -23,6 +29,7 @@ export type Coach = {
   specialties: Text[];
   /** Offers one-to-one personal training. */
   trainer: boolean;
+  image?: PhotoKey;
 };
 
 export type Session = {
@@ -48,11 +55,12 @@ export type Plan = {
   best: boolean;
 };
 
+/** price 0 = "ask us" */
 export type Pass = { name: Text; note: Text; price: number };
 export type CompareRow = { label: Text; values: [Text, Text, Text, Text] };
 export type PtPackage = { name: Text; price: number; per: Text; note: Text };
 export type Faq = { q: Text; a: Text };
-export type Facility = { title: Text; text: Text; photo: Text };
+export type Facility = { title: Text; text: Text; photo: Text; image?: PhotoKey };
 
 export type MemberBooking = {
   id: string;

@@ -1,16 +1,31 @@
+/* eslint-disable @next/next/no-img-element */
 import clsx from "clsx";
 import { brand } from "@/lib/brand";
 
 /**
- * The gym's logo mark: its first letter in a colored square.
- * `tone` picks the colors: accent square with dark letter (website), or dark square with accent letter (CRM).
+ * The gym's logo mark. `image` shows the gym's own logo; otherwise its first letter in a colored square
+ * (accent square with dark letter on the website, dark square with accent letter in the CRM).
  */
-export function LogoMark({ size = 36, tone = "accent", rounded = "square", className }: {
+export function LogoMark({ size = 36, tone = "accent", rounded = "square", image = false, className }: {
   size?: number;
   tone?: "accent" | "dark";
   rounded?: "square" | "circle";
+  image?: boolean;
   className?: string;
 }) {
+  if (image && brand.logoUrl) {
+    return (
+      <img
+        src={brand.logoUrl}
+        alt=""
+        aria-hidden
+        width={size}
+        height={size}
+        className={clsx("shrink-0 object-contain", rounded === "circle" ? "rounded-full" : "rounded-[22%]", className)}
+        style={{ width: size, height: size }}
+      />
+    );
+  }
   return (
     <span
       aria-hidden
@@ -29,9 +44,8 @@ export function LogoMark({ size = 36, tone = "accent", rounded = "square", class
 }
 
 export function Wordmark({ className }: { className?: string }) {
-  // The wordmark stays in Latin letters in both languages, like the logo would.
   return (
-    <span dir="ltr" className={clsx("font-[family-name:var(--font-anton)] text-[26px] tracking-[0.06em]", className)}>
+    <span dir="ltr" className={clsx("font-[family-name:var(--font-anton)] text-[24px] tracking-[0.06em]", className)}>
       {brand.wordmark}
     </span>
   );

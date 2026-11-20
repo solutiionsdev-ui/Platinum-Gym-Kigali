@@ -9,12 +9,13 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
 import { LogoMark } from "@/components/logo";
 import { brand } from "@/lib/brand";
+import { activeCount } from "@/lib/crm-data";
 import { useToast } from "./toast";
 
 const NAV = [
   { href: "/admin", label: "Today", icon: House, badge: "7" },
   { href: "/admin/schedule", label: "Schedule", icon: CalendarDays },
-  { href: "/admin/members", label: "Members", icon: Users, badge: "486" },
+  { href: "/admin/members", label: "Members", icon: Users, badge: String(activeCount()) },
   { href: "/admin/training", label: "Training", icon: Dumbbell },
   { href: "/admin/money", label: "Money", icon: Banknote },
   { href: "/admin/team", label: "Team", icon: BriefcaseBusiness },

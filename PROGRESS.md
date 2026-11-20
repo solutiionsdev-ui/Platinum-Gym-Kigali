@@ -97,10 +97,30 @@ Open http://localhost:1122/admin (English only, separate look from the website).
 - **Assistant:** voice note "Shyira Sandrine Uwimana muri spin ya 7pm uyu munsi" (Kinyarwanda + English); understands "yego"/"oya"; payments like "Fabrice Murenzi paid 60,000 MoMo" or "50k airtel"; the "which member?" demo is "Book Kevin into spin".
 - Still sample data: address, hours, prices, coaches, members, colors (lime). The design canvas on claude.ai still shows the old Beirut/VOLT version.
 
-## Next
-- Mario clicks through everything, starting at http://localhost:1122/guide.
-- Then **Step 3b: preview link** on Vercel so gym owners can open the demo without Mario's computer (KICKOFF.md).
+## Upscaled demo with Platinum's real details · 20 Nov 2026
+Built from Gael's current site (platinumgymkigali.com) to show him an upgrade. Kept easy and simple: short sentences, one clear next step on every page, no gym jargon.
 
-## Open questions
-- Does Mario have a reference gym website or Instagram for the look?
-- Demo brand name OK, or another one?
+- **Real details** in `src/lib/brand.ts`: Rebero near SAWA City, open 24 hours, Technogym, 465 m², +250 790 666 688, info@platinumgymkigali.com, Instagram, his logo and slogan ("Empower yourself. Transform your body."), yellow accent `#F4C842`.
+- **Real classes and coaches** from his timetable: Akantu (Gael's signature), Traditional Strength, Abs & Core, Boxing, Aerobics, Step Aerobics, Mobility, Bootcamp; coaches Gael, Emmanuel, Mido, Donyori, Tutor. Real packages: 1 month 120,000 / 3 months 300,000 / 6 months 550,000 / 12 months 1,000,000 RWF, day pass 10,000, one class 7,000, couple/family/group "ask us".
+- **Real photos** hotlinked from his site (`src/lib/photos.ts`, `<Photo k=… />`). They load a bit slowly from his server; copy them into `/public` once Gael says OK.
+- **New pages:**
+  - `/en/start`: "Find my program" in 3 taps (goal → man or woman → level) → program, first class, package and the Monday WhatsApp check-in. It's the main button everywhere, including the phone bar.
+  - `/en/programs` + 7 program pages (`src/lib/programs.ts`): for men (Build Muscle, Lose the Belly, Strong Start), for women (Tone & Shape, Lose Weight Safely, Strong & Confident) and Akantu for everyone. Each has a week-by-week plan, a common myth answered ("Will lifting make me bulky?"), first class and coach.
+  - `/en/online`: online coaching at 60,000 RWF a month (sample price): how it works in 4 steps, a sample day on the phone, a short questionnaire that shows the WhatsApp reply.
+  - `/en/tour`: virtual tour, a tap-a-zone map of the gym with real photos per zone, "360° view coming", and his YouTube video (loads only on click).
+  - `/en/first-visit`: what happens on your first visit, step by step.
+- **Home** rebuilt around the slogan, "Start here", programs for men and women, classes, Gael's story, tour, packages and visit. Header: Programs, Classes, Online coaching, Virtual tour, Prices, Contact.
+- **CRM** follows: same coaches and classes, Online coaching clients on Training, quiz/online leads in Leads, Monday program check-in in automatic messages.
+- **Assistant:** voice note "Shyira Sandrine Uwimana muri abs ya 6:30pm uyu munsi" → 18:30 is full, offers 19:30; "Book Kevin into boxing" asks which Kevin. Each member's WhatsApp confirmation now carries their own link (Sandrine keeps `/m/7KQ2`).
+- Checked: every page at phone and desktop width (no sideways scroll, all photos load), 134 internal links, quiz, tour, online form, assistant flows, typecheck, lint, test build.
+
+## Next
+- Mario clicks through, starting at http://localhost:1122/en and http://localhost:1122/guide.
+- Then **Step 3b: preview link** on Vercel so Gael can open the demo on his phone (KICKOFF.md).
+
+## Questions for Gael
+- Is there a women-only area or women-only hours? Female coaches?
+- Price for online coaching (sample: 60,000 RWF a month)?
+- Which hours is the desk staffed (the gym is open 24 hours)?
+- OK to copy the photos from his current site into the new one?
+- A native speaker should check the Kinyarwanda voice note.

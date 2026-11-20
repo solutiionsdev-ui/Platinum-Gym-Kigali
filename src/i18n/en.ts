@@ -48,23 +48,23 @@ export const en = {
   fullShort: "Full · waitlist",
 
   home: {
-    eyebrow: "Nyarutarama, Kigali · Open 7 days a week",
-    title1: "Stronger",
-    title2: "every",
-    titleAccent: "week.",
+    eyebrow: "Rebero, Kigali · Open 24 hours",
+    title1: "Empower yourself.",
+    title2: "Transform",
+    titleAccent: "your body.",
     intro:
-      "Group classes, open gym and personal coaching under one roof. Book your first class free: no card, no commitment, and the confirmation lands on your WhatsApp.",
-    photoHero: "coach leading an evening Spin class",
+      "Kigali's 24-hour gym in Rebero. Technogym equipment, classes every evening, training programs for men and for women, and online coaching from Gael's team.",
+    photoHero: "coach on the weights floor",
     nextClass: "Next class",
     todayAt: `Today at ${brand.short}`,
     fullTimetable: "Full timetable",
     offerTitle: "Train your way",
     offerText: "One membership covers the gym floor, every group class and the recovery area. Add a coach when you want a plan.",
     offers: [
-      { title: "Open gym", text: "Free weights, racks and machines, open 7 days a week. Coaches on the floor to check your form." },
-      { title: "Group classes", text: "40+ classes a week: Spin, HIIT, Strength, Boxing, Yoga and Pilates. See spots left before you book." },
+      { title: "Open gym", text: "Technogym machines, racks and free weights, open 24 hours. Coaches on the floor to check your form." },
+      { title: "Group classes", text: "Akantu, Traditional Strength, Abs & Core, Boxing, Aerobics, Step Aerobics, Mobility and Bootcamp." },
       { title: "Personal training", text: "One-to-one sessions with a written plan, monthly check-ins and progress you can see." },
-      { title: "Recovery", text: "Sauna, a stretching zone and a body-composition scan every month for members." },
+      { title: "Recovery", text: "Sauna, steam room and a stretching zone, included in every package." },
     ],
     classesTitle: "Classes",
     classesLink: "See this week's timetable",
@@ -205,6 +205,14 @@ export const en = {
     waConsult: (name: string, trainer: string) =>
       `Hi ${name}, thanks for booking a free consultation${trainer ? " with " + trainer : ""}. We'll send you a time on WhatsApp shortly.`,
     another: "Send another request",
+    programPick: "Program",
+    submitProgram: "Start this program",
+    waProgram: (name: string, program: string, coach: string) =>
+      `Hi ${name}, welcome to ${program}! ${coach} will message you today to set your first session. Every Monday you get the week's plan here.`,
+    online: "Online coaching",
+    submitOnline: "Send my answers",
+    waOnline: (name: string) =>
+      `Hi ${name}, thanks! Gael's team is reading your answers and will send your personal plan here within 48 hours, with a short video for every exercise.`,
     planPick: "Plan",
     submitPlan: "Send my request",
     waPlan: (name: string, plan: string) =>
@@ -217,7 +225,7 @@ export const en = {
     phone: "Phone",
     whatsapp: "WhatsApp",
     parking: "Parking",
-    parkingText: "Free parking in the building basement for members.",
+    parkingText: "Parking at the gym. Ask the desk if it is full.",
     openMaps: "Open in Maps",
   },
 
@@ -225,13 +233,13 @@ export const en = {
     metaTitle: "About",
     title: `About ${brand.short}`,
     paragraphs: [
-      `${brand.name} is a neighbourhood gym in Nyarutarama for people who want to get stronger without the fuss. Small classes, coaches who know your name, and a timetable that fits around work.`,
-      "We keep things simple: one membership covers the gym floor, every group class and the recovery area. Booking takes a minute and everything else happens on WhatsApp.",
+      `${brand.name} was founded by Gael, who has spent more than 15 years in professional sports and fitness and trained Miss Rwanda contestants. The gym opened in Rebero, Kigali, with a simple idea: the best equipment, real coaching, and doors open 24 hours.`,
+      "One package covers everything: Technogym equipment, every class, the sauna and steam room, and a training program for your goal. Booking takes a minute and everything else happens on WhatsApp.",
     ],
     values: [
-      { title: "Coached, not crowded", text: "Classes are capped so the coach can check every rep." },
-      { title: "Honest prices", text: "No joining fee, no hidden extras, freeze days on longer plans." },
-      { title: "Progress you can see", text: "Monthly body scans and a trainer who tracks them with you." },
+      { title: "Real coaching", text: "Coaches on the floor and classes small enough to check every move." },
+      { title: "One clear price", text: "Same benefits in every package. No hidden extras." },
+      { title: "Open 24 hours", text: "Train before work, after work, or in the middle of the night." },
     ],
   },
 

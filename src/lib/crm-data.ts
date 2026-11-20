@@ -5,14 +5,14 @@
 import { money } from "./brand";
 import { getClassType, getCoach, getSessionsForDay, isFull, isPast, spotsLeft, demoToday } from "./data";
 import {
-  automations, coachStats, DEMO_DATE, daysBetween, deskStats, leads, leaveRequest, memberExtras, members, money as moneyData, onShift, payroll, PLAN_LABELS, previewValues,
+  automations, coachStats, DEMO_DATE, daysBetween, deskStats, leads, leaveRequest, memberExtras, members, money as moneyData, onlineClients, onShift, payroll, PLAN_LABELS, previewValues,
   ptToday, recentMessages, staff, type CrmMember, type MemberStatus,
 } from "./crm-sample-data";
 
 export { DEMO_DATE, PLAN_LABELS, type CrmMember, type MemberStatus };
 export const DEMO_TIME = "16:40";
 
-export const PLAN_PRICES: Record<CrmMember["planId"], number> = { monthly: 60000, "3m": 165000, "6m": 300000, "12m": 540000, pack10: 90000, student: 40000, trial: 0 };
+export const PLAN_PRICES: Record<CrmMember["planId"], number> = { monthly: 120000, "3m": 300000, "6m": 550000, "12m": 1000000, pack10: 90000, student: 80000, trial: 0 };
 
 /* ---------- Formatting ---------- */
 
@@ -82,7 +82,7 @@ export function getMemberDetail(m: CrmMember) {
   const weeks = Array.from({ length: 12 }, (_, i) =>
     m.status === "frozen" && i > 7 ? 0 : Math.max(0, Math.round(perWeek + (rand() - 0.5) * 2)),
   );
-  const types = ["Spin", "HIIT", "Strength", "Boxing", "Yoga", "Pilates"];
+  const types = ["Akantu", "Traditional Strength", "Abs & Core", "Boxing", "Aerobics", "Mobility"];
   const a = types[Math.floor(rand() * 6)];
   const b = types.filter((t) => t !== a)[Math.floor(rand() * 5)];
   const methods = ["Cash", "Card", "MTN MoMo", "Airtel Money", "Bank transfer"];
@@ -156,6 +156,7 @@ export const getPtToday = () => ptToday;
 export const getLeads = () => leads;
 export const getMoney = () => moneyData;
 export const getLeaveRequest = () => leaveRequest;
+export const getOnlineClients = () => onlineClients;
 export const getStaff = () => staff;
 export const getCoachStats = () => coachStats;
 export const getDeskStats = () => deskStats;

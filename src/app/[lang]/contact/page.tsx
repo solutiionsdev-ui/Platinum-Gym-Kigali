@@ -23,7 +23,7 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
             <Eyebrow>{t.home.address}</Eyebrow>
             <p className="mt-1.5 flex items-start gap-2 text-[17px]">
               <MapPin aria-hidden className="mt-1 size-[18px] shrink-0 text-accent" strokeWidth={1.8} />
-              {brand.address[lang]}
+              <span>{brand.address[lang]}<span className="block font-mono text-sm text-muted">{brand.plusCode}</span></span>
             </p>
           </div>
           <div>
@@ -53,7 +53,7 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
               <MessageCircle aria-hidden className="size-[18px]" strokeWidth={1.8} />
               {t.common.whatsappUs}
             </a>
-            <a href="https://maps.google.com/?q=Nyarutarama+Kigali" className={btn.outline}>{t.contact.openMaps}</a>
+            <a href="https://maps.google.com/?q=Platinum+Gym+Kigali+Rebero" className={btn.outline}>{t.contact.openMaps}</a>
           </div>
         </div>
       </div>

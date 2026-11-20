@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { ArrowRight, ImageIcon } from "lucide-react";
 import type { ReactNode } from "react";
 import { brand } from "@/lib/brand";
+import { photoUrl, type PhotoKey } from "@/lib/photos";
 
 /** Button-looking links and buttons. */
 export const btn = {
@@ -58,6 +59,14 @@ export function LevelBars({ level, label }: { level: number; label: string }) {
         <span key={n} className={clsx("h-1.5 w-[18px] rounded-[3px]", n <= level ? "bg-accent" : "bg-line")} />
       ))}
     </span>
+  );
+}
+
+/** One of the gym's own photos (see src/lib/photos.ts), with a caption for screen readers. */
+export function Photo({ k, alt, className, eager }: { k: PhotoKey; alt: string; className?: string; eager?: boolean }) {
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img src={photoUrl(k)} alt={alt} loading={eager ? "eager" : "lazy"} decoding="async" className={clsx("block object-cover", className)} />
   );
 }
 

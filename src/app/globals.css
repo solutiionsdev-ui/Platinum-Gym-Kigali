@@ -5,7 +5,7 @@
  * The accent comes from src/lib/brand.ts and is set on <html> as --accent.
  */
 :root {
-  --accent: #c8f135;
+  --accent: #f4c842;
 }
 
 @theme {
